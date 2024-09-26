@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿
+using System.Runtime.ExceptionServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace project_1_game_inteact
+namespace UItest
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,6 +21,31 @@ namespace project_1_game_inteact
         public MainWindow()
         {
             InitializeComponent();
+            multi.Content = "Samen spelen \n Alleen spelen";
+        }
+
+        private void multi_Click(object sender, RoutedEventArgs e)
+        {
+            bool knop = true;
+
+            if (knop == true) 
+            {
+              
+
+            }
+        }
+
+        private void levels_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            this.Hide();
+
+
+            UItest.levels secondWindow = new UItest.levels();
+            secondWindow.Show();
+
+
         }
     }
 }

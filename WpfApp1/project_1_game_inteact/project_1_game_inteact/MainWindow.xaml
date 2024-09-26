@@ -1,12 +1,40 @@
-﻿<Window x:Class="project_1_game_inteact.MainWindow"
+﻿<Window x:Class="UItest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:project_1_game_inteact"
+        xmlns:local="clr-namespace:UItest"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Image x:Name="afbeelding" Grid.RowSpan="7" Margin="0,-10,0,8" Source="/afbeelding.jpg" Grid.ColumnSpan="6"/>
+        <Button x:Name="levels" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="1" Content="levels" Background="Orange" Click="levels_Click"/>
+        <Button x:Name="multi" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="2" Content="Samen spelen" Background="Orange" Click="multi_Click"/>
+        <Button x:Name="upgrades" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="3" Content="Upgrades" Background="Orange"/>
+        <Button x:Name="instellingen" Grid.ColumnSpan="2" Margin="133,10,1,10" Grid.Row="4" Content="Instellingen" Background="Orange" />
+        <Button x:Name="leave" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="5" Content="Verlaat het spel" Background="Orange" />
+        <Label x:Name="startscreen" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,10,0" Content="Start scherm" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+        <Label x:Name="lspeler1" Grid.Column="2" Grid.ColumnSpan="2" Margin="49,34,84,0" Grid.Row="2" Content="Naam speler 1:"/>
+        <TextBox x:Name="speler1" Background="Orange" Grid.Column="2" Grid.ColumnSpan="2" Margin="49,62,84,0" Grid.RowSpan="2" Grid.Row="2"/>
+        <TextBox x:Name="speler2" Background="Orange" Grid.Column="3" Grid.ColumnSpan="2" Margin="67,62,67,0" Grid.RowSpan="2" Grid.Row="2"/>
+        <Label x:Name="lspeler2" Grid.Column="3" Grid.ColumnSpan="2" Margin="67,34,66,0" Grid.Row="2" Content="Naam speler 1:"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
 
+        </Grid.RowDefinitions>
     </Grid>
 </Window>

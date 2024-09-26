@@ -1,7 +1,7 @@
-﻿<Application x:Class="project_1_game_inteact.App"
+﻿<Application x:Class="UItest.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:project_1_game_inteact"
+             xmlns:local="clr-namespace:UItest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace project_1_game_inteact
+namespace UItest
 {
     /// <summary>
     /// Interaction logic for App.xaml
