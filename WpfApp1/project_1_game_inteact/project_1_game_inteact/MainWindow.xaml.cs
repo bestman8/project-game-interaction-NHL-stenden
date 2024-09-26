@@ -29,7 +29,7 @@ namespace UItest
         private void multi_Click(object sender, RoutedEventArgs e)
         {
 
-
+       
             if (j == 1)
             {
                 multi.Content = "Alleen spelen";
@@ -37,8 +37,9 @@ namespace UItest
                 speler1.Visibility = Visibility.Visible;
                 speler2.Visibility = Visibility.Visible;
                 lspeler1.Visibility = Visibility.Visible;   
-                lspeler2.Visibility = Visibility.Visible;   
-                
+                lspeler2.Visibility = Visibility.Visible;
+                speler1.Text = "";
+                speler2.Text = "";
             }
             else if (j == 0)
             {
@@ -48,6 +49,8 @@ namespace UItest
                 lspeler1.Visibility = Visibility.Visible;
                 lspeler2.Visibility = Visibility.Hidden;
                 speler2.Visibility = Visibility.Hidden;
+                speler1.Text = "";
+                speler2.Text = "";
                
             }
 
