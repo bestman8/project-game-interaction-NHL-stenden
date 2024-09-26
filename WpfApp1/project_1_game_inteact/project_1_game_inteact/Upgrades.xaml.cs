@@ -38,5 +38,15 @@ namespace project_1_game_inteact
             gm.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

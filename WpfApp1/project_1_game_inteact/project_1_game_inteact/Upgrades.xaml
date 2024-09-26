@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
         Title="Upgrades" Height="450" Width="800">
-    <Grid>
+    <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -16,8 +16,17 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="Startscherm" Margin="318,30,100,259" Grid.Row="1" Click="StartschermClick">Startscherm</Button>
-        <Button x:Name="Levels_Knop" Margin="400,30,10,259" Grid.Row="1" Click="LevelsClick">Levels</Button>
-        <Label x:Name="Geld" Margin="10,0,0,35" Grid.Column="1"/>
+        <Button x:Name="Startscherm" Margin="305,30,113,259" Grid.Row="1" Click="StartschermClick" Background="Orange">Startscherm</Button>
+        <Button x:Name="Levels_Knop" Margin="413,30,297,259" Grid.Row="1" Click="LevelsClick" Background="Orange" Grid.ColumnSpan="2">Levels</Button>
+        <Label x:Name="Geld" Margin="150,0,0,35" Grid.Column="1" Content="Geld:" Background="Ora"/>
+        <Label x:Name="UpgradesTitel" Margin="274,32,0,326" Grid.RowSpan="2" Content="Upgrades" FontSize="50"/>
+        <Button Background="Orange" Margin="98,105,286,167" Grid.Row="1" Content="Onderdeel 1"/>
+        <Button Background="Orange" Margin="250,105,134,167" Grid.Row="1" Content="Onderdeel 2" Click="Button_Click_1"/>
+        <Button Background="Orange" Margin="445,105,239,167" Grid.Row="1" Content="Onderdeel 3" Grid.ColumnSpan="2"/>
+        <Button Background="Orange" Margin="109,105,100,167" Grid.Row="1" Content="Onderdeel 4" Grid.Column="1" Click="Button_Click"/>
+        <Button Background="Orange" Margin="98,193,286,79" Grid.Row="1" Content="Optie 1&#xD;&#xA;"/>
+        <Button Background="Orange" Margin="250,193,134,79" Grid.Row="1" Content="Optie 2" Click="Button_Click_1"/>
+        <Button Background="Orange" Margin="445,188,239,84" Grid.Row="1" Content="Optie 3" Grid.ColumnSpan="2"/>
+        <Button Background="Orange" Margin="109,188,75,84" Grid.Row="1" Content="Optie 4" Grid.Column="1" Click="Button_Click"/>
     </Grid>
 </Window>
