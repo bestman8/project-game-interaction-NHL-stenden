@@ -23,8 +23,9 @@ namespace project_1_game_inteact
         public Upgrades()
         {
             InitializeComponent();
+            Speler_2_Knop.Visibility = Visibility.Hidden;
         }
-
+        
         private void LevelsClick(object sender, RoutedEventArgs e)
         {
             levels gm = new levels();
@@ -48,5 +49,24 @@ namespace project_1_game_inteact
         {
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void Speler1Click(object sender, RoutedEventArgs e)
+        {
+            Speler_1_Knop.Visibility = Visibility.Hidden;
+            Speler_2_Knop.Visibility = Visibility.Visible;
+            
+        }
+
+        private void Speler2Click(object sender, RoutedEventArgs e)
+        {
+            Speler_2_Knop.Visibility = Visibility.Hidden;
+            Speler_1_Knop.Visibility = Visibility.Visible;
+        }
     }
 }
+// Funtionalitiet knoppen nog toevoegen en switchen tussen upgrades player 1 en 2 doet niks
