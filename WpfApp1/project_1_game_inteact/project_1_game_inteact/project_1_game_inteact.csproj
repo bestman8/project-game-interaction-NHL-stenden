@@ -8,4 +8,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="resources\images\background_main\asfasfasdf.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="resources\veh_upgrades\" />
+    <Folder Include="resources\vehicles\" />
+    <Folder Include="resources\sprites\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\images\background_main\asfasfasdf.png" />
+  </ItemGroup>
+
 </Project>
