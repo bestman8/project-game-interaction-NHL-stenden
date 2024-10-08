@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -336,6 +337,19 @@ namespace project_1_game_inteact
         {
             P2_Upgrade_Suspensie_4.IsEnabled = false;
         }
+
+        //Info
+        private void Suspensie_Info(object sender, MouseEventArgs e)
+        {
+
+         Suspensie_info_Label.Visibility = Visibility.Visible;
+        }
+
+        private void Suspensie_Info(object sender, StylusEventArgs e)
+        {
+
+        }
+
 
         // Einde Upgrades
     }
