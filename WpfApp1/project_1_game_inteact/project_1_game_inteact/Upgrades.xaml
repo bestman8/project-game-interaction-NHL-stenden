@@ -17,7 +17,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="800"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="pack://application:,,,/Afbeeldingen/Garage.jpg" Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+        <Image Source="/Garage.jpg" Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
         <Button x:Name="Startscherm" Margin="274,106,426,23" Click="StartschermClick" Background="LightGray" Grid.Column="1" Content="Startscherm" Grid.RowSpan="2"/>
         <Button x:Name="Levels_Knop" Margin="405,106,295,23" Click="LevelsClick" Background="LightGray" Grid.Column="1" Content="Levels" Grid.RowSpan="2"/>
         <Label x:Name="GeldSpeler1" Margin="696,30,10,74" Background="LightGray" Grid.Column="1" Content="Speler 1: 999"/>
@@ -78,12 +78,12 @@
         <Button x:Name="P2_Upgrade_Suspensie_2" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 2" Grid.Column="1" Click="P2_Upgrade_Suspensie_2_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
         <Button x:Name="P2_Upgrade_Suspensie_3" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 3" Grid.Column="1" Click="P2_Upgrade_Suspensie_3_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
         <Button x:Name="P2_Upgrade_Suspensie_4" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 4" Grid.Column="1" Click="P2_Upgrade_Suspensie_4_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Image Source="pack://application:,,,/Afbeeldingen/autoMunt.png" Margin="762,12,2,55" Grid.Column="1" RenderTransformOrigin="0.801,0.707"/>
-        <Image Source="pack://application:,,,/Afbeeldingen/autoMunt.png" Margin="762,52,2,45" Grid.Column="1"/>
-        <Image x:Name="Wiel" Source="pack://application:,,,/Afbeeldingen/Wiel.jpg" Margin="426,15,203,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Motor" Source="pack://application:,,,/Afbeeldingen/Motor.jpg" Margin="195,15,466,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Body" Source="pack://application:,,,/Afbeeldingen/Auto.jpg" Margin="10,15,619,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Suspensie" Source="pack://application:,,,/Afbeeldingen/Suspensie.jpg" Margin="600,15,29,152" Grid.Column="1" Grid.Row="2" RenderTransformOrigin="0.762,0.881"/>
+        <Image Source="/autoMunt.png" Margin="762,12,2,55" Grid.Column="1" RenderTransformOrigin="0.801,0.707"/>
+        <Image Source="/autoMunt.png" Margin="762,52,2,45" Grid.Column="1"/>
+        <Image x:Name="Wiel" Source="/Wiel.jpg" Margin="426,15,203,152" Grid.Column="1" Grid.Row="2"/>
+        <Image x:Name="Motor" Source="/motor.jpg" Margin="195,15,466,152" Grid.Column="1" Grid.Row="2"/>
+        <Image x:Name="Body" Source="/Auto.jpg" Margin="10,15,619,152" Grid.Column="1" Grid.Row="2"/>
+        <Image x:Name="Suspensie" Source="/Suspensie.jpg" Margin="600,15,29,152" Grid.Column="1" Grid.Row="2" RenderTransformOrigin="0.762,0.881"/>
 
     </Grid>
 </Window>
