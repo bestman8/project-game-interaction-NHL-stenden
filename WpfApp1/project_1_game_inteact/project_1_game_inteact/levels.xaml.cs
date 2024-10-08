@@ -27,5 +27,12 @@ namespace UItest
 
 
         }
+
+        private void home_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            UItest.MainWindow secondWindow = new UItest.MainWindow();
+            secondWindow.Show();
+        }
     }
 }
