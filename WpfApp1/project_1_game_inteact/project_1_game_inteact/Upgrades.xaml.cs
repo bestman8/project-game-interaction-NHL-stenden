@@ -62,8 +62,8 @@ namespace project_1_game_inteact
 
         private void Speler1Click(object sender, RoutedEventArgs e)
         {
-            Speler_1_Knop.Visibility = Visibility.Hidden;
-            Speler_2_Knop.Visibility = Visibility.Visible;
+            Speler_1_Knop.IsEnabled = false;
+            Speler_2_Knop.IsEnabled = true;
 
             P1_Upgrade_Body_1.Margin = new Thickness(900, 900, 901, 901);
             P1_Upgrade_Body_2.Margin = new Thickness(900, 900, 901, 901);
@@ -108,8 +108,8 @@ namespace project_1_game_inteact
 
         private void Speler2Click(object sender, RoutedEventArgs e)
         {
-            Speler_2_Knop.Visibility = Visibility.Hidden;
-            Speler_1_Knop.Visibility = Visibility.Visible;
+            Speler_1_Knop.IsEnabled = true;
+            Speler_2_Knop.IsEnabled = false;
 
             P1_Upgrade_Body_1.Margin = new Thickness(32, 118, 644, 78);
             P1_Upgrade_Body_2.Margin = new Thickness(32, 118, 644, 78);
