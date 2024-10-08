@@ -9,27 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Auto.jpg" />
+    <None Remove="autoMunt.png" />
+    <None Remove="Garage.jpg" />
+    <None Remove="motor.jpg" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
+    <None Remove="Suspensie.jpg" />
+    <None Remove="Wiel.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="resources\veh_upgrades\" />
     <Folder Include="resources\vehicles\" />
     <Folder Include="resources\sprites\" />
+    <Resource Include="Auto.jpg" />
+    <Resource Include="autoMunt.png" />
+    <Resource Include="Garage.jpg" />
+    <Resource Include="motor.jpg" />
 
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
 
-    <None Remove="Afbeeldingen\Auto.jpg" />
-    <None Remove="Afbeeldingen\Auto.png" />
-    <None Remove="Afbeeldingen\autoMunt.png" />
-    <None Remove="Afbeeldingen\Garage.jpg" />
-    <None Remove="Afbeeldingen\Garage.png" />
-    <None Remove="Afbeeldingen\motor.jpg" />
-    <None Remove="Afbeeldingen\Motor.png" />
-    <None Remove="Afbeeldingen\Suspensie.jpg" />
-    <None Remove="Afbeeldingen\Suspensie.png" />
-    <None Remove="Afbeeldingen\Wiel.jpg" />
-    <None Remove="Afbeeldingen\Wiel.png" />
+    <Resource Include="Suspensie.jpg" />
+
+    <Resource Include="Wiel.jpg" />
 
 <!--     <Resource Include="Afbeeldingen\Auto.jpg" />
     <Resource Include="Afbeeldingen\autoMunt.png" />
