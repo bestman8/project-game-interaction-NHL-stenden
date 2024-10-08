@@ -16,10 +16,27 @@
     <Folder Include="resources\veh_upgrades\" />
     <Folder Include="resources\vehicles\" />
     <Folder Include="resources\sprites\" />
-  </ItemGroup>
 
-  <ItemGroup>
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
+
+    <None Remove="Afbeeldingen\Auto.jpg" />
+    <None Remove="Afbeeldingen\Auto.png" />
+    <None Remove="Afbeeldingen\autoMunt.png" />
+    <None Remove="Afbeeldingen\Garage.jpg" />
+    <None Remove="Afbeeldingen\Garage.png" />
+    <None Remove="Afbeeldingen\motor.jpg" />
+    <None Remove="Afbeeldingen\Motor.png" />
+    <None Remove="Afbeeldingen\Suspensie.jpg" />
+    <None Remove="Afbeeldingen\Suspensie.png" />
+    <None Remove="Afbeeldingen\Wiel.jpg" />
+    <None Remove="Afbeeldingen\Wiel.png" />
+
+<!--     <Resource Include="Afbeeldingen\Auto.jpg" />
+    <Resource Include="Afbeeldingen\autoMunt.png" />
+    <Resource Include="Afbeeldingen\Garage.jpg" />
+    <Resource Include="Afbeeldingen\motor.jpg" />
+    <Resource Include="Afbeeldingen\Suspensie.jpg" />
+    <Resource Include="Afbeeldingen\Wiel.jpg" /> -->
   </ItemGroup>
 
 </Project>

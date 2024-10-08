@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using project_1_game_inteact;
 
 namespace UItest
 {
@@ -68,5 +69,12 @@ namespace UItest
 
 
         }
+
+        private void Upgrades_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Upgrades upgradesWindow = new Upgrades();
+            upgradesWindow.Show();
+        } 
     }
 }
