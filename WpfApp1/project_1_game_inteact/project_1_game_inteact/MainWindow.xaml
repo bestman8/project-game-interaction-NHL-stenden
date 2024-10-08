@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Image x:Name="afbeelding" Grid.RowSpan="7" Margin="0,-10,0,8" Source="/afbeelding.jpg" Grid.ColumnSpan="6"/>
+        <Image x:Name="afbeelding" Grid.RowSpan="7" Margin="0,-9,0,7" Source="/afbeelding.jpg" Grid.ColumnSpan="6"/>
         <Button x:Name="levels" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="1" Content="levels" Background="Orange" Click="levels_Click"/>
         <Button x:Name="multi" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="2" Content="Samen spelen" Background="Orange" Click="multi_Click"/>
-        <Button x:Name="upgrades" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="3" Content="Upgrades" Background="Orange"/>
+        <Button x:Name="upgrades" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="3" Content="Upgrades" Background="Orange" Click="Upgrades_Click"/>
         <Button x:Name="instellingen" Grid.ColumnSpan="2" Margin="133,10,1,10" Grid.Row="4" Content="Instellingen" Background="Orange" />
         <Button x:Name="leave" Grid.ColumnSpan="3" Margin="133,10,133,10" Grid.Row="5" Content="Verlaat het spel" Background="Orange" />
         <Label x:Name="startscreen" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,10,0" Content="Start scherm" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
