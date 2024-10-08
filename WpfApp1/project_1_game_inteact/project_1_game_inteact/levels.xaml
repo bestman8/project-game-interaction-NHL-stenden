@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="levels" Height="450" Width="800">
     <Grid>
-        <Button Name="home" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="home" Background="Orange"></Button>
+        <Button Name="home" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="home" Background="Orange" Click="home_Click"></Button>
         <Button Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="upgrades" Background="Orange"/>
         <Label Name="llevels" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,-5,0,5" Content="Levels" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <Image Name="level1" Grid.Column="1" Grid.ColumnSpan="2" Margin="50,26,50,45" Grid.RowSpan="2" Grid.Row="2" Source="/afbeelding.jpg"/>
