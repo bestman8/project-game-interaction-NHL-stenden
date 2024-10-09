@@ -17,14 +17,14 @@ using UItest;
 namespace project_1_game_inteact
 {
     /// <summary>
-    /// Interaction logic for Upgrades.xaml
+    /// Functionaliteit van de upgrade knopen doet nog niks, switcht nu nog alleen tussen de upgrades zelf
     /// </summary>
     public partial class Upgrades : Window
     {   
         public Upgrades()
         {
             InitializeComponent();
-
+            // de knopen van player 2 buiten beeld zetten
             P2_Upgrade_Body_1.Margin = new Thickness(900, 900, 901, 901);
             P2_Upgrade_Body_2.Margin = new Thickness(900, 900, 901, 901);
             P2_Upgrade_Body_3.Margin = new Thickness(900, 900, 901, 901);
@@ -60,6 +60,7 @@ namespace project_1_game_inteact
             this.Visibility = Visibility.Hidden;
         }
 
+        //Hiermee switch je tussen de upgrades van player 1 en player 2
         private void Speler1Click(object sender, RoutedEventArgs e)
         {
             Speler_1_Knop.IsEnabled = false;
@@ -338,20 +339,49 @@ namespace project_1_game_inteact
             P2_Upgrade_Suspensie_4.IsEnabled = false;
         }
 
-        //Info
-        private void Suspensie_Info(object sender, MouseEventArgs e)
+        //Info over wat de upgrades doen
+        private void Lichaam_MouseEnter(object sender, MouseEventArgs e)
         {
-
-         Suspensie_info_Label.Visibility = Visibility.Visible;
+            Lichaam_Info.Visibility = Visibility.Visible; 
         }
 
-        private void Suspensie_Info(object sender, StylusEventArgs e)
+        private void Lichaam_MouseLeave(object sender, MouseEventArgs e)
         {
-
+            Lichaam_Info.Visibility= Visibility.Hidden;
         }
+
+        private void Suspensie_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Suspensie_info.Visibility = Visibility.Visible;
+        }
+
+        private void Motor_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Motor_Info.Visibility = Visibility.Visible;
+        }
+
+        private void Motor_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Motor_Info.Visibility = Visibility.Hidden;
+        }
+
+        private void Wiel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Wiel_info.Visibility = Visibility.Visible;
+        }
+
+        private void Wiel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Wiel_info.Visibility= Visibility.Hidden;
+        }
+
+        private void Suspensie_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Suspensie_info.Visibility = Visibility.Hidden;
+        }
+        //Einde info
 
 
         // Einde Upgrades
     }
 }
-// Funtionalitiet knoppen nog toevoegen en switchen tussen upgrades player 1 en 2 doet niks

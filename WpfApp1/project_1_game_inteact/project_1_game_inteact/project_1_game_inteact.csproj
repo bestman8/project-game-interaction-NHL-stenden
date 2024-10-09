@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Afbeeldingen\Auto.png" />
+    <None Remove="Afbeeldingen\autoMunt.png" />
+    <None Remove="Afbeeldingen\motor.png" />
+    <None Remove="Afbeeldingen\Suspensie.png" />
+    <None Remove="Afbeeldingen\Wiel.png" />
     <None Remove="Auto.jpg" />
     <None Remove="autoMunt.png" />
     <None Remove="Garage.jpg" />
@@ -22,6 +27,11 @@
     <Folder Include="resources\veh_upgrades\" />
     <Folder Include="resources\vehicles\" />
     <Folder Include="resources\sprites\" />
+    <Resource Include="Afbeeldingen\Auto.png" />
+    <Resource Include="Afbeeldingen\autoMunt.png" />
+    <Resource Include="Afbeeldingen\motor.png" />
+    <Resource Include="Afbeeldingen\Suspensie.png" />
+    <Resource Include="Afbeeldingen\Wiel.png" />
     <Resource Include="Auto.jpg" />
     <Resource Include="autoMunt.png" />
     <Resource Include="Garage.jpg" />
