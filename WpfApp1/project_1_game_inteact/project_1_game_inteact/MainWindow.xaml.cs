@@ -75,6 +75,13 @@ namespace UItest
             this.Hide();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
-        } 
+        }
+
+        private void instellingen_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            instellingen instellingenWindow = new instellingen();
+            instellingenWindow.Show();
+        }
     }
 }
