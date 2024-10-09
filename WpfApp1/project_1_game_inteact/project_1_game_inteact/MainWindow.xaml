@@ -11,6 +11,7 @@
         <Button x:Name="levels" Margin="0,10,0,10" Grid.Row="1" Content="Levels" Background="#D3D3D3" Click="levels_Click" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
         <Button x:Name="multi" Margin="0,10,0,10" Grid.Row="2" Content="Samen spelen" Background="#D3D3D3" Click="multi_Click" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
         <Button x:Name="upgrades" Margin="0,10,0,10" Grid.Row="3" Content="Upgrades" Background="#D3D3D3" FontWeight="Bold" Foreground="White" Grid.Column="1" Click="Upgrades_Click"/>
+
         <Button x:Name="instellingen" Margin="0,10,0,10" Grid.Row="4" Content="Instellingen" Background="#D3D3D3" FontWeight="Bold" Foreground="White" Grid.Column="1" />
         <Button x:Name="leave" Margin="0,10,0,10" Grid.Row="5" Content="Verlaat het spel" Background="#D3D3D3" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
         <Label x:Name="startscreen" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,10,0" Content="Start scherm" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="White" Background="#D3D3D3" BorderBrush="Black"  BorderThickness="0.5"/>
