@@ -34,16 +34,16 @@
             <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je maximale snelheid."/>
         </Label>
         <Label x:Name="Wiel_info" Margin="449,186,226,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
-            <AccessText TextWrapping="WrapWithOverflow" Text="ga sneller sneller."/>
+            <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je versnelling."/>
         </Label>
         <Label x:Name="Lichaam_Info" Margin="28,186,651,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText TextWrapping="WrapWithOverflow" Text="Vebruik minder brandstof." Width="111"/>
         </Label>
 
-        <Button x:Name="P1_Upgrade_Body_1" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 1" Grid.Column="1" Click="P1_Upgrade_Body_1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P1_Upgrade_Body_2" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 2" Grid.Column="1" Click="P1_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P1_Upgrade_Body_3" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 3" Grid.Column="1" Click="P1_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P1_Upgrade_Body_4" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 4" Grid.Column="1" Click="P1_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P1_Upgrade_Body_1" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 1" Grid.Column="1" Click="P1_Upgrade_Body_1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P1_Upgrade_Body_2" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 2" Grid.Column="1" Click="P1_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P1_Upgrade_Body_3" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 3" Grid.Column="1" Click="P1_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P1_Upgrade_Body_4" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 4" Grid.Column="1" Click="P1_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
 
         <Button x:Name="P1_Upgrade_Motor_1" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 1" Grid.Column="1" Click="P1_Upgrade_Motor_1_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
         <Button x:Name="P1_Upgrade_Motor_2" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 2" Grid.Column="1" Click="P1_Upgrade_Motor_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
@@ -60,10 +60,10 @@
         <Button x:Name="P1_Upgrade_Suspensie_3" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 3" Grid.Column="1" Click="P1_Upgrade_Suspensie_3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
         <Button x:Name="P1_Upgrade_Suspensie_4" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 4" Grid.Column="1" Click="P1_Upgrade_Suspensie_4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
 
-        <Button x:Name="P2_Upgrade_Body_1" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 1" Grid.Column="1" Click="P2_Upgrade_Body_1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P2_Upgrade_Body_2" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 2" Grid.Column="1" Click="P2_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P2_Upgrade_Body_3" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 3" Grid.Column="1" Click="P2_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button x:Name="P2_Upgrade_Body_4" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Lichaam 4" Grid.Column="1" Click="P2_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P2_Upgrade_Body_1" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 1" Grid.Column="1" Click="P2_Upgrade_Body_1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P2_Upgrade_Body_2" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 2" Grid.Column="1" Click="P2_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P2_Upgrade_Body_3" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 3" Grid.Column="1" Click="P2_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button x:Name="P2_Upgrade_Body_4" Background="LightGray" Foreground="White" Margin="25,99,651,98" Content="Brandstof 4" Grid.Column="1" Click="P2_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
 
         <Button x:Name="P2_Upgrade_Motor_1" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 1" Grid.Column="1" Click="P2_Upgrade_Motor_1_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
         <Button x:Name="P2_Upgrade_Motor_2" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 2" Grid.Column="1" Click="P2_Upgrade_Motor_2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
