@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
         Title="Upgrades" Height="450" Width="800">
-    <Grid Margin="0,-18,-11,0" MouseEnter="Motor_MouseEnter">
+    <Grid Margin="0,-18,-11,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="46.84"></RowDefinition>
             <RowDefinition Height="82.533"/>
