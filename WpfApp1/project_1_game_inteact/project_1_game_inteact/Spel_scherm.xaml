@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
-        Title="Spel_scherm" Height="512" Width="1288">
+        Title="Spel_scherm" Height="398" Width="848" MinHeight="250" MinWidth="600">
     <Grid>
-        <Grid Margin="10,10,10,90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1121*"/>
+            <ColumnDefinition Width="167*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10,10,10,90" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"/>
                 <ColumnDefinition Width="127*"/>
@@ -35,10 +39,16 @@
             </Grid>
 
         </Grid>
-        <Grid VerticalAlignment="Bottom" Margin="0,0,0,16">
-                <Button x:Name="Upgrades_button" Content="Upgrades" HorizontalAlignment="center"        Margin="-500,0,0,0" VerticalAlignment="Top" Height="30" Width="113" Grid.Column="0"/>
-                <Button x:Name="Startscherm_button" Content="Startscherm" HorizontalAlignment="center"  Margin="0,0,0,0" VerticalAlignment="Top" Height="30" Width="113" />
-                <Button x:Name="Levels_Copy1" Content="Levels" HorizontalAlignment="center"             Margin="500,0,0,0" VerticalAlignment="Top" Height="30" Width="113"/>
+        <Grid VerticalAlignment="Bottom" Margin="0,0,0,16" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Upgrades_button" Content="Upgrades" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="113" Grid.Column="0" Click="Upgrades_button_Click"/>
+            <Button x:Name="Startscherm_button" Content="Startscherm" HorizontalAlignment="Center" Width="112" Grid.Column="1" Click="Startscherm_button_Click"/>
+            <Button x:Name="Levels_button" Content="Levels" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="113" Grid.Column="2" Click="Levels_button_Click"/>
         </Grid>
 
     </Grid>

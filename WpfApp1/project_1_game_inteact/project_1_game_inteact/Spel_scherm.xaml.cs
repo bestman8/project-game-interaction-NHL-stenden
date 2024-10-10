@@ -23,5 +23,29 @@ namespace project_1_game_inteact
         {
             InitializeComponent();
         }
+
+        private void Upgrades_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Upgrades upgradesWindow = new Upgrades();
+            upgradesWindow.Show();
+        }
+
+        private void Startscherm_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            UItest.MainWindow secondWindow = new UItest.MainWindow();
+            secondWindow.Show();
+        }
+
+        private void Levels_button_Click(object sender, RoutedEventArgs e)
+        {
+
+            this.Hide();
+
+
+            UItest.levels secondWindow = new UItest.levels();
+            secondWindow.Show();
+        }
     }
 }
