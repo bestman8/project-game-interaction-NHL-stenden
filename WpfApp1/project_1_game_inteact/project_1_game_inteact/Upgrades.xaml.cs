@@ -50,14 +50,14 @@ namespace project_1_game_inteact
         {
             levels gm = new levels();
             gm.Visibility = Visibility.Visible;
-            this.Visibility = Visibility.Hidden;
+            this.Close();
         }
 
         private void StartschermClick(object sender, RoutedEventArgs e)
         {
             MainWindow gm = new MainWindow();
             gm.Visibility = Visibility.Visible;
-            this.Visibility = Visibility.Hidden;
+            this.Close();
         }
 
         //Hiermee switch je tussen de upgrades van player 1 en player 2
@@ -86,25 +86,25 @@ namespace project_1_game_inteact
             P1_Upgrade_Suspensie_3.Margin = new Thickness(900, 900, 901, 901);
             P1_Upgrade_Suspensie_4.Margin = new Thickness(900, 900, 901, 901);
 
-            P2_Upgrade_Body_1.Margin = new Thickness(32, 118, 644, 78);
-            P2_Upgrade_Body_2.Margin = new Thickness(32, 118, 644, 78);
-            P2_Upgrade_Body_3.Margin = new Thickness(32, 118, 644, 78);
-            P2_Upgrade_Body_4.Margin = new Thickness(32, 118, 644, 78);
+            P2_Upgrade_Body_1.Margin = new Thickness(25, 98, 651, 99);
+            P2_Upgrade_Body_2.Margin = new Thickness(25, 98, 651, 99);
+            P2_Upgrade_Body_3.Margin = new Thickness(25, 98, 651, 99);
+            P2_Upgrade_Body_4.Margin = new Thickness(25, 98, 651, 99);
 
-            P2_Upgrade_Motor_1.Margin = new Thickness(201, 118, 474, 78);
-            P2_Upgrade_Motor_2.Margin = new Thickness(201, 118, 474, 78);
-            P2_Upgrade_Motor_3.Margin = new Thickness(201, 118, 474, 78);
-            P2_Upgrade_Motor_4.Margin = new Thickness(201, 118, 474, 78);
+            P2_Upgrade_Motor_1.Margin = new Thickness(201,99,474,98);
+            P2_Upgrade_Motor_2.Margin = new Thickness(201,99,474,98);
+            P2_Upgrade_Motor_3.Margin = new Thickness(201,99,474,98);
+            P2_Upgrade_Motor_4.Margin = new Thickness(201,99,474,98);
 
-            P2_Upgrade_Wiel_1.Margin = new Thickness(449, 118, 226, 78);
-            P2_Upgrade_Wiel_2.Margin = new Thickness(449, 118, 226, 78);
-            P2_Upgrade_Wiel_3.Margin = new Thickness(449, 118, 226, 78);
-            P2_Upgrade_Wiel_4.Margin = new Thickness(449, 118, 226, 78);
+            P2_Upgrade_Wiel_1.Margin = new Thickness(449,99,226,97);
+            P2_Upgrade_Wiel_2.Margin = new Thickness(449,99,226,97);
+            P2_Upgrade_Wiel_3.Margin = new Thickness(449,99,226,97);
+            P2_Upgrade_Wiel_4.Margin = new Thickness(449,99,226,97);
 
-            P2_Upgrade_Suspensie_1.Margin = new Thickness(619, 118, 48, 78);
-            P2_Upgrade_Suspensie_2.Margin = new Thickness(619, 118, 48, 78);
-            P2_Upgrade_Suspensie_3.Margin = new Thickness(619, 118, 48, 78);
-            P2_Upgrade_Suspensie_4.Margin = new Thickness(619, 118, 48, 78);
+            P2_Upgrade_Suspensie_1.Margin = new Thickness(619,99,48,97);
+            P2_Upgrade_Suspensie_2.Margin = new Thickness(619,99,48,97);
+            P2_Upgrade_Suspensie_3.Margin = new Thickness(619,99,48,97);
+            P2_Upgrade_Suspensie_4.Margin = new Thickness(619,99,48,97);
         }
 
         private void Speler2Click(object sender, RoutedEventArgs e)
@@ -112,25 +112,25 @@ namespace project_1_game_inteact
             Speler_1_Knop.IsEnabled = true;
             Speler_2_Knop.IsEnabled = false;
 
-            P1_Upgrade_Body_1.Margin = new Thickness(32, 118, 644, 78);
-            P1_Upgrade_Body_2.Margin = new Thickness(32, 118, 644, 78);
-            P1_Upgrade_Body_3.Margin = new Thickness(32, 118, 644, 78);
-            P1_Upgrade_Body_4.Margin = new Thickness(32, 118, 644, 78);
+            P1_Upgrade_Body_1.Margin = new Thickness(25, 98, 651, 99);
+            P1_Upgrade_Body_2.Margin = new Thickness(25, 98, 651, 99);
+            P1_Upgrade_Body_3.Margin = new Thickness(25, 98, 651, 99);
+            P1_Upgrade_Body_4.Margin = new Thickness(25, 98, 651, 99);
 
-            P1_Upgrade_Motor_1.Margin = new Thickness(201, 118, 474, 78);
-            P1_Upgrade_Motor_2.Margin = new Thickness(201, 118, 474, 78);
-            P1_Upgrade_Motor_3.Margin = new Thickness(201, 118, 474, 78);
-            P1_Upgrade_Motor_4.Margin = new Thickness(201, 118, 474, 78);
+            P1_Upgrade_Motor_1.Margin = new Thickness(201,99,474,98);
+            P1_Upgrade_Motor_2.Margin = new Thickness(201,99,474,98);
+            P1_Upgrade_Motor_3.Margin = new Thickness(201,99,474,98);
+            P1_Upgrade_Motor_4.Margin = new Thickness(201,99,474,98);
 
-            P1_Upgrade_Wiel_1.Margin = new Thickness(449, 118, 226, 78);
-            P1_Upgrade_Wiel_2.Margin = new Thickness(449, 118, 226, 78);
-            P1_Upgrade_Wiel_3.Margin = new Thickness(449, 118, 226, 78);
-            P1_Upgrade_Wiel_4.Margin = new Thickness(449, 118, 226, 78);
+            P1_Upgrade_Wiel_1.Margin = new Thickness(449,99,226,97);
+            P1_Upgrade_Wiel_2.Margin = new Thickness(449,99,226,97);
+            P1_Upgrade_Wiel_3.Margin = new Thickness(449,99,226,97);
+            P1_Upgrade_Wiel_4.Margin = new Thickness(449,99,226,97);
 
-            P1_Upgrade_Suspensie_1.Margin = new Thickness(619, 118, 48, 78);
-            P1_Upgrade_Suspensie_2.Margin = new Thickness(619, 118, 48, 78);
-            P1_Upgrade_Suspensie_3.Margin = new Thickness(619, 118, 48, 78);
-            P1_Upgrade_Suspensie_4.Margin = new Thickness(619, 118, 48, 78);
+            P1_Upgrade_Suspensie_1.Margin = new Thickness(619,99,48,97);
+            P1_Upgrade_Suspensie_2.Margin = new Thickness(619,99,48,97);
+            P1_Upgrade_Suspensie_3.Margin = new Thickness(619,99,48,97);
+            P1_Upgrade_Suspensie_4.Margin = new Thickness(619,99,48,97);
 
             P2_Upgrade_Body_1.Margin = new Thickness(900, 900, 901, 901);
             P2_Upgrade_Body_2.Margin = new Thickness(900, 900, 901, 901);
