@@ -29,7 +29,7 @@ namespace project_1_game_inteact
         {
             nspeler2.Visibility = Visibility.Hidden;
             lspeler2.Visibility = Visibility.Hidden;
-            solo.Background = Brushes.Green;
+            solo.Background = Brushes.LightGreen;
             duo.Background = Brushes.LightGray;
         }
 
@@ -37,13 +37,28 @@ namespace project_1_game_inteact
         {
             nspeler2.Visibility = Visibility.Visible;
             lspeler2.Visibility = Visibility.Visible;
-            duo.Background = Brushes.Green;
+            duo.Background = Brushes.LightGreen;
             solo.Background = Brushes.LightGray;
         }
 
         private void levels_Click(object sender, RoutedEventArgs e)
         {
             
+            UItest.levels levels = new UItest.levels();
+            levels.Show();
+            this.Close();
+        }
+
+        private void handleiding2_Click(object sender, RoutedEventArgs e)
+        {
+            project_1_game_inteact.handleiding handleiding2 = new handleiding();
+            handleiding2.Show();
+            this.Close();
+        }
+
+        private void instellingen_Click(object sender, RoutedEventArgs e)
+        {
+            // als jelle gemerged heeft kan hier de code naar het instellingen scherm worden toegevoegd
         }
     }
 }

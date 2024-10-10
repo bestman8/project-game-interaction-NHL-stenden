@@ -23,5 +23,37 @@ namespace project_1_game_inteact
         {
             InitializeComponent();
         }
+
+
+
+        private void txtfunctiongame()
+        {
+           
+        }
+
+        private void bewegen_Click(object sender, RoutedEventArgs e)
+        {
+        hnd_txt.Content = ""; // maakt de string leeg zodra er op de knop wordt gedrukt van de handleiding
+        hnd_txt.Content = ""; // handleiding van het spel
+        }
+
+        private void upgrades_Click(object sender, RoutedEventArgs e)
+        {
+            hnd_txt.Content = ""; // maakt de string leeg zodra er op de knop wordt gedrukt van de handleiding
+            hnd_txt.Content = ""; // handleiding van het upgraden
+        }
+
+        private void instellingen_Click(object sender, RoutedEventArgs e)
+        {
+            hnd_txt.Content = ""; // maakt de string leeg zodra er op de knop wordt gedrukt van de handleiding
+            hnd_txt.Content = ""; // handleiding van de instellingen
+        }
+
+        private void return_Click(object sender, RoutedEventArgs e)
+        {
+            start start2 = new start();
+            start2.Visibility = Visibility.Visible;
+            this.Close();
+        }
     }
 }
