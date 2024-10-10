@@ -5,10 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
-        Title="Spel_scherm" Height="450" Width="800">
+        Title="Spel_scherm" Height="512" Width="1288">
     <Grid>
-        <Canvas Margin="10,92,413,92" Background="#FF383838"/>
-        <Canvas Margin="411,93,10,91" Background="#FF383838"/>
+        <Grid Margin="10,10,10,90">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="127*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.ColumnSpan="2" Margin="10,10,20,-72" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <!-- Left Canvas -->
+                    <ColumnDefinition Width="35" />
+                    <!-- Spacer -->
+                    <ColumnDefinition Width="*" />
+                    <!-- Right Canvas -->
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="Speler_naam_1" Content="speler 1 naam" HorizontalAlignment="center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="0"/>
+                <Label x:Name="Speler_naam_2_" Content="speler 2 naam" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
+
+                <Canvas Name="LeftCanvas" Background="LightBlue" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,35,0,35"></Canvas>
+                <Canvas Name="RightCanvas" Background="LightCoral" HorizontalAlignment="Stretch" Grid.Column="2" Margin="0,35,0,35"></Canvas>
+
+            </Grid>
+
+        </Grid>
+        <Grid VerticalAlignment="Bottom" Margin="0,0,0,16">
+                <Button x:Name="Upgrades_button" Content="Upgrades" HorizontalAlignment="center"        Margin="-500,0,0,0" VerticalAlignment="Top" Height="30" Width="113" Grid.Column="0"/>
+                <Button x:Name="Startscherm_button" Content="Startscherm" HorizontalAlignment="center"  Margin="0,0,0,0" VerticalAlignment="Top" Height="30" Width="113" />
+                <Button x:Name="Levels_Copy1" Content="Levels" HorizontalAlignment="center"             Margin="500,0,0,0" VerticalAlignment="Top" Height="30" Width="113"/>
+        </Grid>
 
     </Grid>
 </Window>
