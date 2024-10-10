@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UItest"
         mc:Ignorable="d"
-        Title="levels" Height="450" Width="800">
+        Title="levels" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Name="home" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="home" Background="Orange" Click="home_Click"></Button>
         <Button Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="upgrades" Background="Orange"/>
