@@ -18,6 +18,7 @@
         <TextBox x:Name="speler1" Background="#D3D3D3" Grid.Column="2" Grid.ColumnSpan="2" Margin="49,10,107,10" Grid.Row="3" FontWeight="Bold" Foreground="White"  BorderBrush="Black"  BorderThickness="0.5"/>
         <TextBox x:Name="speler2" Background="#D3D3D3" Grid.Column="3" Grid.ColumnSpan="2" Margin="68,10,87,10" Grid.Row="3" FontWeight="Bold" Foreground="White"  BorderBrush="Black"  BorderThickness="0.5"/>
         <Label x:Name="lspeler2" Grid.Column="3" Grid.ColumnSpan="2" Margin="67,34,66,0" Grid.Row="2" Content="Naam speler 1:" FontWeight="Bold" Foreground="White"/>
+        <Button Content="Button" Grid.Column="4" Grid.ColumnSpan="2" Margin="10,17,127,47" Grid.RowSpan="2" Grid.Row="1" Click="Button_Click"/>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
