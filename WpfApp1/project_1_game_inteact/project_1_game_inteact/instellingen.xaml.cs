@@ -28,8 +28,8 @@ namespace UItest
         private void Startscherm_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            UItest.MainWindow secondWindow = new UItest.MainWindow();
-            secondWindow.Show();
+            project_1_game_inteact.start start2 = new project_1_game_inteact.start();
+            start2.Show();
         }
     }
 }

@@ -59,6 +59,10 @@ namespace project_1_game_inteact
         private void instellingen_Click(object sender, RoutedEventArgs e)
         {
             // als jelle gemerged heeft kan hier de code naar het instellingen scherm worden toegevoegd
+
+            UItest.instellingen instellingen = new UItest.instellingen();
+            instellingen.Show();
+            this.Close();
         }
     }
 }

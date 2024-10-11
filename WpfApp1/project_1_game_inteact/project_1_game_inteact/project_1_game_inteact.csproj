@@ -20,9 +20,11 @@
     <None Remove="autoMunt.png" />
     <None Remove="Garage.jpg" />
     <None Remove="motor.jpg" />
+    <None Remove="mute.png" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="Suspensie.jpg" />
+    <None Remove="volume.png" />
     <None Remove="Wiel.jpg" />
   </ItemGroup>
 
@@ -38,11 +40,17 @@
     <Resource Include="autoMunt.png" />
     <Resource Include="Garage.jpg" />
     <Resource Include="motor.jpg" />
+    <Resource Include="mute.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
     <Resource Include="resources\images\background_main\main_background.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Suspensie.jpg" />
+    <Resource Include="volume.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Wiel.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
