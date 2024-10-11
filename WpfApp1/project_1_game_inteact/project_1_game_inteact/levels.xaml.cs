@@ -31,7 +31,7 @@ namespace UItest
         private void home_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            UItest.MainWindow secondWindow = new UItest.MainWindow();
+            project_1_game_inteact.Spel_scherm secondWindow = new project_1_game_inteact.Spel_scherm();
             secondWindow.Show();
         }
     }
