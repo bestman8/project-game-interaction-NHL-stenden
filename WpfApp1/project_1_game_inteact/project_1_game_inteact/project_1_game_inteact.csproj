@@ -8,15 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Auto.jpg" />
-    <None Remove="autoMunt.png" />
-    <None Remove="Garage.jpg" />
-    <None Remove="motor.jpg" />
-    <None Remove="resources\images\background_main\asfasfasdf.png" />
-    <None Remove="Suspensie.jpg" />
-    <None Remove="Wiel.jpg" />
-  </ItemGroup>
+ <ItemGroup>
+  <None Remove="Auto.jpg" />
+  <None Remove="autoMunt.png" />
+  <None Remove="motor.jpg" />
+  <None Remove="resources/images/background_main/asfasfasdf.png" />
+  <None Remove="resources/images/background_main/main_background.jpeg" />
+  <None Remove="Suspensie.jpg" />
+  <None Remove="Wiel.jpg" />
+</ItemGroup>
+
 
   <ItemGroup>
     <Folder Include="resources\veh_upgrades\" />
@@ -29,9 +30,19 @@
 
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
 
-    <Resource Include="Suspensie.jpg" />
-
-    <Resource Include="Wiel.jpg" />
+<ItemGroup>
+  <Resource Include="motor.jpg" />
+  <Resource Include="resources/images/background_main/asfasfasdf.png" />
+  <Resource Include="resources/images/background_main/main_background.jpeg" />
+  <Resource Include="Suspensie.jpg" />
+  <Resource Include="Wiel.jpg" />
+  <None Remove="Afbeeldingen/Auto.jpg" />
+  <None Remove="Afbeeldingen/autoMunt.png" />
+  <None Remove="Afbeeldingen/Garage.jpg" />
+  <None Remove="Afbeeldingen/motor.jpg" />
+  <None Remove="Afbeeldingen/Suspensie.jpg" />
+  <None Remove="Afbeeldingen/Wiel.jpg" />
+</ItemGroup>
 
 
 <!--     <Resource Include="Afbeeldingen\Auto.jpg" />
