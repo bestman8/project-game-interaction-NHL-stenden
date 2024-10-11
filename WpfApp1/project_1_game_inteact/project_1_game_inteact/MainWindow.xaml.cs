@@ -79,5 +79,10 @@ namespace UItest
         {
 
         }
+
+        private void LeaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
