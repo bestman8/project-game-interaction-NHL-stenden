@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_1_game_inteact;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,19 @@ namespace UItest
             this.Hide();
             UItest.MainWindow secondWindow = new UItest.MainWindow();
             secondWindow.Show();
+        }
+        private void upgrades_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Upgrades upgradesWindow = new Upgrades();
+            upgradesWindow.Show();
+        }
+        private void level1_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            start start = new start();
+            start.Show();
+
         }
     }
 }
