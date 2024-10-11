@@ -75,7 +75,7 @@ namespace UItest
             this.Hide();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
