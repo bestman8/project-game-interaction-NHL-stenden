@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 //using static System.Net.Mime.MediaTypeNames;
+//using static System.Net.Mime.MediaTypeNames;
 
 namespace project_1_game_inteact
 {
@@ -83,9 +84,17 @@ public class Game
     private Vector background_position = new Vector();
     private double car_rotation = 0;
     private Image carImage;
+    private Polygon terrain =new Polygon
+    {
+        Fill = Brushes.LawnGreen,
+        Stroke = Brushes.Black,
+        StrokeThickness = 1,
+    };
+
     private double acceleration = 0.1;
     private double deceleration = 0.07;
     private double max_speed = 5;
+
 
     /// <summary>
     /// Initialize the game
@@ -100,7 +109,7 @@ public class Game
         {
             Height = 80,
             Width = 80,
-            Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)) // Absolute path constructed from current directory
+            Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
         };
 
         //Rectangle rectangle = new Rectangle();
@@ -109,16 +118,35 @@ public class Game
         //rectangle.Fill = Brushes.Purple;
 
         my_canvas.Children.Add(carImage);
+        terrain_gen();
+        my_canvas.Children.Add(terrain);
         //Canvas.SetTop(carImage, 500);
         //Canvas.SetLeft(carImage, 200);
     }
-
-    private int terrain_gen_function(int X)
+    /// <summary>
+    /// this is a function and what it returns is the Y value for the x at that location
+    /// </summary>
+    /// <param name="X">a value between 0 left and 500 right</param>
+    /// <returns>y 0 assume 0 is the bottom and 250 is the max range it should be</returns>
+    private double terrain_gen_function(double X)
     {
-        return X;
+        return Math.Sin(X );
     }
+
     private void terrain_gen()
     {
+        PointCollection terrain_points = new PointCollection();
+
+        terrain_points.Add(new Point(-50, 1200));
+        for (int x = 0; x < 2000; x++)
+        {
+            terrain_points.Add(new Point(x, 50*terrain_gen_function( x *0.02)+350));
+
+        }
+        terrain_points.Add(new Point(2000, 1200));
+
+        terrain.Points = terrain_points;
+        
 
     }
     public async Task Game_loop(Canvas The_canvas_being_used, bool WASDorARROW)
@@ -141,26 +169,22 @@ public class Game
         Canvas.SetLeft(carImage, car_position.X);
         // update car position
     }
-
     public void collision()
     {
+        Rect imageBounds = new Rect(Canvas.GetLeft(carImage), Canvas.GetTop(carImage), carImage.ActualWidth, carImage.ActualHeight);
         // Collision logic can be added here
     }
-
     public void movement()
     {
         car_position += car_velocity;
     }
-
     public void gravity()
     {
-
     }
-
     private void forward_movement()
     {
         if (car_velocity.X < max_speed){
-        car_velocity.X += acceleration;
+            car_velocity.X += acceleration;
 
         }
     }
