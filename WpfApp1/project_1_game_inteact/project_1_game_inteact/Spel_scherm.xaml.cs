@@ -129,7 +129,12 @@ public class Game
     /// <returns>y 0 assume 0 is the bottom and 250 is the max range it should be</returns>
     private double terrain_gen_function(double X)
     {
-        return 50 * Math.Sin(X * 0.02) + 350;
+        X *= 0.02;
+        double large_terrain = (Math.Sin(X* 0.3)+Math.Sin(X*0.75+10)+Math.Sin(X*1 +486)+ Math.Sin(X*1.3+123) + Math.Sin(X*1.5 +7846))/5;
+        double bumbs_terrain = 1+0.1*(Math.Sin(X*3+14416)*Math.Sin(X*4+32));
+        double result = 1.6*large_terrain*bumbs_terrain;
+
+        return 50 * result + 400;
     }
 
     private void terrain_gen()
@@ -171,7 +176,7 @@ public class Game
         //Canvas.SetLeft(carImage, car_position.X);
 
         // Update the terrain's position on the canvas
-        Canvas.SetLeft(terrain, car_position.X - background_position.X);
+        Canvas.SetLeft(terrain, -(car_position.X - background_position.X));
     }
 
     public void collision(double X)
