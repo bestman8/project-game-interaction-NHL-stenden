@@ -79,7 +79,7 @@ namespace project_1_game_inteact
 }
 public class Game
 {
-    private Vector car_position = new Vector(25, 250); // Relative position of the car
+    private Vector car_position = new Vector(0, 250); // Relative position of the car
     private Vector car_velocity = new Vector(0, 0);
     private Vector background_position = new Vector();
     private double car_rotation = 0;
@@ -94,7 +94,7 @@ public class Game
     private double acceleration = 0.1;
     private double deceleration = 0.07;
     private double max_speed = 5;
-
+    private double gravity = 0;
 
     /// <summary>
     /// Initialize the game
@@ -109,7 +109,7 @@ public class Game
         {
             Height = 80,
             Width = 80,
-            Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
+            Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
         };
 
         //Rectangle rectangle = new Rectangle();
@@ -120,8 +120,7 @@ public class Game
         my_canvas.Children.Add(carImage);
         terrain_gen();
         my_canvas.Children.Add(terrain);
-        //Canvas.SetTop(carImage, 500);
-        //Canvas.SetLeft(carImage, 200);
+         
     }
     /// <summary>
     /// this is a function and what it returns is the Y value for the x at that location
@@ -130,23 +129,23 @@ public class Game
     /// <returns>y 0 assume 0 is the bottom and 250 is the max range it should be</returns>
     private double terrain_gen_function(double X)
     {
-        return Math.Sin(X );
+        return 50 * Math.Sin(X * 0.02) + 350;
     }
 
     private void terrain_gen()
     {
         PointCollection terrain_points = new PointCollection();
 
-        terrain_points.Add(new Point(-50, 1200));
-        for (int x = 0; x < 2000; x++)
+        terrain_points.Add(new Point(-500, 1200));
+        for (int x = -500; x < 2000; x++)
         {
-            terrain_points.Add(new Point(x, 50*terrain_gen_function( x *0.02)+350));
-
+            //terrain_points.Add(new Point(x, 50 * terrain_gen_function(x * 0.02) + 350));
+            terrain_points.Add(new Point(x, terrain_gen_function(x)));
+            
         }
         terrain_points.Add(new Point(2000, 1200));
 
         terrain.Points = terrain_points;
-        
 
     }
     public async Task Game_loop(Canvas The_canvas_being_used, bool WASDorARROW)
@@ -156,30 +155,46 @@ public class Game
         while (true)
         {
             keyboard_input(WASDorARROW);
-            movement();
+            movement(The_canvas_being_used);
             slow_down();
             Update_canvas(The_canvas_being_used);
             await Task.Delay(10);
+        
         }
     }
 
     private void Update_canvas(Canvas The_canvas_being_used)
     {
+        // Update the car's position on the canvas
         Canvas.SetTop(carImage, car_position.Y);
-        Canvas.SetLeft(carImage, car_position.X);
-        // update car position
+        //Canvas.SetLeft(carImage, car_position.X);
+
+        // Update the terrain's position on the canvas
+        Canvas.SetLeft(terrain, car_position.X - background_position.X);
     }
-    public void collision()
+
+    public void collision(double X)
     {
         Rect imageBounds = new Rect(Canvas.GetLeft(carImage), Canvas.GetTop(carImage), carImage.ActualWidth, carImage.ActualHeight);
         // Collision logic can be added here
+
     }
-    public void movement()
+    public void movement(Canvas The_canvas_being_used)
     {
         car_position += car_velocity;
+      
+   
     }
-    public void gravity()
+    public void gravity_func()
     {
+        if (gravity == 0)
+        {
+            car_position.Y += gravity;
+        }
+        else
+        {
+            car_position.Y += gravity;
+        }
     }
     private void forward_movement()
     {
@@ -226,10 +241,11 @@ public class Game
     {
         if (WASDorARROW)
         {
-
+            gravity_func();
             if (Keyboard.IsKeyDown(Key.Up))
             {
                 up_ward_movement();
+              
             }
             if (Keyboard.IsKeyDown(Key.Down))
             {
@@ -247,6 +263,7 @@ public class Game
         }
          else
         {
+           gravity_func();
             if (Keyboard.IsKeyDown(Key.W))
             {
                 up_ward_movement();
