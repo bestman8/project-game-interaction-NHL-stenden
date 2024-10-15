@@ -84,7 +84,7 @@ public class Game
     private Vector background_position = new Vector();
     private double car_rotation = 0;
     private Image carImage;
-    private Polygon terrain =new Polygon
+    private Polygon terrain = new Polygon
     {
         Fill = Brushes.LawnGreen,
         Stroke = Brushes.Black,
@@ -120,7 +120,7 @@ public class Game
         my_canvas.Children.Add(carImage);
         terrain_gen();
         my_canvas.Children.Add(terrain);
-         
+
     }
     /// <summary>
     /// this is a function and what it returns is the Y value for the x at that location
@@ -141,7 +141,7 @@ public class Game
         {
             //terrain_points.Add(new Point(x, 50 * terrain_gen_function(x * 0.02) + 350));
             terrain_points.Add(new Point(x, terrain_gen_function(x)));
-            
+
         }
         terrain_points.Add(new Point(2000, 1200));
 
@@ -155,11 +155,12 @@ public class Game
         while (true)
         {
             keyboard_input(WASDorARROW);
-            movement(The_canvas_being_used);
+            movement();
             slow_down();
             Update_canvas(The_canvas_being_used);
+            gravity_func();
             await Task.Delay(10);
-        
+
         }
     }
 
@@ -179,7 +180,7 @@ public class Game
         // Collision logic can be added here
 
     }
-    public void movement(Canvas The_canvas_being_used)
+    public void movement()
     {
         car_position += car_velocity;
       
@@ -187,15 +188,9 @@ public class Game
     }
     public void gravity_func()
     {
-        if (gravity == 0)
-        {
-            car_position.Y += gravity;
-        }
-        else
-        {
-            car_position.Y += gravity;
-        }
+        car_position.Y += gravity;
     }
+         
     private void forward_movement()
     {
         if (car_velocity.X < max_speed){
@@ -241,7 +236,7 @@ public class Game
     {
         if (WASDorARROW)
         {
-            gravity_func();
+           
             if (Keyboard.IsKeyDown(Key.Up))
             {
                 up_ward_movement();
@@ -263,7 +258,7 @@ public class Game
         }
          else
         {
-           gravity_func();
+           
             if (Keyboard.IsKeyDown(Key.W))
             {
                 up_ward_movement();
