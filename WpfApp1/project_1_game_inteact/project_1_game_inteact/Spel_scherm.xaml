@@ -30,8 +30,8 @@
                     <!-- Right Canvas -->
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="Speler_naam_1" Content="speler 1 naam" HorizontalAlignment="center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="0"/>
-                <Label x:Name="Speler_naam_2_" Content="speler 2 naam" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
+                <Label x:Name="Speler_naam_1" HorizontalAlignment="center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="0"/>
+                <Label x:Name="Speler_naam_2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
 
                 <!-- Wrap LeftCanvas in a Viewbox -->
                 <Viewbox Grid.Column="0" Margin="0,35,0,35" VerticalAlignment="Bottom" Stretch="UniformToFill">

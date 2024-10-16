@@ -23,6 +23,8 @@ namespace project_1_game_inteact
         public start()
         {
             InitializeComponent();
+            nspeler1.Text = SharedData.Instance.Naam1;
+            nspeler2.Text = SharedData.Instance.Naam2;
         }
 
         private void solo_Click(object sender, RoutedEventArgs e)
@@ -61,6 +63,39 @@ namespace project_1_game_inteact
             UItest.instellingen instellingen = new UItest.instellingen();
             instellingen.Show();
             this.Close();
+        }
+
+        // Code voor data verwisselen tussen schermen
+        public class SharedData
+        {
+            private static SharedData _instance;
+
+            public static SharedData Instance => _instance ??= new SharedData();
+
+            public string Naam1 { get; set; }
+            public string Naam2 { get; set; }
+            public int Geld1 { get; set; }
+            public int Geld2 { get; set; }
+        }
+
+        private void nspeler2_KeyUp(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Naam2 = nspeler2.Text;
+        }
+
+        private void nspeler1_KeyUp(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Naam1 = nspeler1.Text;
+        }
+
+        private void G2Up(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Geld2 = Convert.ToInt32(G2.Text);
+        }
+
+        private void G1Up(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Geld1 = Convert.ToInt32(G1.Text);
         }
     }
 }

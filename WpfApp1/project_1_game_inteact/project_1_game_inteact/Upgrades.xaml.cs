@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UItest;
+using static project_1_game_inteact.start;
 
 namespace project_1_game_inteact
 {
@@ -44,6 +45,11 @@ namespace project_1_game_inteact
             P2_Upgrade_Suspensie_2.Margin = new Thickness(900, 900, 901, 901);
             P2_Upgrade_Suspensie_3.Margin = new Thickness(900, 900, 901, 901);
             P2_Upgrade_Suspensie_4.Margin = new Thickness(900, 900, 901, 901);
+
+            Speler_1_Knop.Content = SharedData.Instance.Naam1;
+            Speler_2_Knop.Content = SharedData.Instance.Naam2;
+            GeldSpeler1.Content = "Geld " + SharedData.Instance.Naam1 + ": " + Convert.ToString(SharedData.Instance.Geld1);
+            GeldSpeler2.Content = "Geld " + SharedData.Instance.Naam2 + ": " + Convert.ToString(SharedData.Instance.Geld2);
         }
 
         private void LevelsClick(object sender, RoutedEventArgs e)

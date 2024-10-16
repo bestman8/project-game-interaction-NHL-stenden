@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static project_1_game_inteact.start;
 using System.Windows.Threading;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
@@ -33,6 +34,8 @@ namespace project_1_game_inteact
             AllocConsole();
 #endif
             //AllocConsole();
+            Speler_naam_1.Content = SharedData.Instance.Naam1;
+            Speler_naam_2.Content = SharedData.Instance.Naam2;
         }
 #if DEBUG
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
