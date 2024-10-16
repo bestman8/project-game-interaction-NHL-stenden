@@ -22,6 +22,7 @@
     <None Remove="motor.jpg" />
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
+    <None Remove="BackMusic.mp3" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="Suspensie.jpg" />
@@ -32,6 +33,8 @@
   <ItemGroup>
     <Resource Include="afbeelding.jpg" />
     <Resource Include="Afbeeldingen\Auto.jpg" />
+    <Resource Include="BackMusic.mp3" />
+
     <Resource Include="Afbeeldingen\autoMunt.png" />
     <Resource Include="Afbeeldingen\Garage.jpg" />
     <Resource Include="Afbeeldingen\motor.jpg" />
