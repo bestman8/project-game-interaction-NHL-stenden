@@ -15,6 +15,7 @@
     <None Remove="Afbeeldingen\motor.png" />
     <None Remove="Afbeeldingen\Suspensie.png" />
     <None Remove="Afbeeldingen\Wiel.png" />
+    <None Remove="BackMusic.mp3" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
   </ItemGroup>
 
@@ -28,6 +29,7 @@
     <Resource Include="Afbeeldingen\motor.png" />
     <Resource Include="Afbeeldingen\Suspensie.png" />
     <Resource Include="Afbeeldingen\Wiel.png" />
+    <Resource Include="BackMusic.mp3" />
 
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
 
