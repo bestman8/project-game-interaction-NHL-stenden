@@ -9,51 +9,36 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="afbeelding.jpg" />
-    <None Remove="Afbeeldingen\Auto.jpg" />
+    <None Remove="Afbeeldingen\Auto.png" />
     <None Remove="Afbeeldingen\autoMunt.png" />
     <None Remove="Afbeeldingen\Garage.jpg" />
-    <None Remove="Afbeeldingen\motor.jpg" />
-    <None Remove="Afbeeldingen\Suspensie.jpg" />
-    <None Remove="Afbeeldingen\Wiel.jpg" />
-    <None Remove="Auto.jpg" />
-    <None Remove="autoMunt.png" />
-    <None Remove="Garage.jpg" />
-    <None Remove="motor.jpg" />
-    <None Remove="mute.png" />
+    <None Remove="Afbeeldingen\motor.png" />
+    <None Remove="Afbeeldingen\Suspensie.png" />
+    <None Remove="Afbeeldingen\Wiel.png" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
-    <None Remove="resources\images\background_main\main_background.jpeg" />
-    <None Remove="Suspensie.jpg" />
-    <None Remove="volume.png" />
-    <None Remove="Wiel.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="afbeelding.jpg" />
-    <Resource Include="Afbeeldingen\Auto.jpg" />
+    <Folder Include="resources\veh_upgrades\" />
+    <Folder Include="resources\vehicles\" />
+    <Folder Include="resources\sprites\" />
+    <Resource Include="Afbeeldingen\Auto.png" />
+    <Resource Include="Afbeeldingen\autoMunt.png" />
+    <Resource Include="Afbeeldingen\Garage.jpg" />
+    <Resource Include="Afbeeldingen\motor.png" />
+    <Resource Include="Afbeeldingen\Suspensie.png" />
+    <Resource Include="Afbeeldingen\Wiel.png" />
+
+    <Resource Include="resources\images\background_main\asfasfasdf.png" />
+
+
+<!--     <Resource Include="Afbeeldingen\Auto.jpg" />
     <Resource Include="Afbeeldingen\autoMunt.png" />
     <Resource Include="Afbeeldingen\Garage.jpg" />
     <Resource Include="Afbeeldingen\motor.jpg" />
     <Resource Include="Afbeeldingen\Suspensie.jpg" />
-    <Resource Include="Afbeeldingen\Wiel.jpg" />
-    <Resource Include="Auto.jpg" />
-    <Resource Include="autoMunt.png" />
-    <Resource Include="Garage.jpg" />
-    <Resource Include="motor.jpg" />
-    <Resource Include="mute.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resources\images\background_main\asfasfasdf.png" />
-    <Resource Include="resources\images\background_main\main_background.jpeg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Suspensie.jpg" />
-    <Resource Include="volume.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Wiel.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Afbeeldingen\Wiel.jpg" /> -->
+
   </ItemGroup>
 
 </Project>
