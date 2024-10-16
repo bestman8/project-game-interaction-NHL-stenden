@@ -94,15 +94,5 @@ namespace project_1_game_inteact
         {
             SharedData.Instance.Naam1 = nspeler1.Text;
         }
-
-        private void G2Up(object sender, KeyEventArgs e)
-        {
-            SharedData.Instance.Geld2 = Convert.ToInt32(G2.Text);
-        }
-
-        private void G1Up(object sender, KeyEventArgs e)
-        {
-            SharedData.Instance.Geld1 = Convert.ToInt32(G1.Text);
-        }
     }
 }
