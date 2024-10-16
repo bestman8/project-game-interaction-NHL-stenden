@@ -21,11 +21,11 @@
         <Image Source="pack://application:,,,/Afbeeldingen/Garage.jpg" Stretch="Fill" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
         <Button x:Name="Startscherm" Margin="265,49,435,33" Click="StartschermClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Startscherm" Grid.RowSpan="2" Grid.Row="1"/>
         <Button x:Name="Levels_Knop" Margin="427,49,273,33" Click="LevelsClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Levels" Grid.RowSpan="2" Grid.Row="1"/>
-        <Label x:Name="GeldSpeler1" Foreground="White" Margin="683,22,10,1" Background="LightGray" Grid.Column="1" Content="Speler 1: 999"/>
-        <Label x:Name="GeldSpeler2" Foreground="White" Margin="683,7,10,47" Background="LightGray" Grid.Column="1" Content="Speler 2: 999" Grid.Row="1" RenderTransformOrigin="0.486,1.027"/>
+        <Label x:Name="GeldSpeler1" Foreground="White" Margin="627,23,10,82" Background="LightGray" Grid.Column="1" Grid.RowSpan="2"/>
+        <Label x:Name="GeldSpeler2" Foreground="White" Margin="627,7,10,47" Background="LightGray" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.486,1.027"/>
         <Label x:Name="UpgradesTitel" Foreground="Black" Margin="279,6,290,31" Content="Upgrades" FontSize="50" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="28,41,647,42" Click="Speler1Click" Content="Speler 1" Foreground="White" Grid.RowSpan="2"/>
-        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="Speler2Click" Content="Speler 2" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
+        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="28,41,647,42" Click="Speler1Click" Foreground="White" Grid.RowSpan="2"/>
+        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="Speler2Click" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
 
         <Label x:Name="Suspensie_info" Margin="619,186,48,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText  TextWrapping="WrapWithOverflow" Text="Verlies minder snelheid als je de grond raakt."/>

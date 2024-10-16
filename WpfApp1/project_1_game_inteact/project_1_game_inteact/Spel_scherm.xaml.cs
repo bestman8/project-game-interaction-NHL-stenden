@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static project_1_game_inteact.start;
 
 namespace project_1_game_inteact
 {
@@ -22,6 +23,8 @@ namespace project_1_game_inteact
         public Spel_scherm()
         {
             InitializeComponent();
+            Speler_naam_1.Content = SharedData.Instance.Naam1;
+            Speler_naam_2.Content = SharedData.Instance.Naam2;
         }
 
         private void Upgrades_button_Click(object sender, RoutedEventArgs e)

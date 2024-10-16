@@ -17,11 +17,13 @@
         <Button x:Name="duo" Content="2" Height="20" Grid.Column="3" Margin="46,3,66,50" Grid.Row="1" Click="duo_Click"/>
         <Label x:Name="lspeler1" Content="Naam speler 1:" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,47,5,0" Background="LightGray" Grid.RowSpan="2" />
         <Label x:Name="lspeler2" Content="Naam speler 2:" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="2" Margin="5,18,5,0" Background="LightGray" />
-        <TextBox x:Name="nspeler1" Grid.Column="3" Margin="10,47,0,72" Grid.Row="1" Background="LightGray" Grid.RowSpan="2"/>
-        <TextBox x:Name="nspeler2" Grid.Column="3" Margin="10,18,0,28" Grid.Row="2" Background="LightGray"/>
+        <TextBox x:Name="nspeler1" Grid.Column="3" Margin="10,47,0,72" Grid.Row="1" Background="LightGray" Grid.RowSpan="2" KeyUp="nspeler1_KeyUp"/>
+        <TextBox x:Name="nspeler2" Grid.Column="3" Margin="10,18,0,28" Grid.Row="2" Background="LightGray" KeyUp="nspeler2_KeyUp"/>
         <Button x:Name="levels" Content="Levels" Height="50" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,11,0,11" Grid.Row="3" Click="levels_Click"/>
         <Button x:Name="handleiding2" Content="Handleiding" Height="50" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,13,0,10" Grid.Row="4" Click="handleiding2_Click"/>
         <Button x:Name="instellingen" Content="Instellingen" Height="50" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,12,0,10" Grid.Row="5" Click="instellingen_Click"/>
+        <TextBox x:Name="G1" Grid.Column="4" Margin="77,34,67,13" Grid.Row="1" Background="LightGray" KeyUp="G1Up" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="G2" Grid.Column="4" Margin="77,0,67,47" Grid.Row="2" Background="LightGray" KeyUp="G2Up" Grid.ColumnSpan="2"/>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -39,6 +41,6 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
     </Grid>
-   
-    
+
+
 </Window>
