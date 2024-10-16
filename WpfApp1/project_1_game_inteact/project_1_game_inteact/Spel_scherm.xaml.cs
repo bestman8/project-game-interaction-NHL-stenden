@@ -28,9 +28,9 @@ namespace project_1_game_inteact
         {
             InitializeComponent();
             //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-            #if DEBUG
-            AllocConsole();
-            #endif
+            //#if DEBUG
+            //AllocConsole();
+            //#endif
             //AllocConsole();
         }
         #if DEBUG
@@ -47,8 +47,8 @@ namespace project_1_game_inteact
             Game right = new Game();
             left.Game_loop(LeftCanvas, true);
             right.Game_loop(RightCanvas, false);
-            string currentDirectory = Environment.CurrentDirectory;
-            MessageBox.Show($"Current Directory: {currentDirectory}");
+            //string currentDirectory = Environment.CurrentDirectory;
+            //MessageBox.Show($"Current Directory: {currentDirectory}");
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
@@ -82,7 +82,16 @@ public class Game
     private Vector car_position = new Vector(0, 250); // Relative position of the car
     private Vector car_velocity = new Vector(0, 0);
     private Vector background_position = new Vector();
-    private double car_rotation = 0;
+
+    private RotateTransform car_rotation = new RotateTransform();
+
+    //private double car_rotation = 0;
+    private Canvas inner_canvas = new Canvas
+    {
+    Width = 80,
+    Height = 50,
+    Background = Brushes.BlueViolet
+    };
     private Image carImage;
     private Polygon terrain = new Polygon
     {
@@ -90,11 +99,32 @@ public class Game
         Stroke = Brushes.Black,
         StrokeThickness = 1,
     };
+    private Ellipse wheel_back = new Ellipse
+        {
+            Width = 3,
+            Height = 3,
+            Fill = Brushes.Red
+        };
+    private Ellipse wheel_front = new Ellipse
+        {
+            Width = 3,
+            Height = 3,
+            Fill = Brushes.Red
+        };
+
+    private Label front_weel = new Label();
+    private Label back_weel = new Label();
+
 
     private double acceleration = 0.1;
     private double deceleration = 0.07;
     private double max_speed = 5;
-    private double gravity = 0;
+    private double gravity = 0.0; //0.01 is natural ish
+    private bool is_touching_ground = false;
+    private double terminal_velocity_car = 0.05;
+
+    private Vector wheel_front_position = new Vector(0, 0);
+    private Vector wheel_back_position = new Vector(0, 0);
 
     /// <summary>
     /// Initialize the game
@@ -107,17 +137,40 @@ public class Game
         string imagePath = System.IO.Path.Combine(Environment.CurrentDirectory, "resources", "images", "car-full.png");
         carImage = new Image
         {
-            Height = 80,
+            Height = 40,
             Width = 80,
             Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
         };
 
         //Rectangle rectangle = new Rectangle();
-        carImage.Height = 80;
+        carImage.Height = 40;
         carImage.Width = 80;
         //rectangle.Fill = Brushes.Purple;
+        Label label1 = new Label();
 
-        my_canvas.Children.Add(carImage);
+
+
+        front_weel.Content = "front_wheel";
+        back_weel.Content = "bacl_wheel";
+
+        inner_canvas.Children.Add(carImage);
+        inner_canvas.Children.Add(wheel_back);
+        inner_canvas.Children.Add(wheel_front);
+
+        my_canvas.Children.Add(front_weel);
+        my_canvas.Children.Add(back_weel);
+
+        Canvas.SetLeft(wheel_back, 12);
+        Canvas.SetTop(wheel_back, 33);
+        Canvas.SetLeft(wheel_front, 80 - 12);
+        Canvas.SetTop(wheel_front, 33);
+        my_canvas.Children.Add(inner_canvas);
+
+        inner_canvas.RenderTransform = new RotateTransform(90, 0.2, 0.2);
+
+        Canvas.SetLeft(inner_canvas, 125);
+        Canvas.SetTop(inner_canvas, 250);
+
         terrain_gen();
         my_canvas.Children.Add(terrain);
 
@@ -130,10 +183,9 @@ public class Game
     private double terrain_gen_function(double X)
     {
         X *= 0.02;
-        double large_terrain = (Math.Sin(X* 0.3)+Math.Sin(X*0.75+10)+Math.Sin(X*1 +486)+ Math.Sin(X*1.3+123) + Math.Sin(X*1.5 +7846))/5;
-        double bumbs_terrain = 1+0.1*(Math.Sin(X*3+14416)*Math.Sin(X*4+32));
-        double result = 1.6*large_terrain*bumbs_terrain;
-
+        double large_terrain = (Math.Sin(X * 0.3) + Math.Sin(X * 0.75 + 10) + Math.Sin(X * 1 + 486) + Math.Sin(X * 1.3 + 123) + Math.Sin(X * 1.5 + 7846)) / 5;
+        double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 4 + 32));
+        double result = 1.6 * large_terrain * bumbs_terrain;
         return 50 * result + 400;
     }
 
@@ -162,8 +214,9 @@ public class Game
             keyboard_input(WASDorARROW);
             movement();
             slow_down();
+            Gravity();
+            inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
             Update_canvas(The_canvas_being_used);
-            gravity_func();
             await Task.Delay(10);
 
         }
@@ -172,11 +225,35 @@ public class Game
     private void Update_canvas(Canvas The_canvas_being_used)
     {
         // Update the car's position on the canvas
-        Canvas.SetTop(carImage, car_position.Y);
+        //Canvas.SetTop(carImage, car_position.Y);
         //Canvas.SetLeft(carImage, car_position.X);
 
         // Update the terrain's position on the canvas
+        Point back_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
+        Canvas.SetLeft(back_weel, back_wheel_position.X);
+        Canvas.SetTop(back_weel, back_wheel_position.Y);
+
+        Point front_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
+        Canvas.SetLeft(front_weel, front_wheel_position.X);
+        Canvas.SetTop(front_weel, front_wheel_position.Y);
+
         Canvas.SetLeft(terrain, -(car_position.X - background_position.X));
+    }
+
+    private Point absolute_position_inside_canvas(Canvas The_canvas_being_used, UIElement reference_object)
+    {
+        var transform = inner_canvas.RenderTransform;
+
+        Point relative_point = new Point(Canvas.GetLeft(reference_object), Canvas.GetTop(reference_object));
+
+        if (transform != null)
+        {
+            relative_point = transform.Transform(relative_point);
+        }
+
+        Point absolute_point = new Point(relative_point.X + Canvas.GetLeft(inner_canvas), relative_point.Y + Canvas.GetTop(inner_canvas));
+
+        return absolute_point;
     }
 
     public void collision(double X)
@@ -191,14 +268,22 @@ public class Game
       
    
     }
-    public void gravity_func()
+    public void Gravity()
     {
-        car_position.Y += gravity;
+        if (!is_touching_ground)
+        {
+            if (car_velocity.Y < terminal_velocity_car)
+    {
+
+            }
+            car_velocity.Y += gravity;
+        }
     }
          
     private void forward_movement()
     {
-        if (car_velocity.X < max_speed){
+        if (car_velocity.X < max_speed)
+        {
             car_velocity.X += acceleration;
 
         }
