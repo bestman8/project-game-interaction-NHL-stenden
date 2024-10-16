@@ -29,6 +29,7 @@ namespace project_1_game_inteact
             this.Hide();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
+            this.Close();
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,7 @@ namespace project_1_game_inteact
             this.Hide();
             UItest.MainWindow secondWindow = new UItest.MainWindow();
             secondWindow.Show();
+            this.Close();
         }
 
         private void Levels_button_Click(object sender, RoutedEventArgs e)
@@ -46,6 +48,7 @@ namespace project_1_game_inteact
 
             UItest.levels secondWindow = new UItest.levels();
             secondWindow.Show();
+            this.Close();
         }
     }
 }
