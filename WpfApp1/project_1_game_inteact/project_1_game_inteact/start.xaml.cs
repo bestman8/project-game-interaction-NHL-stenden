@@ -67,13 +67,16 @@ namespace project_1_game_inteact
             this.Close();
         }
 
-        // Code voor data verwisselen tussen schermen
+        /// <summary/>
+        /// Code voor data verwisselen tussen schermen
+        /// "using static project_1_game_inteact.start;" moet bovenaan de cs code staan voordat het werkt
+        /// <summary/>
         public class SharedData
         {
             private static SharedData _instance;
 
             public static SharedData Instance => _instance ??= new SharedData();
-
+            // voeg hier wat je wil gebruiken tussen pages
             public string Naam1 { get; set; }
             public string Naam2 { get; set; }
             public int Geld1 { get; set; }
