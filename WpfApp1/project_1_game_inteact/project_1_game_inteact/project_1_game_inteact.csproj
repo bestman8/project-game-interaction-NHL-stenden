@@ -38,6 +38,7 @@
     <Resource Include="Afbeeldingen\motor.jpg" />
     <Resource Include="Afbeeldingen\Suspensie.jpg" />
     <Resource Include="Afbeeldingen\Wiel.jpg" /> -->
+
   </ItemGroup>
 
 </Project>
