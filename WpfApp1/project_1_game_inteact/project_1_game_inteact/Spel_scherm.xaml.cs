@@ -40,9 +40,6 @@ namespace project_1_game_inteact
         #endif
         private async void Upgrades_button_Click(object sender, RoutedEventArgs e)
         {
-            //this.Hide();
-            //Upgrades upgradesWindow = new Upgrades();
-            //upgradesWindow.Show();
 
             Game left = new Game();
             Game right = new Game();
@@ -50,6 +47,11 @@ namespace project_1_game_inteact
             right.Game_loop(RightCanvas, false);
             //string currentDirectory = Environment.CurrentDirectory;
             //MessageBox.Show($"Current Directory: {currentDirectory}");
+
+
+            //this.Hide();
+            //Upgrades upgradesWindow = new Upgrades();
+            //upgradesWindow.Show();
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
