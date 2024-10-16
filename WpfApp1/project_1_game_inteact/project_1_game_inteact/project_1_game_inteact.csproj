@@ -11,16 +11,11 @@
   <ItemGroup>
     <None Remove="Afbeeldingen\Auto.png" />
     <None Remove="Afbeeldingen\autoMunt.png" />
+    <None Remove="Afbeeldingen\Garage.jpg" />
     <None Remove="Afbeeldingen\motor.png" />
     <None Remove="Afbeeldingen\Suspensie.png" />
     <None Remove="Afbeeldingen\Wiel.png" />
-    <None Remove="Auto.jpg" />
-    <None Remove="autoMunt.png" />
-    <None Remove="Garage.jpg" />
-    <None Remove="motor.jpg" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
-    <None Remove="Suspensie.jpg" />
-    <None Remove="Wiel.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,19 +24,12 @@
     <Folder Include="resources\sprites\" />
     <Resource Include="Afbeeldingen\Auto.png" />
     <Resource Include="Afbeeldingen\autoMunt.png" />
+    <Resource Include="Afbeeldingen\Garage.jpg" />
     <Resource Include="Afbeeldingen\motor.png" />
     <Resource Include="Afbeeldingen\Suspensie.png" />
     <Resource Include="Afbeeldingen\Wiel.png" />
-    <Resource Include="Auto.jpg" />
-    <Resource Include="autoMunt.png" />
-    <Resource Include="Garage.jpg" />
-    <Resource Include="motor.jpg" />
 
     <Resource Include="resources\images\background_main\asfasfasdf.png" />
-
-    <Resource Include="Suspensie.jpg" />
-
-    <Resource Include="Wiel.jpg" />
 
 
 <!--     <Resource Include="Afbeeldingen\Auto.jpg" />
