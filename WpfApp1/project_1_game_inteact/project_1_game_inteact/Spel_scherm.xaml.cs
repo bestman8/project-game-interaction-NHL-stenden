@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace project_1_game_inteact
 {
@@ -20,50 +19,10 @@ namespace project_1_game_inteact
     /// </summary>
     public partial class Spel_scherm : Window
     {
-        private DispatcherTimer gameTimer = new DispatcherTimer();
-        private int tijd = 0;
-        int Countdown = 5;
-        bool Go = false;
-
         public Spel_scherm()
         {
             InitializeComponent();
-            gameTimer.Interval = TimeSpan.FromSeconds(1);
-            gameTimer.Tick += Timer;
-            gameTimer.Start();
         }
-        //Klok voor de countdown en timer
-        private void Timer(object sender, EventArgs e)
-        {
-
-            if (Countdown <= 0 && Go == true)
-            {
-                LabelCountdown.Visibility = Visibility.Hidden;
-                Label2Countdown.Visibility = Visibility.Hidden;
-                tijd++;
-                int minuten = tijd / 60;
-                int seconden = tijd % 60;
-                string Minuten = Convert.ToString(minuten);
-                string Seconden = Convert.ToString(seconden);
-                GlobalTimer.Content = Minuten + ":" + Seconden;
-            }
-            else if (Go == true)
-            {
-
-                LabelCountdown.Content = Countdown.ToString();
-                Label2Countdown.Content = Countdown.ToString();
-                --Countdown;
-
-            }
-
-        }
-        //knop om de countdown en timer te starten
-        private void StartCountdown_Click(object sender, RoutedEventArgs e)
-        {
-            StartCountdown.Visibility= Visibility.Hidden;
-            Go = true;
-        }
-
 
         private void Upgrades_button_Click(object sender, RoutedEventArgs e)
         {
@@ -88,7 +47,5 @@ namespace project_1_game_inteact
             UItest.levels secondWindow = new UItest.levels();
             secondWindow.Show();
         }
-
-
     }
 }
