@@ -21,6 +21,7 @@
     <None Remove="Garage.jpg" />
     <None Remove="motor.jpg" />
     <None Remove="mute.png" />
+    <None Remove="resources\car-full.png" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="Suspensie.jpg" />
@@ -54,6 +55,12 @@
     <Resource Include="Wiel.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="resources\images\car-full.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

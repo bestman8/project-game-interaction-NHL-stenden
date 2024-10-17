@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
-        Title="Spel_scherm" Height="398" Width="848" MinHeight="250" MinWidth="600">
+        Title="Spel_scherm" Height="446" Width="960" MinHeight="250" MinWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1121*"/>
@@ -33,8 +33,15 @@
                 <Label x:Name="Speler_naam_1" Content="speler 1 naam" HorizontalAlignment="center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="0"/>
                 <Label x:Name="Speler_naam_2_" Content="speler 2 naam" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
 
-                <Canvas Name="LeftCanvas" Background="LightBlue" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,35,0,35"></Canvas>
-                <Canvas Name="RightCanvas" Background="LightCoral" HorizontalAlignment="Stretch" Grid.Column="2" Margin="0,35,0,35"></Canvas>
+                <!-- Wrap LeftCanvas in a Viewbox -->
+                <Viewbox Grid.Column="0" Margin="0,35,0,35" VerticalAlignment="Bottom" Stretch="UniformToFill">
+                    <Canvas Name="LeftCanvas" Background="LightBlue" Width="500" Height="500"></Canvas>
+                </Viewbox>
+
+                <!-- Wrap RightCanvas in a Viewbox -->
+                <Viewbox Grid.Column="2" Margin="0,35,0,35" VerticalAlignment="Bottom" Stretch="UniformToFill">
+                    <Canvas Name="RightCanvas" Background="LightCoral" Width="500" Height="500"></Canvas>
+                </Viewbox>
 
             </Grid>
 

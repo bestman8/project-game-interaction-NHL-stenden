@@ -44,8 +44,8 @@ namespace UItest
         private void level1_click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            start start = new start();
-            start.Show();
+            Spel_scherm spel = new Spel_scherm();
+            spel.Show();
 
         }
     }
