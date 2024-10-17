@@ -268,34 +268,38 @@ public class Game
         return absolute_point;
     }
 
+    public void car_rotation_calc()
+    {
+
+    }
     public void collision(Canvas The_canvas_being_used)
     {
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
         Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
-        if (gamma.Y >= terrain_gen_function(gamma.X + (car_position.X)) && gamma2.Y >= terrain_gen_function(gamma2.X + (car_position.X)))
-        {
-            is_touching_ground = true;
-        }
-        else if (gamma.Y != terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.X != terrain_gen_function(gamma2.X + (car_position.X)) && is_touching_ground == true)
-        {
-            car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
-            is_touching_ground = false;
 
-            if (gamma.Y < terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.Y < terrain_gen_function(gamma2.X + (car_position.X)))
-            {
-                car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
-            }
-            else if (gamma.Y < terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.Y < terrain_gen_function(gamma2.X + (car_position.X)))
-            {
-                car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
-            }
+        bool back_wheel_collision = gamma.Y >= terrain_gen_function(gamma.X + car_position.X);
+        bool front_wheel_collision = gamma2.Y >= terrain_gen_function(gamma2.X + car_position.X);
+
+        if (back_wheel_collision || front_wheel_collision)
+        {    
+            
+            is_touching_ground = true;
+            car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
+            //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
+            double angle = terrain_gen_function(Math.Tan(gamma.Y / gamma.X));
+            carImage.RenderTransform = new RotateTransform(angle);
+            
+
+            Console.WriteLine(angle);
         }
         else
         {
             is_touching_ground = false;
-            gravity = 0.00051;
+           
         }
     }
+
+
 
     public void movement()
     {
