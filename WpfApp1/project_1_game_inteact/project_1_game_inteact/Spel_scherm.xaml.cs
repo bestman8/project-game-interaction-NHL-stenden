@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -169,7 +170,7 @@ public class Game
         Canvas.SetTop(wheel_front, 33);
         my_canvas.Children.Add(inner_canvas);
 
-        inner_canvas.RenderTransform = new RotateTransform(90, 0.2, 0.2);
+        //inner_canvas.RenderTransform = new RotateTransform(90, 0.2, 0.2);
 
         Canvas.SetLeft(inner_canvas, 125);
         Canvas.SetTop(inner_canvas, 250);
@@ -224,11 +225,12 @@ public class Game
             keyboard_input(WASDorARROW);
             movement();
             slow_down();
-            collision(The_canvas_being_used );
+            
             Gravity();
 
-            inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
+            //inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
             Update_canvas(The_canvas_being_used);
+            collision(The_canvas_being_used );
             await Task.Delay(10);
 
         }
@@ -248,7 +250,6 @@ public class Game
         Point front_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
         Canvas.SetLeft(front_weel, front_wheel_position.X);
         Canvas.SetTop(front_weel, front_wheel_position.Y);
-
         Canvas.SetLeft(terrain, -(car_position.X));
     }
 
@@ -270,10 +271,11 @@ public class Game
 
     public void car_rotation_calc()
     {
-
+   
     }
     public void collision(Canvas The_canvas_being_used)
     {
+        
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
         Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
 
@@ -286,11 +288,16 @@ public class Game
             is_touching_ground = true;
             car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
             //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
-            double angle = terrain_gen_function(Math.Tan(gamma.Y / gamma.X));
-            carImage.RenderTransform = new RotateTransform(angle);
             
+            double angle = Math.Tan(Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X))) / 2;
 
             Console.WriteLine(angle);
+
+            RotateTransform rotation_inner_canvas = new RotateTransform(angle / 2);
+            carImage.RenderTransform = rotation_inner_canvas;
+            inner_canvas.RenderTransform = rotation_inner_canvas;
+                 
+            
         }
         else
         {
