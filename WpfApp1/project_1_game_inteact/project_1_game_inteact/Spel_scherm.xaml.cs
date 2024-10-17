@@ -271,23 +271,24 @@ public class Game
     public void collision(Canvas The_canvas_being_used)
     {
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
-        if (gamma.Y >= terrain_gen_function(gamma.X + (car_position.X)))
+        Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front); 
+        if (gamma.Y >= terrain_gen_function(gamma.X + (car_position.X)) && gamma2.Y >= terrain_gen_function(gamma2.X + (car_position.X)))
         {
             Console.WriteLine(terrain_gen_function(gamma.X+(car_position.X)));
+            Console.WriteLine(gamma2.X+(car_position.X));
+            Console.WriteLine("collision _ back");
             Console.WriteLine("collision _ front");
             is_touching_ground = true;
         }
         else
         {
             is_touching_ground = false;
+            gravity = 0.00051; 
         }
-
 }
     public void movement()
     {
-        car_position += car_velocity;
-      
-   
+        car_position += car_velocity;  
     }
     public void Gravity()
     {
