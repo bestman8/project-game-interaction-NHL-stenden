@@ -24,8 +24,8 @@
         <Label x:Name="GeldSpeler1" Foreground="White" Margin="627,23,10,82" Background="LightGray" Grid.Column="1" Grid.RowSpan="2"/>
         <Label x:Name="GeldSpeler2" Foreground="White" Margin="627,7,10,47" Background="LightGray" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.486,1.027"/>
         <Label x:Name="UpgradesTitel" Foreground="Black" Margin="279,6,290,31" Content="Upgrades" FontSize="50" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="28,41,647,42" Click="Speler1Click" Foreground="White" Grid.RowSpan="2"/>
-        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="Speler2Click" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
+        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="27,40,648,42" Click="SpelerClick" Foreground="White" Grid.RowSpan="2"/>
+        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="SpelerClick" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
 
         <Label x:Name="Suspensie_info" Margin="619,186,48,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText  TextWrapping="WrapWithOverflow" Text="Verlies minder snelheid als je de grond raakt."/>
@@ -40,45 +40,10 @@
             <AccessText TextWrapping="WrapWithOverflow" Text="Vebruik minder brandstof." Width="111"/>
         </Label>
 
-        <Button Tag="P1" x:Name="P1B1" Background="LightGray" Foreground="White" Margin="36,99,639,98" Content="Brandstof 1" Grid.Column="1" Click="P1B1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1B2" Background="LightGray" Foreground="White" Margin="36,99,639,98" Content="Brandstof 2" Grid.Column="1" Click="P1B2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1B3" Background="LightGray" Foreground="White" Margin="36,99,639,98" Content="Brandstof 3" Grid.Column="1" Click="P1B3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1B4" Background="LightGray" Foreground="White" Margin="36,99,639,98" Content="Brandstof 4" Grid.Column="1" Click="P1B4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-
-        <Button Tag="P1" x:Name="P1M1" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 1" Grid.Column="1" Click="P1M1_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1M2" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 2" Grid.Column="1" Click="P1M2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1M3" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 3" Grid.Column="1" Click="P1M3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1M4" Background="LightGray" Foreground="White" Margin="201,99,474,98" Content="Motor 4" Grid.Column="1" Click="P1M4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-
-        <Button Tag="P1" x:Name="P1W1" Background="LightGray" Foreground="White" Margin="449,99,226,98" Content="Wiel 1" Grid.Column="1" Click="P1W1_Click" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1W2" Background="LightGray" Foreground="White" Margin="449,99,226,98" Content="Wiel 2" Grid.Column="1" Click="P1W2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1W3" Background="LightGray" Foreground="White" Margin="449,99,226,98" Content="Wiel 3" Grid.Column="1" Click="P1W3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1W4" Background="LightGray" Foreground="White" Margin="449,99,226,98" Content="Wiel 4" Grid.Column="1" Click="P1W4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-
-        <Button Tag="P1" x:Name="P1S1" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 1" Grid.Column="1" Click="P1S1_Click" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1S2" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 2" Grid.Column="1" Click="P1S2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1S3" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 3" Grid.Column="1" Click="P1S3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P1" x:Name="P1S4" Background="LightGray" Foreground="White" Margin="619,99,48,98" Content="Suspensie 4" Grid.Column="1" Click="P1S4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-
-        <Button Tag="P2" x:Name="P2B1" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Brandstof 1" Grid.Column="1" Click="P2B1_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2B2" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Brandstof 2" Grid.Column="1" Click="P2B2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2B3" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Brandstof 3" Grid.Column="1" Click="P2B3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2B4" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Brandstof 4" Grid.Column="1" Click="P2B4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
-
-        <Button Tag="P2" x:Name="P2M1" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Motor 1" Grid.Column="1" Click="P2M1_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2M2" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Motor 2" Grid.Column="1" Click="P2M2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2M3" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Motor 3" Grid.Column="1" Click="P2M3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2M4" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Motor 4" Grid.Column="1" Click="P2M4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
-
-        <Button Tag="P2" x:Name="P2W1" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Wiel 1" Grid.Column="1" Click="P2W1_Click" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2W2" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Wiel 2" Grid.Column="1" Click="P2W2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2W3" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Wiel 3" Grid.Column="1" Click="P2W3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2W4" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Wiel 4" Grid.Column="1" Click="P2W4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
-
-        <Button Tag="P2" x:Name="P2S1" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Suspensie 1" Grid.Column="1" Click="P2S1_Click" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2S2" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Suspensie 2" Grid.Column="1" Click="P2S2_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2S3" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Suspensie 3" Grid.Column="1" Click="P2S3_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
-        <Button Tag="P2" x:Name="P2S4" Background="LightGray" Foreground="White" Margin="900, 900, 901, 901" Content="Suspensie 4" Grid.Column="1" Click="P2S4_Click" Visibility="Hidden" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
+        <Button  x:Name="P1B" Background="LightGray" Foreground="White" Margin="36,99,639,98" Grid.Column="1" Click="P1B_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="201,99,474,98" Grid.Column="1" Click="P1M_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
+        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="449,99,226,98" Grid.Column="1" Click="P1W_Click" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
+        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="619,99,48,98" Grid.Column="1" Click="P1S_Click" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
 
         <Image Source="pack://application:,,,/Afbeeldingen/autoMunt.png" Margin="757,2,7,64" Grid.Column="1" RenderTransformOrigin="0.801,0.707" Grid.RowSpan="2"/>
         <Image Source="pack://application:,,,/Afbeeldingen/autoMunt.png" Margin="757,4,7,44" Grid.Column="1" Grid.Row="1"/>

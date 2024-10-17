@@ -81,8 +81,8 @@ namespace project_1_game_inteact
             public string Naam2 { get; set; }
             public int Geld1 { get; set; }
             public int Geld2 { get; set; }
-            public string[] Upgr1 { get; set; }
-            public string[] Upgr2 { get; set; }
+            public int[] Upgr1 { get; set; }
+            public int[] Upgr2 { get; set; }
         }
 
         private void nspeler2_KeyUp(object sender, KeyEventArgs e)

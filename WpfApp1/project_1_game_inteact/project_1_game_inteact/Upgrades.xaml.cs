@@ -13,61 +13,34 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using UItest;
 using static project_1_game_inteact.start;
 
 namespace project_1_game_inteact
 {
-    /// <summary>
-    /// Functionaliteit van de upgrade knopen doet nog niks, switcht nu nog alleen tussen de upgrades zelf
-    /// </summary>
     public partial class Upgrades : Window
     {
+        int speler = 0;
+        private DispatcherTimer timer;
+        private int Rood = 0;
+        private int MaxRood = 10;
         public Upgrades()
         {
             InitializeComponent();
 
             if (SharedData.Instance.Upgr1 == null)
-                SharedData.Instance.Upgr1 = new string[] { "P1B1", "P1M1", "P1W1", "P1S1" };
+                SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, 1 };
             if (SharedData.Instance.Upgr2 == null)
-                SharedData.Instance.Upgr2 = new string[] { "P2B1", "P2M1", "P2W1", "P2S1" };
+                SharedData.Instance.Upgr2 = new int[] { 1, 1, 1 ,1  };
+            SharedData.Instance.Geld1 = 20;
+            SharedData.Instance.Geld2 = 20;
+            Upgrades_Check();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(200);
+            timer.Tick += Roodgeld;
 
-            foreach (var control in this.MainGrid.Children)
-            {
-                if (control is Button btn && btn.Tag?.ToString() == "P1")
-                {
-                    if (SharedData.Instance.Upgr1.Contains(btn.Name))
-                    {
-                        btn.Visibility = Visibility.Visible;  // Show button
-                    }
-                    else
-                    {
-                        btn.Visibility = Visibility.Collapsed; // Hide button
-                    }
-                }
-            }
-            foreach (var control in this.MainGrid.Children)
-            {
-                if (control is Button btn && btn.Tag?.ToString() == "P2")
-                {
-                    if (SharedData.Instance.Upgr2.Contains(btn.Name))
-                    {
-                        btn.Visibility = Visibility.Visible;  // Show button
-                    }
-                    else
-                    {
-                        btn.Visibility = Visibility.Collapsed; // Hide button
-                    }
-                }
-            }
-
-
-            Speler_1_Knop.Content = SharedData.Instance.Naam1;
-            Speler_2_Knop.Content = SharedData.Instance.Naam2;
-            GeldSpeler1.Content = "Geld " + SharedData.Instance.Naam1 + ": " + Convert.ToString(SharedData.Instance.Geld1);
-            GeldSpeler2.Content = "Geld " + SharedData.Instance.Naam2 + ": " + Convert.ToString(SharedData.Instance.Geld2);
         }
-
         private void LevelsClick(object sender, RoutedEventArgs e)
         {
             levels gm = new levels();
@@ -77,320 +50,242 @@ namespace project_1_game_inteact
 
         private void StartschermClick(object sender, RoutedEventArgs e)
         {
-            MainWindow gm = new MainWindow();
+            start gm = new start();
             gm.Visibility = Visibility.Visible;
             this.Close();
         }
+        // checkt geld en level upgrades en zet nieuwe waarden
+        public void Upgrades_Check()
+        {
+            Speler_1_Knop.Content = SharedData.Instance.Naam1;
+            Speler_2_Knop.Content = SharedData.Instance.Naam2;
+            GeldSpeler1.Content = "Geld " + SharedData.Instance.Naam1 + ": " + Convert.ToString(SharedData.Instance.Geld1);
+            GeldSpeler2.Content = "Geld " + SharedData.Instance.Naam2 + ": " + Convert.ToString(SharedData.Instance.Geld2);
+            if (speler == 0)
+            {
+                if (SharedData.Instance.Upgr1[0] < 5)
+                    P1B.Content = "Brandstof " + Convert.ToString(SharedData.Instance.Upgr1[0]);
+                else
+                    P1B.Content = "Max Brandstof";
+                if (SharedData.Instance.Upgr1[1] < 5)
+                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[1]);
+                else
+                    P1M.Content = "Max Motor";
+                if (SharedData.Instance.Upgr1[2] < 5)
+                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[2]);
+                else
+                    P1W.Content = "Max Wiel ";
+                if (SharedData.Instance.Upgr1[3] < 5)
+                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[3]);
+                else
+                    P1S.Content = "Max Suspensie ";
+            }
+            else
+            {
+                if (SharedData.Instance.Upgr2[0] < 5)
+                    P1B.Content = "Brandstof " + Convert.ToString(SharedData.Instance.Upgr2[0]);
+                else
+                    P1B.Content = "Max Brandstof ";
+                if (SharedData.Instance.Upgr2[1] < 5)
+                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[1]);
+                else
+                    P1M.Content = "Max Motor ";
+                if (SharedData.Instance.Upgr2[2] < 5)
+                        P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[2]);
+                else
+                        P1W.Content = "Max Wiel ";
+                if (SharedData.Instance.Upgr2[3] < 5)
+                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[3]);
+                else
+                    P1S.Content = "Max Suspensie ";
+
+            }
+
+        }
+        // laat het geld tabel roodknipperen als er niet genoeg geld is
+        private void Roodgeld(object sender, EventArgs e)
+        {
+            if (Rood >= MaxRood)
+            {
+                GeldSpeler1.Background = Brushes.LightGray;
+                GeldSpeler2.Background = Brushes.LightGray;
+                timer.Stop();
+            }
+            else
+            {
+                if (speler == 0)
+                {
+                    GeldSpeler1.Background = (GeldSpeler1.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                }
+                else
+                {
+                    GeldSpeler2.Background = (GeldSpeler2.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                }
+                Rood++;
+            }
+        }
 
         //Hiermee switch je tussen de upgrades van player 1 en player 2
-        private void Speler1Click(object sender, RoutedEventArgs e)
+        private void SpelerClick(object sender, RoutedEventArgs e)
         {
-            Speler_1_Knop.IsEnabled = false;
-            Speler_2_Knop.IsEnabled = true;
 
-            P1B1.Margin = new Thickness(900, 900, 901, 901);
-            P1B2.Margin = new Thickness(900, 900, 901, 901);
-            P1B3.Margin = new Thickness(900, 900, 901, 901);
-            P1B4.Margin = new Thickness(900, 900, 901, 901);
+            if (speler == 0)
+            {
+                timer.Stop();
+                GeldSpeler1.Background = Brushes.LightGray;
+                Speler_1_Knop.IsEnabled = false;
+                Speler_2_Knop.IsEnabled = true;
+                speler = 1;
+                Upgrades_Check();
+            }
+            else
+            {
+                timer.Stop();
+                GeldSpeler2.Background = Brushes.LightGray;
+                Speler_1_Knop.IsEnabled = true;
+                Speler_2_Knop.IsEnabled = false;
+                speler = 0;
+                Upgrades_Check();
+            }
 
-            P1M1.Margin = new Thickness(900, 900, 901, 901);
-            P1M2.Margin = new Thickness(900, 900, 901, 901);
-            P1M3.Margin = new Thickness(900, 900, 901, 901);
-            P1M4.Margin = new Thickness(900, 900, 901, 901);
-
-            P1W1.Margin = new Thickness(900, 900, 901, 901);
-            P1W2.Margin = new Thickness(900, 900, 901, 901);
-            P1W3.Margin = new Thickness(900, 900, 901, 901);
-            P1W4.Margin = new Thickness(900, 900, 901, 901);
-
-            P1S1.Margin = new Thickness(900, 900, 901, 901);
-            P1S2.Margin = new Thickness(900, 900, 901, 901);
-            P1S3.Margin = new Thickness(900, 900, 901, 901);
-            P1S4.Margin = new Thickness(900, 900, 901, 901);
-
-            P2B1.Margin = new Thickness(25, 99, 651, 98);
-            P2B2.Margin = new Thickness(25, 99, 651, 98);
-            P2B3.Margin = new Thickness(25, 99, 651, 98);
-            P2B4.Margin = new Thickness(25, 99, 651, 98);
-
-            P2M1.Margin = new Thickness(201,99,474,98);
-            P2M2.Margin = new Thickness(201,99,474,98);
-            P2M3.Margin = new Thickness(201,99,474,98);
-            P2M4.Margin = new Thickness(201,99,474,98);
-
-            P2W1.Margin = new Thickness(449,99,226,97);
-            P2W2.Margin = new Thickness(449,99,226,97);
-            P2W3.Margin = new Thickness(449,99,226,97);
-            P2W4.Margin = new Thickness(449,99,226,97);
-
-            P2S1.Margin = new Thickness(619,99,48,97);
-            P2S2.Margin = new Thickness(619,99,48,97);
-            P2S3.Margin = new Thickness(619,99,48,97);
-            P2S4.Margin = new Thickness(619,99,48,97);
         }
 
-        private void Speler2Click(object sender, RoutedEventArgs e)
+        //Upgrades Player 1 en 2
+        private void P1B_Click(object sender, RoutedEventArgs e)
         {
-            Speler_1_Knop.IsEnabled = true;
-            Speler_2_Knop.IsEnabled = false;
-
-            P1B1.Margin = new Thickness(25, 99, 651, 98);
-            P1B2.Margin = new Thickness(25, 99, 651, 98);
-            P1B3.Margin = new Thickness(25, 99, 651, 98);
-            P1B4.Margin = new Thickness(25, 99, 651, 98);
-
-            P1M1.Margin = new Thickness(201,99,474,98);
-            P1M2.Margin = new Thickness(201,99,474,98);
-            P1M3.Margin = new Thickness(201,99,474,98);
-            P1M4.Margin = new Thickness(201,99,474,98);
-
-            P1W1.Margin = new Thickness(449,99,226,97);
-            P1W2.Margin = new Thickness(449,99,226,97);
-            P1W3.Margin = new Thickness(449,99,226,97);
-            P1W4.Margin = new Thickness(449,99,226,97);
-
-            P1S1.Margin = new Thickness(619,99,48,97);
-            P1S2.Margin = new Thickness(619,99,48,97);
-            P1S3.Margin = new Thickness(619,99,48,97);
-            P1S4.Margin = new Thickness(619,99,48,97);
-
-            P2B1.Margin = new Thickness(900, 900, 901, 901);
-            P2B2.Margin = new Thickness(900, 900, 901, 901);
-            P2B3.Margin = new Thickness(900, 900, 901, 901);
-            P2B4.Margin = new Thickness(900, 900, 901, 901);
-
-            P2M1.Margin = new Thickness(900, 900, 901, 901);
-            P2M2.Margin = new Thickness(900, 900, 901, 901);
-            P2M3.Margin = new Thickness(900, 900, 901, 901);
-            P2M4.Margin = new Thickness(900, 900, 901, 901);
-
-            P2W1.Margin = new Thickness(900, 900, 901, 901);
-            P2W2.Margin = new Thickness(900, 900, 901, 901);
-            P2W3.Margin = new Thickness(900, 900, 901, 901);
-            P2W4.Margin = new Thickness(900, 900, 901, 901);
-
-            P2S1.Margin = new Thickness(900, 900, 901, 901);
-            P2S2.Margin = new Thickness(900, 900, 901, 901);
-            P2S3.Margin = new Thickness(900, 900, 901, 901);
-            P2S4.Margin = new Thickness(900, 900, 901, 901);
-
+            if (speler == 0)
+            {
+                if (SharedData.Instance.Upgr1[0] < 5)
+                {
+                    if (SharedData.Instance.Geld1 >= 5)
+                    {
+                        SharedData.Instance.Upgr1[0] = SharedData.Instance.Upgr1[0] + 1;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        Upgrades_Check();
+                    }
+                    else
+                    {
+                        Rood = 0;
+                        timer.Start();
+                    }
+                }
+            }
+            else if (SharedData.Instance.Upgr2[0] < 5)
+            {
+                if (SharedData.Instance.Geld2 >= 5)
+                {
+                    SharedData.Instance.Upgr2[0] = SharedData.Instance.Upgr2[0] + 1;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    Upgrades_Check();
+                }
+                else
+                {
+                    Rood = 0;
+                    timer.Start();
+                }
+            }
         }
-        //Upgrades Player 1
-        private void P1B1_Click(object sender, RoutedEventArgs e)
+        private void P1M_Click(object sender, RoutedEventArgs e)
         {
-            P1B1.Visibility = Visibility.Hidden;
-            P1B2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[0] = "P1B2";
+            if (speler == 0)
+            {
+                if (SharedData.Instance.Upgr1[1] < 5)
+                {
+                    if (SharedData.Instance.Geld1 >= 5)
+                    {
+                        SharedData.Instance.Upgr1[1] = SharedData.Instance.Upgr1[1] + 1;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        Upgrades_Check();
+                    }
+                    else
+                    {
+                        Rood = 0;
+                        timer.Start();
+                    }
+                }
+            }
+            else if (SharedData.Instance.Upgr2[1] < 5)
+            {
+                if (SharedData.Instance.Geld2 >= 5)
+                {
+                    SharedData.Instance.Upgr2[1] = SharedData.Instance.Upgr2[1] + 1;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    Upgrades_Check();
+                }
+                else
+                {
+                    Rood = 0;
+                    timer.Start();
+                }
+            }
         }
-
-        private void P1B2_Click(object sender, RoutedEventArgs e)
+        private void P1W_Click(object sender, RoutedEventArgs e)
         {
-            P1B2.Visibility= Visibility.Hidden;
-            P1B3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[0] = "P1B3";
+            if (speler == 0)
+            {
+                if (SharedData.Instance.Upgr1[2] < 5)
+                {
+                    if (SharedData.Instance.Geld1 >= 5)
+                    {
+                        SharedData.Instance.Upgr1[2] = SharedData.Instance.Upgr1[2] + 1;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        Upgrades_Check();
+                    }
+                    else
+                    {
+                        Rood = 0;
+                        timer.Start();
+                    }
+                }
+            }
+            else if (SharedData.Instance.Upgr2[2] < 5)
+            {
+                if (SharedData.Instance.Geld2 >= 5)
+                {
+                    SharedData.Instance.Upgr2[2] = SharedData.Instance.Upgr2[2] + 1;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    Upgrades_Check();
+                }
+                else
+                {
+                    Rood = 0;
+                    timer.Start();
+                }
+            }
         }
-
-        private void P1B3_Click(object sender, RoutedEventArgs e)
+        private void P1S_Click(object sender, RoutedEventArgs e)
         {
-            P1B3.Visibility = Visibility.Hidden;
-            P1B4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[0] = "P1B4";
-        }
-
-        private void P1B4_Click(object sender, RoutedEventArgs e)
-        {
-            P1B4.IsEnabled = false;
-            SharedData.Instance.Upgr1[0] = "P1B5";
-        }
-
-        private void P1M1_Click(object sender, RoutedEventArgs e)
-        {
-            P1M1.Visibility = Visibility.Hidden;
-            P1M2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[1] = "P1M2";
-        }
-
-        private void P1M2_Click(object sender, RoutedEventArgs e)
-        {
-            P1M2.Visibility = Visibility.Hidden;
-            P1M3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[1] = "P1M3";
-        }
-
-        private void P1M3_Click(object sender, RoutedEventArgs e)
-        {
-            P1M3.Visibility = Visibility.Hidden;
-            P1M4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[1] = "P1M4";
-        }
-
-        private void P1M4_Click(object sender, RoutedEventArgs e)
-        {
-            P1M4.IsEnabled = false;
-            SharedData.Instance.Upgr1[1] = "P1M5";
-        }
-
-        private void P1W1_Click(object sender, RoutedEventArgs e)
-        {
-            P1W1.Visibility = Visibility.Hidden;
-            P1W2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[2] = "P1W2";
-        }
-
-        private void P1W2_Click(object sender, RoutedEventArgs e)
-        {
-            P1W2.Visibility = Visibility.Hidden;
-            P1W3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[2] = "P1W3";
-        }
-
-        private void P1W3_Click(object sender, RoutedEventArgs e)
-        {
-            P1W3.Visibility = Visibility.Hidden;
-            P1W4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[2] = "P1W4";
-        }
-
-        private void P1W4_Click(object sender, RoutedEventArgs e)
-        {
-            P1W4.IsEnabled = false;
-            SharedData.Instance.Upgr1[2] = "P1W5";
-        }
-
-        private void P1S1_Click(object sender, RoutedEventArgs e)
-        {
-            P1S1.Visibility = Visibility.Hidden;
-            P1S2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[3] = "P1S2";
-        }
-
-        private void P1S2_Click(object sender, RoutedEventArgs e)
-        {
-            P1S2.Visibility = Visibility.Hidden;
-            P1S3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[3] = "P1S3";
-        }
-
-        private void P1S3_Click(object sender, RoutedEventArgs e)
-        {
-            P1S3.Visibility = Visibility.Hidden;
-            P1S4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr1[3] = "P1S4";
-        }
-
-        private void P1S4_Click(object sender, RoutedEventArgs e)
-        {
-            P1S4.IsEnabled = false;
-            SharedData.Instance.Upgr1[3] = "P1S5";
-        }
-
-        //Upgrades Player 2
-        private void P2B1_Click(object sender, RoutedEventArgs e)
-        {
-            P2B1.Visibility = Visibility.Hidden;
-            P2B2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[0] = "P2B2";
-        }
-
-        private void P2B2_Click(object sender, RoutedEventArgs e)
-        {
-            P2B2.Visibility = Visibility.Hidden;
-            P2B3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[0] = "P2B3";
-        }
-
-        private void P2B3_Click(object sender, RoutedEventArgs e)
-        {
-            P2B3.Visibility = Visibility.Hidden;
-            P2B4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[0] = "P2B4";
-        }
-
-        private void P2B4_Click(object sender, RoutedEventArgs e)
-        {
-            P2B4.IsEnabled = false;
-            SharedData.Instance.Upgr2[0] = "P2B5";
-        }
-
-        private void P2M1_Click(object sender, RoutedEventArgs e)
-        {
-            P2M1.Visibility = Visibility.Hidden;
-            P2M2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[1] = "P2M2";
-        }
-
-        private void P2M2_Click(object sender, RoutedEventArgs e)
-        {
-            P2M2.Visibility = Visibility.Hidden;
-            P2M3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[1] = "P2M3";
-        }
-
-        private void P2M3_Click(object sender, RoutedEventArgs e)
-        {
-            P2M3.Visibility = Visibility.Hidden;
-            P2M4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[1] = "P2M4";
-        }
-
-        private void P2M4_Click(object sender, RoutedEventArgs e)
-        {
-            P2M4.IsEnabled = false;
-            SharedData.Instance.Upgr2[1] = "P2M5";
-        }
-
-        private void P2W1_Click(object sender, RoutedEventArgs e)
-        {
-            P2W1.Visibility = Visibility.Hidden;
-            P2W2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[2] = "P2W2";
-        }
-
-        private void P2W2_Click(object sender, RoutedEventArgs e)
-        {
-            P2W2.Visibility = Visibility.Hidden;
-            P2W3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[2] = "P2W3";
-        }
-
-        private void P2W3_Click(object sender, RoutedEventArgs e)
-        {
-            P2W3.Visibility = Visibility.Hidden;
-            P2W4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[2] = "P2W4";
-        }
-
-        private void P2W4_Click(object sender, RoutedEventArgs e)
-        {
-            P2W4.IsEnabled = false;
-            SharedData.Instance.Upgr2[2] = "P2W5";
-        }
-
-        private void P2S1_Click(object sender, RoutedEventArgs e)
-        {
-            P2S1.Visibility = Visibility.Hidden;
-            P2S2.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[3] = "P2S2";
-        }
-
-        private void P2S2_Click(object sender, RoutedEventArgs e)
-        {
-            P2S2.Visibility = Visibility.Hidden;
-            P2S3.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[3] = "P2S3";
-        }
-
-        private void P2S3_Click(object sender, RoutedEventArgs e)
-        {
-            P2S3.Visibility = Visibility.Hidden;
-            P2S4.Visibility = Visibility.Visible;
-            SharedData.Instance.Upgr2[3] = "P2S4";
-        }
-
-        private void P2S4_Click(object sender, RoutedEventArgs e)
-        {
-            P2S4.IsEnabled = false;
-            SharedData.Instance.Upgr2[3] = "P2S5";
+            if (speler == 0)
+            {
+                if (SharedData.Instance.Upgr1[3] < 5)
+                {
+                    if (SharedData.Instance.Geld1 >= 5)
+                    {
+                        SharedData.Instance.Upgr1[3] = SharedData.Instance.Upgr1[3] + 1;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        Upgrades_Check();
+                    }
+                    else
+                    {
+                        Rood = 0;
+                        timer.Start();
+                    }
+                }
+            }
+            else if (SharedData.Instance.Upgr2[3] < 5)
+            {
+                if (SharedData.Instance.Geld2 >= 5)
+                {
+                    SharedData.Instance.Upgr2[3] = SharedData.Instance.Upgr2[3] + 1;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    Upgrades_Check();
+                }
+                else
+                {
+                    Rood = 0;
+                    timer.Start();
+                }
+            }
         }
 
         //Info over wat de upgrades doen
