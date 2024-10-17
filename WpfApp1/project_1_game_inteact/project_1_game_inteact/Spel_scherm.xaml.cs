@@ -91,7 +91,11 @@ public class Game
     {
     Width = 80,
     Height = 50,
-    Background = Brushes.BlueViolet
+        #if DEBUG
+        Background = Brushes.BlueViolet
+#else
+        Background = Brushes.Transparent 
+#endif
     };
     private Image carImage;
     private Polygon terrain = new Polygon
@@ -104,22 +108,25 @@ public class Game
         {
             Width = 3,
             Height = 3,
-            Fill = Brushes.Red
-        };
+#if DEBUG
+        Fill = Brushes.Red
+#else
+    Fill = Brushes.Transparent
+#endif
+
+    };
     private Ellipse wheel_front = new Ellipse
         {
             Width = 3,
             Height = 3,
-            Fill = Brushes.Red
-        };
-
-    private Ellipse front_weel = new Ellipse
-    {
-        Width = 2,
-        Height = 2,
-        Fill = Brushes.HotPink
+#if DEBUG
+        Fill = Brushes.Red
+#else
+    Fill = Brushes.Transparent
+#endif
     };
-    private Label back_weel = new Label();
+
+
 
 
     private double acceleration = 0.1;
@@ -156,8 +163,6 @@ public class Game
         //rectangle.Fill = Brushes.Purple;
 
 
-        //front_weel.Content = "front_wheel";
-        back_weel.Content = "bacl_wheel";
 
         inner_canvas.Children.Add(carImage);
         inner_canvas.Children.Add(wheel_back);
@@ -178,8 +183,6 @@ public class Game
         terrain_gen();
         my_canvas.Children.Add(terrain);
 
-        my_canvas.Children.Add(front_weel);
-        my_canvas.Children.Add(back_weel);
 
     }
     /// <summary>
@@ -244,12 +247,9 @@ public class Game
 
         // Update the terrain's position on the canvas
         Point back_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
-        Canvas.SetLeft(back_weel, back_wheel_position.X);
-        Canvas.SetTop(back_weel, back_wheel_position.Y);
+
 
         Point front_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
-        Canvas.SetLeft(front_weel, front_wheel_position.X);
-        Canvas.SetTop(front_weel, front_wheel_position.Y);
         Canvas.SetLeft(terrain, -(car_position.X));
     }
 
