@@ -227,7 +227,7 @@ public class Game
             collision(The_canvas_being_used );
             Gravity();
 
-            inner_canvas.RenderTransform = new RotateTransform(15, 0.5, 0.5);
+            inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
             Update_canvas(The_canvas_being_used);
             await Task.Delay(10);
 
@@ -271,21 +271,32 @@ public class Game
     public void collision(Canvas The_canvas_being_used)
     {
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
-        Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front); 
+        Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
         if (gamma.Y >= terrain_gen_function(gamma.X + (car_position.X)) && gamma2.Y >= terrain_gen_function(gamma2.X + (car_position.X)))
         {
-            Console.WriteLine(terrain_gen_function(gamma.X+(car_position.X)));
-            Console.WriteLine(gamma2.X+(car_position.X));
-            Console.WriteLine("collision _ back");
-            Console.WriteLine("collision _ front");
             is_touching_ground = true;
+        }
+        else if (gamma.Y != terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.X != terrain_gen_function(gamma2.X + (car_position.X)) && is_touching_ground == true)
+        {
+            car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
+            is_touching_ground = false;
+
+            if (gamma.Y < terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.Y < terrain_gen_function(gamma2.X + (car_position.X)))
+            {
+                car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
+            }
+            else if (gamma.Y < terrain_gen_function(gamma.Y + (car_position.X)) && gamma2.Y < terrain_gen_function(gamma2.X + (car_position.X)))
+            {
+                car_position.Y = terrain_gen_function(gamma.Y + (car_position.Y));
+            }
         }
         else
         {
             is_touching_ground = false;
-            gravity = 0.00051; 
+            gravity = 0.00051;
         }
-}
+    }
+
     public void movement()
     {
         car_position += car_velocity;  
