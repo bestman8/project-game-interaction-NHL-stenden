@@ -8,13 +8,15 @@
         Title="levels" Height="450" Width="800">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Grid.ColumnSpan="8" Margin="0,0,0,-9" Grid.RowSpan="6" Stretch="Fill" />
-        <Button Name="home" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="home" Background="LightGray" Click="home_Click"></Button>
-        <Button Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="upgrades" Background="LightGray" Click="upgrades_click"/>
-        <Button Name="Level1"  Grid.Column="1" Margin="65,35,35,36" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="Level 1" Background="LightGray" Click="level1_click" Grid.Row="2"/>
+        <Button Name="home" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="home" Background="LawnGreen" Click="home_Click"></Button>
+        <Button Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="upgrades" Background="LawnGreen" Click="upgrades_click"/>
+        <Button Name="Level1"  Grid.Column="1" Margin="65,35,35,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 1" Background="LawnGreen" Click="level1_click" Grid.Row="2"/>
+        <Button Name="Level2"  Grid.Column="3" Margin="50,35,50,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 2" Background="LawnGreen" Click="level2_click" Grid.Row="2"/>
+        <Button Name="Level3"  Grid.Column="5" Margin="35,35,65,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 3" Background="LawnGreen" Click="level3_click" Grid.Row="2"/>
         <Label Name="llevels" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,-5,0,5" Content="Levels" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-        <Image x:Name="level1_Copy" Grid.Column="3" Grid.ColumnSpan="2" Margin="50,25,50,44" Grid.RowSpan="2" Grid.Row="2" Source="/afbeelding.jpg"/>
-        <Image x:Name="level1_Copy1" Grid.Column="5" Grid.ColumnSpan="2" Margin="50,26,50,44" Grid.RowSpan="2" Grid.Row="2" Source="/afbeelding.jpg"/>
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
