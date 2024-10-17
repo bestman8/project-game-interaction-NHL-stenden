@@ -48,5 +48,19 @@ namespace UItest
             spel.Show();
 
         }
+        private void level2_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            start start = new start();
+            start.Show();
+
+        }
+        private void level3_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            start start = new start();
+            start.Show();
+
+        }
     }
 }
