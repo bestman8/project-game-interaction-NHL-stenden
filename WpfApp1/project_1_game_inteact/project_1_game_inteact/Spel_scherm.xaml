@@ -27,8 +27,10 @@
                     <ColumnDefinition Width="35" />
                     <!-- Spacer -->
                     <ColumnDefinition Width="*" />
+
                     <!-- Right Canvas -->
                 </Grid.ColumnDefinitions>
+
 
                 <Label x:Name="Speler_naam_1" Content="speler 1 naam" HorizontalAlignment="center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="0"/>
                 <Label x:Name="Speler_naam_2_" Content="speler 2 naam" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
@@ -36,6 +38,10 @@
                 <Canvas Name="LeftCanvas" Background="LightBlue" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,35,0,35"></Canvas>
                 <Canvas Name="RightCanvas" Background="LightCoral" HorizontalAlignment="Stretch" Grid.Column="2" Margin="0,35,0,35"></Canvas>
 
+                <Label x:Name="LabelCountdown" FontSize="25" HorizontalContentAlignment="Center" Margin="66,48,66,68"/>
+                <Label x:Name="Label2Countdown" FontSize="25" HorizontalContentAlignment="Center" Margin="44,48,55,68" Grid.Column="3"/>
+                <Label x:Name="GlobalTimer" HorizontalAlignment="Left" HorizontalContentAlignment="Center"  Margin="360,0,0,259" Width="70" Grid.ColumnSpan="3"/>
+                <Button x:Name="StartCountdown" Click="StartCountdown_Click" Margin="340,0,348,301" Content="Start" Grid.ColumnSpan="3"/>
             </Grid>
 
         </Grid>
