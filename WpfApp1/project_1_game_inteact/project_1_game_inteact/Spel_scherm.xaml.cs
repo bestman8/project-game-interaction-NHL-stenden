@@ -132,7 +132,7 @@ public class Game
     private double acceleration = 0.1;
     private double deceleration = 0.07;
     private double max_speed = 5;
-    private double gravity = 0.00051; //0.01 is natural ish
+    private double gravity = 0.01; //0.01 is natural ish
     private bool is_touching_ground = false;
     private double terminal_velocity_car = 0.0015;
 
@@ -269,13 +269,10 @@ public class Game
         return absolute_point;
     }
 
-    public void car_rotation_calc()
-    {
-   
-    }
+
     public void collision(Canvas The_canvas_being_used)
     {
-        
+
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
         Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
 
@@ -283,26 +280,31 @@ public class Game
         bool front_wheel_collision = gamma2.Y >= terrain_gen_function(gamma2.X + car_position.X);
 
         if (back_wheel_collision || front_wheel_collision)
-        {    
-            
+        {
             is_touching_ground = true;
             car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
-            //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
-            
-            double angle = Math.Tan(Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X))) / 2;
+            if (front_wheel_collision)
+            {
+                inner_canvas.RenderTransform = new RotateTransform((gamma2.Y - gamma.Y), 5, 5);
+            }
+            else if (back_wheel_collision)
+            {
+                
+                inner_canvas.RenderTransform = new RotateTransform(gamma2.Y + gamma.Y, 5, 5);
+            }
+            else if (back_wheel_collision && front_wheel_collision)
+            {
+                inner_canvas.RenderTransform = new RotateTransform(0, 5, 5);
+            }
+            else
+            {
+                inner_canvas.RenderTransform = new RotateTransform(45, 5, 5);
+            }
 
-            Console.WriteLine(angle);
-
-            RotateTransform rotation_inner_canvas = new RotateTransform(angle / 2);
-            carImage.RenderTransform = rotation_inner_canvas;
-            inner_canvas.RenderTransform = rotation_inner_canvas;
-                 
-            
         }
         else
         {
             is_touching_ground = false;
-           
         }
     }
 
