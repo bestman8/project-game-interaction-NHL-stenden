@@ -18,7 +18,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="800"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="pack://application:,,,/Afbeeldingen/Garage.jpg" Stretch="Fill" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+        <Image Source="/Garage.jpg" Stretch="Fill" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
         <Button x:Name="Startscherm" Margin="265,49,435,33" Click="StartschermClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Startscherm" Grid.RowSpan="2" Grid.Row="1"/>
         <Button x:Name="Levels_Knop" Margin="427,49,273,33" Click="LevelsClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Levels" Grid.RowSpan="2" Grid.Row="1"/>
         <Label x:Name="GeldSpeler1" Foreground="White" Margin="627,23,10,82" Background="LightGray" Grid.Column="1" Grid.RowSpan="2"/>
@@ -40,10 +40,10 @@
             <AccessText TextWrapping="WrapWithOverflow" Text="Vebruik minder brandstof." Width="111"/>
         </Label>
 
-        <Button  x:Name="P1B" Background="LightGray" Foreground="White" Margin="36,99,639,98" Grid.Column="1" Click="P1B_Click" Grid.Row="3" />
-        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="201,99,474,98" Grid.Column="1" Click="P1M_Click" Grid.Row="3"/>
-        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="449,99,226,98" Grid.Column="1" Click="P1W_Click" Grid.Row="3"/>
-        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="619,99,48,98" Grid.Column="1" Click="P1S_Click" Grid.Row="3" />
+        <Button  x:Name="P1B" Background="LightGray" Foreground="White" Margin="36,99,639,98" Grid.Column="1" Click="P1B_Click" Grid.Row="3" MouseEnter="Lichaam_MouseEnter" MouseLeave="Lichaam_MouseLeave"/>
+        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="201,99,474,98" Grid.Column="1" Click="P1M_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
+        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="449,99,226,98" Grid.Column="1" Click="P1W_Click" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
+        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="619,99,48,98" Grid.Column="1" Click="P1S_Click" Grid.Row="3" MouseEnter="Suspensie_MouseEnter" MouseLeave="Suspensie_MouseLeave"/>
 
         <Image Source="/autoMunt.png" Margin="757,2,7,64" Grid.Column="1" RenderTransformOrigin="0.801,0.707" Grid.RowSpan="2"/>
         <Image Source="/autoMunt.png" Margin="757,4,7,44" Grid.Column="1" Grid.Row="1"/>

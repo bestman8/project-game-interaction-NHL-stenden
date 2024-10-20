@@ -34,7 +34,7 @@ namespace project_1_game_inteact
             if (SharedData.Instance.Upgr1 == null)
                 SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, 1 };
             if (SharedData.Instance.Upgr2 == null)
-                SharedData.Instance.Upgr2 = new int[] { 1, 1, 1 ,1  };
+                SharedData.Instance.Upgr2 = new int[] { 1, 1, 1, 1 };
             SharedData.Instance.Geld1 = 20;
             SharedData.Instance.Geld2 = 20;
             Upgrades_Check();
@@ -93,9 +93,9 @@ namespace project_1_game_inteact
                 else
                     P1M.Content = "Max Motor ";
                 if (SharedData.Instance.Upgr2[2] < 5)
-                        P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[2]);
+                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[2]);
                 else
-                        P1W.Content = "Max Wiel ";
+                    P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr2[3] < 5)
                     P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[3]);
                 else
@@ -293,27 +293,44 @@ namespace project_1_game_inteact
         //Info over wat de upgrades doen
         private void Lichaam_MouseEnter(object sender, MouseEventArgs e)
         {
-            //Lichaam_info.Visibility = Visibility.Visible; 
+            Lichaam_Info.Visibility = Visibility.Visible;
         }
 
         private void Lichaam_MouseLeave(object sender, MouseEventArgs e)
         {
-            //Lichaam_info.Visibility= Visibility.Hidden;
+            Lichaam_Info.Visibility = Visibility.Hidden;
         }
 
         private void Suspensie_MouseEnter(object sender, MouseEventArgs e)
         {
-
-         //Suspensie_info_Label.Visibility = Visibility.Visible;
+            Suspensie_info.Visibility = Visibility.Visible;
         }
 
-        private void Suspensie_Info(object sender, StylusEventArgs e)
+        private void Motor_MouseEnter(object sender, MouseEventArgs e)
         {
-
+            Motor_Info.Visibility = Visibility.Visible;
         }
 
+        private void Motor_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Motor_Info.Visibility = Visibility.Hidden;
+        }
 
-        // Einde Upgrades
+        private void Wiel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Wiel_info.Visibility = Visibility.Visible;
+        }
+
+        private void Wiel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Wiel_info.Visibility = Visibility.Hidden;
+        }
+
+        private void Suspensie_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Suspensie_info.Visibility = Visibility.Hidden;
+        }
+        //Einde info
     }
 }
 // Funtionalitiet knoppen nog toevoegen en switchen tussen upgrades player 1 en 2 doet niks
