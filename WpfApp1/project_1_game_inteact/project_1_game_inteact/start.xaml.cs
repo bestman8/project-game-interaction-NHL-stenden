@@ -23,6 +23,9 @@ namespace project_1_game_inteact
         public start()
         {
             InitializeComponent();
+            nspeler1.Text = SharedData.Instance.Naam1;
+            nspeler2.Text = SharedData.Instance.Naam2;
+            startinf();
         }
 
         private void solo_Click(object sender, RoutedEventArgs e)
@@ -58,11 +61,54 @@ namespace project_1_game_inteact
 
         private void instellingen_Click(object sender, RoutedEventArgs e)
         {
-            // als jelle gemerged heeft kan hier de code naar het instellingen scherm worden toegevoegd
-
             UItest.instellingen instellingen = new UItest.instellingen();
             instellingen.Show();
             this.Close();
+        }
+
+        /// <summary/>
+        /// Code voor data verwisselen tussen schermen
+        /// "using static project_1_game_inteact.start;" moet bovenaan de cs code staan voordat het werkt
+        /// <summary/>
+        public class SharedData
+        {
+            private static SharedData _instance;
+
+            public static SharedData Instance => _instance ??= new SharedData();
+            // voeg hier wat je wil gebruiken tussen pages
+            public string Naam1 { get; set; }
+            public string Naam2 { get; set; }
+            public int Geld1 { get; set; }
+            public int Geld2 { get; set; }
+            public int[] Upgr1 { get; set; }
+            public int[] Upgr2 { get; set; }
+            public double max_Speed { get; set; }
+            public double acceleration {  get; set; }
+            public double gravity { get; set; }
+        }
+        private void startinf()
+        {
+            if (SharedData.Instance.Upgr1 == null)
+            {
+                SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, };
+                SharedData.Instance.Upgr2 = new int[] { 1, 1, 1, };
+                SharedData.Instance.max_Speed = 5;
+                SharedData.Instance.Geld1 = 50;
+                SharedData.Instance.Geld2 = 50;
+                SharedData.Instance.acceleration = 0.1;
+                SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
+
+    }
+        }
+
+        private void nspeler2_KeyUp(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Naam2 = nspeler2.Text;
+        }
+
+        private void nspeler1_KeyUp(object sender, KeyEventArgs e)
+        {
+            SharedData.Instance.Naam1 = nspeler1.Text;
         }
     }
 }

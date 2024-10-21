@@ -28,6 +28,7 @@ namespace UItest
             this.Hide();
             start start = new start();
             start.Show();
+            this.Close();
 
         }
 
@@ -38,6 +39,7 @@ namespace UItest
 
             UItest.levels secondWindow = new UItest.levels();
             secondWindow.Show();
+            this.Close();
         }
 
         private int j = 0;
@@ -73,11 +75,14 @@ namespace UItest
             this.Hide();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
+            this.Close();
         }
 
         private void instellingen_Click(object sender, RoutedEventArgs e)
         {
-
+            UItest.instellingen instellingen = new UItest.instellingen();
+            instellingen.Show();
+            this.Close();
         }
 
         private void LeaveButton_Click(object sender, RoutedEventArgs e)

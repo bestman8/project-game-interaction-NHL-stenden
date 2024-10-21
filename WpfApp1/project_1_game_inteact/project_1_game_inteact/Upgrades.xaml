@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
         Title="Upgrades" Height="450" Width="800">
-    <Grid Margin="0,-18,-11,0">
+    <Grid Margin="0,-18,-11,0" x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="129.373"></RowDefinition>
+            <RowDefinition Height="46.84" x:Name="Grid1"></RowDefinition>
+            <RowDefinition Height="82.533"/>
             <RowDefinition Height="56.867"/>
             <RowDefinition Height="263.76"/>
             <RowDefinition></RowDefinition>
@@ -17,73 +18,36 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="800"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="/Garage.jpg" Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
-        <Button x:Name="Startscherm" Margin="274,106,426,23" Click="StartschermClick" Background="LightGray" Grid.Column="1" Content="Startscherm" Grid.RowSpan="2"/>
-        <Button x:Name="Levels_Knop" Margin="405,106,295,23" Click="LevelsClick" Background="LightGray" Grid.Column="1" Content="Levels" Grid.RowSpan="2"/>
-        <Label x:Name="GeldSpeler1" Margin="696,30,10,74" Background="LightGray" Grid.Column="1" Content="Speler 1: 999"/>
-        <Label x:Name="GeldSpeler2" Margin="696,55,10,49" Background="LightGray" Grid.Column="1" Content="Speler 2: 999"/>
-        <Label x:Name="UpgradesTitel" Margin="274,30,295,7" Content="Upgrades" FontSize="50" Grid.Column="1"/>
-        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="28,41,647,42" Click="Speler1Click" Content="Speler 1"/>
-        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,87,648,47" Click="Speler2Click" Content="Speler 2" IsEnabled="False" Grid.RowSpan="2"/>
+        <Image Source="\resources\Images\Upgrades\Garage.jpg" Stretch="Fill" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+        <Button x:Name="Startscherm" Margin="265,49,435,33" Click="StartschermClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Startscherm" Grid.RowSpan="2" Grid.Row="1"/>
+        <Button x:Name="Levels_Knop" Margin="427,49,273,33" Click="LevelsClick" Background="LightGray" Foreground="White" Grid.Column="1" Content="Levels" Grid.RowSpan="2" Grid.Row="1"/>
+        <Label x:Name="GeldSpeler1" Foreground="White" Margin="627,23,10,82" Background="LightGray" Grid.Column="1" Grid.RowSpan="2"/>
+        <Label x:Name="GeldSpeler2" Foreground="White" Margin="627,7,10,47" Background="LightGray" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.486,1.027"/>
+        <Label x:Name="UpgradesTitel" Foreground="Black" Margin="279,6,290,31" Content="Upgrades" FontSize="50" Grid.Column="1" Grid.RowSpan="2"/>
+        <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="27,40,648,42" Click="SpelerClick" Foreground="White" Grid.RowSpan="2"/>
+        <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="SpelerClick" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
 
-        <Label Margin="619,191,48,31" Background="LightGray" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
-            <AccessText x:Name="Suspensie_info_Label" TextWrapping="WrapWithOverflow" Text="Verlies minder snelheid als je de grond raakt."/>
+        <Label x:Name="Suspensie_info" Margin="619,186,48,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+            <AccessText  TextWrapping="WrapWithOverflow" Text="Verlies minder snelheid als je de grond raakt."/>
         </Label>
-        <Label x:Name="Motor_Info" Margin="201,191,474,31" Background="LightGray" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
+        <Label x:Name="Motor_Info" Margin="201,186,474,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je maximale snelheid."/>
         </Label>
-        <Label x:Name="Wiel_info" Margin="449,191,226,31" Background="LightGray" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
-            <AccessText TextWrapping="WrapWithOverflow" Text="Krijg meer grip op de grond."/>
+        <Label x:Name="Wiel_info" Margin="449,186,226,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+            <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je versnelling."/>
         </Label>
-        <Label Margin="32,191,647,31" Background="LightGray" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
-            <AccessText x:Name="Lichaam_info" TextWrapping="WrapWithOverflow" Text="Weersta makelijker grote klappen."/>
-        </Label>
+        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="89,96,587,101" Grid.Column="1" Click="P1M_Click" Grid.Row="3"/>
+        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="337,96,337,101" Grid.Column="1" Click="P1W_Click" Grid.Row="3"/>
+        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="575,96,91,101" Grid.Column="1" Click="P1S_Click" Grid.Row="3" />
 
-        <Button x:Name="P1_Upgrade_Body_1" Background="LightGray" Margin="32,118,644,79" Content="Lichaam 1" Grid.Column="1" Click="P1_Upgrade_Body_1_Click" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Body_2" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 2" Grid.Column="1" Click="P1_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Body_3" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 3" Grid.Column="1" Click="P1_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Body_4" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 4" Grid.Column="1" Click="P1_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="2"/>
 
-        <Button x:Name="P1_Upgrade_Motor_1" Background="LightGray" Margin="201,118,474,78" Content="Motor 1" Grid.Column="1" Click="P1_Upgrade_Motor_1_Click" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Motor_2" Background="LightGray" Margin="201,118,474,78" Content="Motor 2" Grid.Column="1" Click="P1_Upgrade_Motor_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Motor_3" Background="LightGray" Margin="201,118,474,78" Content="Motor 3" Grid.Column="1" Click="P1_Upgrade_Motor_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Motor_4" Background="LightGray" Margin="201,118,474,78" Content="Motor 4" Grid.Column="1" Click="P1_Upgrade_Motor_4_Click" Visibility="Hidden" Grid.Row="2"/>
+        <Image Source="\resources\Images\Upgrades\AutoMunt.png" Margin="757,2,7,64" Grid.Column="1" RenderTransformOrigin="0.801,0.707" Grid.RowSpan="2"/>
+        <Image Source="\resources\Images\Upgrades\AutoMunt.png" Margin="757,4,7,44" Grid.Column="1" Grid.Row="1"/>
+        <Image x:Name="Wiel" Source="\resources\Images\Upgrades\Wiel.png" Margin="315,57,315,167" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"/>
+        <Image x:Name="Motor" Source="\resources\Images\Upgrades\motor.png" Margin="81,57,579,168" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"/>
+        <Image x:Name="Suspensie" Source="\resources\Images\Upgrades\Suspensie.png" Margin="557,56,73,168" Grid.Column="1" Grid.Row="2" RenderTransformOrigin="0.762,0.881" Grid.RowSpan="2"/>
 
-        <Button x:Name="P1_Upgrade_Wiel_1" Background="LightGray" Margin="449,118,226,78" Content="Wiel 1" Grid.Column="1" Click="P1_Upgrade_Wiel_1_Click" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Wiel_2" Background="LightGray" Margin="449,118,226,78" Content="Wiel 2" Grid.Column="1" Click="P1_Upgrade_Wiel_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Wiel_3" Background="LightGray" Margin="449,118,226,78" Content="Wiel 3" Grid.Column="1" Click="P1_Upgrade_Wiel_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P1_Upgrade_Wiel_4" Background="LightGray" Margin="449,118,226,78" Content="Wiel 4" Grid.Column="1" Click="P1_Upgrade_Wiel_4_Click" Visibility="Hidden" Grid.Row="2"/>
-
-        <Button x:Name="P1_Upgrade_Suspensie_1" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 1" Grid.Column="1" Click="P1_Upgrade_Suspensie_1_Click" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P1_Upgrade_Suspensie_2" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 2" Grid.Column="1" Click="P1_Upgrade_Suspensie_2_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P1_Upgrade_Suspensie_3" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 3" Grid.Column="1" Click="P1_Upgrade_Suspensie_3_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P1_Upgrade_Suspensie_4" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 4" Grid.Column="1" Click="P1_Upgrade_Suspensie_4_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-
-        <Button x:Name="P2_Upgrade_Body_1" Background="LightGray" Margin="32,118,644,79" Content="Lichaam 1" Grid.Column="1" Click="P2_Upgrade_Body_1_Click" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Body_2" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 2" Grid.Column="1" Click="P2_Upgrade_Body_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Body_3" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 3" Grid.Column="1" Click="P2_Upgrade_Body_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Body_4" Background="LightGray" Margin="32,118,644,78" Content="Lichaam 4" Grid.Column="1" Click="P2_Upgrade_Body_4_Click" Visibility="Hidden" Grid.Row="2"/>
-
-        <Button x:Name="P2_Upgrade_Motor_1" Background="LightGray" Margin="201,118,474,78" Content="Motor 1" Grid.Column="1" Click="P2_Upgrade_Motor_1_Click" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Motor_2" Background="LightGray" Margin="201,118,474,78" Content="Motor 2" Grid.Column="1" Click="P2_Upgrade_Motor_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Motor_3" Background="LightGray" Margin="201,118,474,78" Content="Motor 3" Grid.Column="1" Click="P2_Upgrade_Motor_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Motor_4" Background="LightGray" Margin="201,118,474,78" Content="Motor 4" Grid.Column="1" Click="P2_Upgrade_Motor_4_Click" Visibility="Hidden" Grid.Row="2"/>
-
-        <Button x:Name="P2_Upgrade_Wiel_1" Background="LightGray" Margin="449,118,226,78" Content="Wiel 1" Grid.Column="1" Click="P2_Upgrade_Wiel_1_Click" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Wiel_2" Background="LightGray" Margin="449,118,226,78" Content="Wiel 2" Grid.Column="1" Click="P2_Upgrade_Wiel_2_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Wiel_3" Background="LightGray" Margin="449,118,226,78" Content="Wiel 3" Grid.Column="1" Click="P2_Upgrade_Wiel_3_Click" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="P2_Upgrade_Wiel_4" Background="LightGray" Margin="449,118,226,78" Content="Wiel 4" Grid.Column="1" Click="P2_Upgrade_Wiel_4_Click" Visibility="Hidden" Grid.Row="2"/>
-
-        <Button x:Name="P2_Upgrade_Suspensie_1" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 1" Grid.Column="1" Click="P2_Upgrade_Suspensie_1_Click" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P2_Upgrade_Suspensie_2" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 2" Grid.Column="1" Click="P2_Upgrade_Suspensie_2_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P2_Upgrade_Suspensie_3" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 3" Grid.Column="1" Click="P2_Upgrade_Suspensie_3_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Button x:Name="P2_Upgrade_Suspensie_4" Background="LightGray" Margin="619,118,48,78" Content="Suspensie 4" Grid.Column="1" Click="P2_Upgrade_Suspensie_4_Click" Visibility="Hidden" Grid.Row="2" MouseEnter="Suspensie_Info"/>
-        <Image Source="/autoMunt.png" Margin="762,12,2,55" Grid.Column="1" RenderTransformOrigin="0.801,0.707"/>
-        <Image Source="/autoMunt.png" Margin="762,52,2,45" Grid.Column="1"/>
-        <Image x:Name="Wiel" Source="/Wiel.jpg" Margin="426,15,203,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Motor" Source="/motor.jpg" Margin="195,15,466,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Body" Source="/Auto.jpg" Margin="10,15,619,152" Grid.Column="1" Grid.Row="2"/>
-        <Image x:Name="Suspensie" Source="/Suspensie.jpg" Margin="600,15,29,152" Grid.Column="1" Grid.Row="2" RenderTransformOrigin="0.762,0.881"/>
 
     </Grid>
+
 </Window>

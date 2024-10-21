@@ -34,19 +34,39 @@ namespace UItest
             this.Hide();
             UItest.MainWindow secondWindow = new UItest.MainWindow();
             secondWindow.Show();
+            this.Close();
         }
         private void upgrades_click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
+            this.Close();
         }
         private void level1_click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             Spel_scherm spel = new Spel_scherm();
             spel.Show();
+            this.Close();
 
+
+        }
+        private void level2_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            start start = new start();
+            start.Show();
+            this.Close();
+
+
+        }
+        private void level3_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            start start = new start();
+            start.Show();
+            this.Close();
         }
     }
 }
