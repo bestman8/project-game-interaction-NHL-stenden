@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
+using Microsoft.VisualBasic;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -78,6 +79,9 @@ namespace project_1_game_inteact
                 --Countdown;
 
             }
+
+            SharedData.Instance.time2 = tijd;
+
 
         }
         //knop om de countdown en timer te starten
@@ -312,6 +316,10 @@ public class Game
     {
 
     }
+
+    private bool end = false;
+
+    private double end_pos = 1800;
     public void collision(Canvas The_canvas_being_used)
     {
 
@@ -341,6 +349,25 @@ public class Game
         else
         {
             is_touching_ground = false;
+
+        }
+
+        
+        if (car_position.X > end_pos)
+        {
+            car_position.X = -10000000000000000;
+            car_position.Y = -10000000000000000;
+            The_canvas_being_used.Visibility = Visibility.Hidden;
+            
+                 
+            if (The_canvas_being_used.Visibility == Visibility.Hidden)
+            {             
+                project_1_game_inteact.endscreen end = new project_1_game_inteact.endscreen();
+                end.Show();
+      
+            }
+
+        
 
         }
     }
