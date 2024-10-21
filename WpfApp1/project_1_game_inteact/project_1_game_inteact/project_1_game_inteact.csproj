@@ -10,40 +10,22 @@
 
   <ItemGroup>
     <None Remove="afbeelding.jpg" />
-    <None Remove="Afbeeldingen\Auto.jpg" />
-    <None Remove="Afbeeldingen\autoMunt.png" />
-    <None Remove="Afbeeldingen\Garage.jpg" />
-    <None Remove="Afbeeldingen\motor.jpg" />
-    <None Remove="Afbeeldingen\Suspensie.jpg" />
-    <None Remove="Afbeeldingen\Wiel.jpg" />
-    <None Remove="Auto.jpg" />
-    <None Remove="autoMunt.png" />
-    <None Remove="Garage.jpg" />
-    <None Remove="motor.jpg" />
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
     <None Remove="BackMusic.mp3" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
-    <None Remove="Suspensie.jpg" />
+    <None Remove="resources\images\Upgrades\autoMunt.png" />
+    <None Remove="resources\images\Upgrades\Garage.jpg" />
+    <None Remove="resources\images\Upgrades\motor.png" />
+    <None Remove="resources\images\Upgrades\Suspensie.png" />
+    <None Remove="resources\images\Upgrades\Wiel.png" />
     <None Remove="volume.png" />
-    <None Remove="Wiel.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="afbeelding.jpg" />
-    <Resource Include="Afbeeldingen\Auto.jpg" />
     <Resource Include="BackMusic.mp3" />
-
-    <Resource Include="Afbeeldingen\autoMunt.png" />
-    <Resource Include="Afbeeldingen\Garage.jpg" />
-    <Resource Include="Afbeeldingen\motor.jpg" />
-    <Resource Include="Afbeeldingen\Suspensie.jpg" />
-    <Resource Include="Afbeeldingen\Wiel.jpg" />
-    <Resource Include="Auto.jpg" />
-    <Resource Include="autoMunt.png" />
-    <Resource Include="Garage.jpg" />
-    <Resource Include="motor.jpg" />
     <Resource Include="mute.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -51,12 +33,13 @@
     <Resource Include="resources\images\background_main\main_background.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Suspensie.jpg" />
+    <Resource Include="resources\images\Upgrades\autoMunt.png" />
+    <Resource Include="resources\images\Upgrades\Garage.jpg" />
+    <Resource Include="resources\images\Upgrades\motor.png" />
+    <Resource Include="resources\images\Upgrades\Suspensie.png" />
+    <Resource Include="resources\images\Upgrades\Wiel.png" />
     <Resource Include="volume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Wiel.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

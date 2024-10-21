@@ -30,13 +30,6 @@ namespace project_1_game_inteact
         public Upgrades()
         {
             InitializeComponent();
-
-            if (SharedData.Instance.Upgr1 == null)
-                SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, 1 };
-            if (SharedData.Instance.Upgr2 == null)
-                SharedData.Instance.Upgr2 = new int[] { 1, 1, 1, 1 };
-            SharedData.Instance.Geld1 = 20;
-            SharedData.Instance.Geld2 = 20;
             Upgrades_Check();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(200);
@@ -66,38 +59,31 @@ namespace project_1_game_inteact
             if (speler == 0)
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
-                    P1B.Content = "Brandstof " + Convert.ToString(SharedData.Instance.Upgr1[0]);
-                else
-                    P1B.Content = "Max Brandstof";
-                if (SharedData.Instance.Upgr1[1] < 5)
-                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[1]);
+                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[0]);
                 else
                     P1M.Content = "Max Motor";
-                if (SharedData.Instance.Upgr1[2] < 5)
-                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[2]);
+                if (SharedData.Instance.Upgr1[1] < 5)
+                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[1]);
                 else
                     P1W.Content = "Max Wiel ";
-                if (SharedData.Instance.Upgr1[3] < 5)
-                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[3]);
+                if (SharedData.Instance.Upgr1[2] < 5)
+                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[2]);
                 else
                     P1S.Content = "Max Suspensie ";
             }
             else
             {
                 if (SharedData.Instance.Upgr2[0] < 5)
-                    P1B.Content = "Brandstof " + Convert.ToString(SharedData.Instance.Upgr2[0]);
-                else
-                    P1B.Content = "Max Brandstof ";
-                if (SharedData.Instance.Upgr2[1] < 5)
-                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[1]);
+                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[0]);
                 else
                     P1M.Content = "Max Motor ";
-                if (SharedData.Instance.Upgr2[2] < 5)
-                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[2]);
+                    
+                if (SharedData.Instance.Upgr2[1] < 5)
+                        P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[1]);
                 else
-                    P1W.Content = "Max Wiel ";
-                if (SharedData.Instance.Upgr2[3] < 5)
-                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[3]);
+                        P1W.Content = "Max Wiel ";
+                if (SharedData.Instance.Upgr2[2] < 5)
+                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[2]);
                 else
                     P1S.Content = "Max Suspensie ";
 
@@ -153,7 +139,7 @@ namespace project_1_game_inteact
         }
 
         //Upgrades Player 1 en 2
-        private void P1B_Click(object sender, RoutedEventArgs e)
+        private void P1M_Click(object sender, RoutedEventArgs e)
         {
             if (speler == 0)
             {
@@ -163,6 +149,7 @@ namespace project_1_game_inteact
                     {
                         SharedData.Instance.Upgr1[0] = SharedData.Instance.Upgr1[0] + 1;
                         SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        SharedData.Instance.max_Speed = SharedData.Instance.max_Speed + 5;
                         Upgrades_Check();
                     }
                     else
@@ -187,7 +174,7 @@ namespace project_1_game_inteact
                 }
             }
         }
-        private void P1M_Click(object sender, RoutedEventArgs e)
+        private void P1W_Click(object sender, RoutedEventArgs e)
         {
             if (speler == 0)
             {
@@ -196,7 +183,8 @@ namespace project_1_game_inteact
                     if (SharedData.Instance.Geld1 >= 5)
                     {
                         SharedData.Instance.Upgr1[1] = SharedData.Instance.Upgr1[1] + 1;
-                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 1;
+                        SharedData.Instance.acceleration = SharedData.Instance.acceleration + 0.02;
                         Upgrades_Check();
                     }
                     else
@@ -221,7 +209,7 @@ namespace project_1_game_inteact
                 }
             }
         }
-        private void P1W_Click(object sender, RoutedEventArgs e)
+        private void P1S_Click(object sender, RoutedEventArgs e)
         {
             if (speler == 0)
             {
@@ -231,6 +219,7 @@ namespace project_1_game_inteact
                     {
                         SharedData.Instance.Upgr1[2] = SharedData.Instance.Upgr1[2] + 1;
                         SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
+                        SharedData.Instance.gravity = SharedData.Instance.gravity - 0.0001;
                         Upgrades_Check();
                     }
                     else
@@ -255,51 +244,8 @@ namespace project_1_game_inteact
                 }
             }
         }
-        private void P1S_Click(object sender, RoutedEventArgs e)
-        {
-            if (speler == 0)
-            {
-                if (SharedData.Instance.Upgr1[3] < 5)
-                {
-                    if (SharedData.Instance.Geld1 >= 5)
-                    {
-                        SharedData.Instance.Upgr1[3] = SharedData.Instance.Upgr1[3] + 1;
-                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
-                        Upgrades_Check();
-                    }
-                    else
-                    {
-                        Rood = 0;
-                        timer.Start();
-                    }
-                }
-            }
-            else if (SharedData.Instance.Upgr2[3] < 5)
-            {
-                if (SharedData.Instance.Geld2 >= 5)
-                {
-                    SharedData.Instance.Upgr2[3] = SharedData.Instance.Upgr2[3] + 1;
-                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
-                    Upgrades_Check();
-                }
-                else
-                {
-                    Rood = 0;
-                    timer.Start();
-                }
-            }
-        }
 
         //Info over wat de upgrades doen
-        private void Lichaam_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Lichaam_Info.Visibility = Visibility.Visible;
-        }
-
-        private void Lichaam_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Lichaam_Info.Visibility = Visibility.Hidden;
-        }
 
         private void Suspensie_MouseEnter(object sender, MouseEventArgs e)
         {

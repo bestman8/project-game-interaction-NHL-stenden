@@ -26,6 +26,10 @@ namespace project_1_game_inteact
     /// </summary>
     public partial class Spel_scherm : Window
     {
+        private DispatcherTimer gameTimer = new DispatcherTimer();
+        private int tijd = 0;
+        int Countdown = 5;
+        bool Go = false;
         public Spel_scherm()
         {
             InitializeComponent();
@@ -36,6 +40,10 @@ namespace project_1_game_inteact
             //AllocConsole();
             Speler_naam_1.Content = SharedData.Instance.Naam1;
             Speler_naam_2.Content = SharedData.Instance.Naam2;
+            gameTimer.Interval = TimeSpan.FromSeconds(1);
+            gameTimer.Tick += Timer;
+            gameTimer.Start();
+
         }
 #if DEBUG
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
@@ -43,6 +51,40 @@ namespace project_1_game_inteact
         #endif
         private async void Upgrades_button_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+            Upgrades upgradesWindow = new Upgrades();
+            upgradesWindow.Show();
+        }
+        //Klok voor de countdown en timer
+        private void Timer(object sender, EventArgs e)
+        {
+
+            if (Countdown <= 0 && Go == true)
+            {
+                LabelCountdown.Visibility = Visibility.Hidden;
+                Label2Countdown.Visibility = Visibility.Hidden;
+                tijd++;
+                int minuten = tijd / 60;
+                int seconden = tijd % 60;
+                string Minuten = Convert.ToString(minuten);
+                string Seconden = Convert.ToString(seconden);
+                GlobalTimer.Content = Minuten + ":" + Seconden;
+            }
+            else if (Go == true)
+            {
+
+                LabelCountdown.Content = Countdown.ToString();
+                Label2Countdown.Content = Countdown.ToString();
+                --Countdown;
+
+            }
+
+        }
+        //knop om de countdown en timer te starten
+        private void StartCountdown_Click(object sender, RoutedEventArgs e)
+        {
+            StartCountdown.Visibility = Visibility.Hidden;
+            Go = true;
 
             Game left = new Game();
             Game right = new Game();
@@ -51,10 +93,6 @@ namespace project_1_game_inteact
             //string currentDirectory = Environment.CurrentDirectory;
             //MessageBox.Show($"Current Directory: {currentDirectory}");
 
-
-            //this.Hide();
-            //Upgrades upgradesWindow = new Upgrades();
-            //upgradesWindow.Show();
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
@@ -94,9 +132,9 @@ public class Game
     //private double car_rotation = 0;
     private Canvas inner_canvas = new Canvas
     {
-    Width = 80,
-    Height = 50,
-        #if DEBUG
+        Width = 80,
+        Height = 50,
+#if DEBUG
         Background = Brushes.BlueViolet
 #else
         Background = Brushes.Transparent 
@@ -110,9 +148,9 @@ public class Game
         StrokeThickness = 1,
     };
     private Ellipse wheel_back = new Ellipse
-        {
-            Width = 3,
-            Height = 3,
+    {
+        Width = 3,
+        Height = 3,
 #if DEBUG
         Fill = Brushes.Red
 #else
@@ -121,9 +159,9 @@ public class Game
 
     };
     private Ellipse wheel_front = new Ellipse
-        {
-            Width = 3,
-            Height = 3,
+    {
+        Width = 3,
+        Height = 3,
 #if DEBUG
         Fill = Brushes.Red
 #else
@@ -133,11 +171,7 @@ public class Game
 
 
 
-
-    private double acceleration = 0.1;
     private double deceleration = 0.07;
-    private double max_speed = 5;
-    private double gravity = 0.00051; //0.01 is natural ish
     private bool is_touching_ground = false;
     private double terminal_velocity_car = 0.0015;
 
@@ -233,12 +267,12 @@ public class Game
             keyboard_input(WASDorARROW);
             movement();
             slow_down();
-            
+
             Gravity();
 
             //inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
             Update_canvas(The_canvas_being_used);
-            collision(The_canvas_being_used );
+            collision(The_canvas_being_used);
             await Task.Delay(10);
 
         }
@@ -276,11 +310,11 @@ public class Game
 
     public void car_rotation_calc()
     {
-   
+
     }
     public void collision(Canvas The_canvas_being_used)
     {
-        
+
         Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
         Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
 
@@ -288,12 +322,12 @@ public class Game
         bool front_wheel_collision = gamma2.Y >= terrain_gen_function(gamma2.X + car_position.X);
 
         if (back_wheel_collision || front_wheel_collision)
-        {    
-            
+        {
+
             is_touching_ground = true;
             car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
             //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
-            
+
             double angle = Math.Tan(Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X))) / 2;
 
             Console.WriteLine(angle);
@@ -301,13 +335,13 @@ public class Game
             RotateTransform rotation_inner_canvas = new RotateTransform(angle / 2);
             carImage.RenderTransform = rotation_inner_canvas;
             inner_canvas.RenderTransform = rotation_inner_canvas;
-                 
-            
+
+
         }
         else
         {
             is_touching_ground = false;
-           
+
         }
     }
 
@@ -315,37 +349,37 @@ public class Game
 
     public void movement()
     {
-        car_position += car_velocity;  
+        car_position += car_velocity;
     }
     public void Gravity()
     {
         if (!is_touching_ground)
         {
             if (car_velocity.Y < terminal_velocity_car)
-    {
+            {
 
             }
-            car_velocity.Y += gravity;
+            car_velocity.Y += SharedData.Instance.gravity;
         }
         else
         {
             car_velocity.Y = 0;
         }
     }
-         
+
     private void forward_movement()
     {
-        if (car_velocity.X < max_speed)
+        if (car_velocity.X < SharedData.Instance.max_Speed)
         {
-            car_velocity.X += acceleration;
+            car_velocity.X += SharedData.Instance.acceleration;
 
         }
     }
     private void backward_movement()
     {
-        if (car_velocity.X > -max_speed)
+        if (car_velocity.X > -SharedData.Instance.max_Speed)
         {
-            car_velocity.X -= acceleration;
+            car_velocity.X -= SharedData.Instance.acceleration;
         }
 
     }
@@ -358,7 +392,7 @@ public class Game
 
     }
     private void slow_down()
-    { 
+    {
         if (car_velocity.X > 0)
         {
             car_velocity.X -= deceleration;
@@ -367,7 +401,7 @@ public class Game
         else if (car_velocity.X < 0)
         {
             car_velocity.X += deceleration;
-            if (car_velocity.X > 0) car_velocity.X = 0; 
+            if (car_velocity.X > 0) car_velocity.X = 0;
         }
     }
 
@@ -379,17 +413,17 @@ public class Game
     {
         if (WASDorARROW)
         {
-           
+
             if (Keyboard.IsKeyDown(Key.Up))
             {
                 up_ward_movement();
-              
+
             }
             if (Keyboard.IsKeyDown(Key.Down))
             {
                 down_ward_movement();
 
-            } 
+            }
             if (Keyboard.IsKeyDown(Key.Right))
                 forward_movement();
             {
@@ -399,9 +433,9 @@ public class Game
                 backward_movement();
             }
         }
-         else
+        else
         {
-           
+
             if (Keyboard.IsKeyDown(Key.W))
             {
                 up_ward_movement();
@@ -418,9 +452,9 @@ public class Game
             {
                 forward_movement();
             }
-            }
-
-
-            // Movement logic can be added here if needed
         }
+
+
+        // Movement logic can be added here if needed
     }
+}
