@@ -77,6 +77,7 @@ namespace project_1_game_inteact
                     P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[0]);
                 else
                     P1M.Content = "Max Motor ";
+                    
                 if (SharedData.Instance.Upgr2[1] < 5)
                         P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[1]);
                 else
@@ -245,15 +246,6 @@ namespace project_1_game_inteact
         }
 
         //Info over wat de upgrades doen
-        private void Lichaam_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Lichaam_Info.Visibility = Visibility.Visible;
-        }
-
-        private void Lichaam_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Lichaam_Info.Visibility = Visibility.Hidden;
-        }
 
         private void Suspensie_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -285,8 +277,6 @@ namespace project_1_game_inteact
             Suspensie_info.Visibility = Visibility.Hidden;
         }
         //Einde info
-
-        // Einde Upgrades
     }
 }
 // Funtionalitiet knoppen nog toevoegen en switchen tussen upgrades player 1 en 2 doet niks

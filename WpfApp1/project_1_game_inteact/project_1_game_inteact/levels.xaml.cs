@@ -48,6 +48,8 @@ namespace UItest
             this.Hide();
             Spel_scherm spel = new Spel_scherm();
             spel.Show();
+            this.Close();
+
 
         }
         private void level2_click(object sender, RoutedEventArgs e)
@@ -55,6 +57,8 @@ namespace UItest
             this.Hide();
             start start = new start();
             start.Show();
+            this.Close();
+
 
         }
         private void level3_click(object sender, RoutedEventArgs e)
