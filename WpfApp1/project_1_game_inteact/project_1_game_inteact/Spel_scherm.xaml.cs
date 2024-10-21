@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
+using UItest;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -43,6 +44,7 @@ namespace project_1_game_inteact
             gameTimer.Interval = TimeSpan.FromSeconds(1);
             gameTimer.Tick += Timer;
             gameTimer.Start();
+            BackgroundMusicPlayer.Instance.Play();
 
         }
 #if DEBUG

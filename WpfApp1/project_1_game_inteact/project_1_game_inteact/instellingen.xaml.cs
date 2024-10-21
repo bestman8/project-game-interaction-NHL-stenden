@@ -24,15 +24,7 @@ namespace UItest
         public instellingen()
         {
             InitializeComponent();
-            PlayBackgroundMusic();
-        }
-
-        private void PlayBackgroundMusic()
-        {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://application:,,,/BackMusic.mp3"));
-            mediaPlayer.Volume = 1;  // Set the volume (0.0 to 1.0)
-            mediaPlayer.Play();
+            BackgroundMusicPlayer.Instance.Play();
         }
 
         private void Startscherm_Click(object sender, RoutedEventArgs e)

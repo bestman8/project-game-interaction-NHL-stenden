@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using UItest;
 
 namespace project_1_game_inteact
 {
@@ -26,6 +27,7 @@ namespace project_1_game_inteact
             nspeler1.Text = SharedData.Instance.Naam1;
             nspeler2.Text = SharedData.Instance.Naam2;
             startinf();
+            BackgroundMusicPlayer.Instance.Play();
         }
 
         private void solo_Click(object sender, RoutedEventArgs e)

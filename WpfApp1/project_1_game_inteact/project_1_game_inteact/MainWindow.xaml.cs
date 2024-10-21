@@ -21,7 +21,8 @@ namespace UItest
     {
         public MainWindow()
         {
-            InitializeComponent();    
+            InitializeComponent();
+            BackgroundMusicPlayer.Instance.Play();
         }   
         private void Button_Click(object sender, RoutedEventArgs e)
         {
