@@ -32,8 +32,8 @@ namespace UItest
         private void home_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            UItest.MainWindow secondWindow = new UItest.MainWindow();
-            secondWindow.Show();
+            start start = new start();
+            start.Show();
             this.Close();
         }
         private void upgrades_click(object sender, RoutedEventArgs e)
