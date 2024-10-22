@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
+using System.Diagnostics.Eventing.Reader;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -278,7 +279,7 @@ public class Game
             Update_canvas(The_canvas_being_used);
             collision(The_canvas_being_used);
             await Task.Delay(10);
-
+            
         }
     }
 
@@ -352,41 +353,111 @@ public class Game
 
         }
 
-        
+
         if (car_position.X > end_pos)
         {
             car_position.X = -10000000000000000;
             car_position.Y = -10000000000000000;
+
             The_canvas_being_used.Visibility = Visibility.Hidden;
-            
-                 
+            int x = 2;
             if (The_canvas_being_used.Visibility == Visibility.Hidden)
-            {             
-                project_1_game_inteact.endscreen end = new project_1_game_inteact.endscreen();
-                end.Show();
-      
+            {
+                x = x - 1;
             }
 
-        
-
+            if (x == 0)
+            {
+                project_1_game_inteact.endscreen end = new project_1_game_inteact.endscreen();             
+                end.Show();
+                end.HorizontalAlignment = HorizontalAlignment.Center;
+                end.VerticalAlignment = VerticalAlignment.Center;
+                Console.WriteLine("etsaasdadg");            
+            }
+            else
+            {
+                Console.WriteLine("no end");
+            }
         }
     }
-
-
 
     public void movement()
     {
         car_position += car_velocity;
     }
-    public void Gravity()
+
+    public void upgradesmovement()
+    {
+        if (SharedData.Instance.Upgr1[0] == 1 || SharedData.Instance.Upgr2[0] == 1)
+        {
+            car_velocity.X = 2;
+
+        }
+        else if (SharedData.Instance.Upgr1[0] == 2 || SharedData.Instance.Upgr2[0] == 2)
+        {
+            car_velocity.X = 3;
+
+        }
+        else if (SharedData.Instance.Upgr1[0] == 3 || SharedData.Instance.Upgr2[0] == 3)
+        {
+            car_velocity.X = 4;
+
+        }
+        else if (SharedData.Instance.Upgr1[0] == 4 || SharedData.Instance.Upgr2[0] == 4)
+        {
+            car_velocity.X = 5;
+
+        }
+        else if (SharedData.Instance.Upgr1[0] == 5 || SharedData.Instance.Upgr2[0] == 5)
+        {
+            car_velocity.X = 6;
+
+        }
+    }
+
+    public void upgradesgravity()
+    {
+        if (SharedData.Instance.Upgr1[2] == 1 || SharedData.Instance.Upgr2[2] == 1)
+        {
+            car_velocity.Y += 0.006;
+
+        }
+        else if (SharedData.Instance.Upgr1[2] == 2 || SharedData.Instance.Upgr2[2] == 2)
+        {
+            car_velocity.Y += 0.0075;
+
+        }
+        else if (SharedData.Instance.Upgr1[2] == 3 || SharedData.Instance.Upgr2[2] == 3)
+        {
+            car_velocity.Y += 0.01;
+
+        }
+        else if (SharedData.Instance.Upgr1[2] == 4 || SharedData.Instance.Upgr2[2] == 4)
+        {
+            car_velocity.Y += 0.0125;
+
+        }
+        else if (SharedData.Instance.Upgr1[2] == 5 || SharedData.Instance.Upgr2[2] == 5)
+        {
+            car_velocity.Y += 0.015;
+
+        }
+        else
+        {
+            car_velocity.Y += 0.005;
+        }
+    }
+        public void Gravity()
     {
         if (!is_touching_ground)
         {
-            if (car_velocity.Y < terminal_velocity_car)
-            {
+            //if (car_velocity.Y < terminal_velocity_car)
+            //{
 
-            }
-            car_velocity.Y += SharedData.Instance.gravity;
+            //}
+            //car_velocity.Y += SharedData.Instance.gravity;
+
+            upgradesgravity();
         }
         else
         {
@@ -396,11 +467,15 @@ public class Game
 
     private void forward_movement()
     {
-        if (car_velocity.X < SharedData.Instance.max_Speed)
-        {
-            car_velocity.X += SharedData.Instance.acceleration;
+        //if (car_velocity.X < SharedData.Instance.max_Speed)
+        //{
+        //    car_velocity.X += SharedData.Instance.acceleration;
 
-        }
+        //}
+        //else
+        //{
+            upgradesmovement();
+        //}
     }
     private void backward_movement()
     {
