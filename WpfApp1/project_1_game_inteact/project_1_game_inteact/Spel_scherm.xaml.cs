@@ -18,6 +18,8 @@ using static project_1_game_inteact.start;
 using System.Windows.Threading;
 using UItest;
 using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics;
+using project_1_game_inteact;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -91,13 +93,20 @@ namespace project_1_game_inteact
 
             Game left = new Game();
             Game right = new Game();
+            //left.current_game_state.max_speed = 0;      //change max speed of player 1
+            //left.current_game_state.acceleration = 0;   //change acceleration of player 1
+            //left.current_game_state.gravity = 0;        //change gravity player 1            
 
+            //right.current_game_state.max_speed = 0;      //change max speed of player 2
+            //right.current_game_state.acceleration = 0;   //change acceleration of player 2
+            //right.current_game_state.gravity = 0;        //change gravity player 2
 
             await Task.WhenAll(left.Game_loop(LeftCanvas, true), right.Game_loop(RightCanvas, false));
 
             Console.WriteLine("this should run after the game loop");
-            //string currentDirectory = Environment.CurrentDirectory;
-            //MessageBox.Show($"Current Directory: {currentDirectory}");
+            Console.WriteLine("game timer left", left.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+            Console.WriteLine("game timer right", right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+            //Console.WriteLine("this should run after the game loop");
 
         }
 
@@ -107,29 +116,22 @@ namespace project_1_game_inteact
             UItest.MainWindow secondWindow = new UItest.MainWindow();
             secondWindow.Show();
             this.Close();
-
         }
 
         private void Levels_button_Click(object sender, RoutedEventArgs e)
         {
-
             this.Hide();
-
-
             UItest.levels secondWindow = new UItest.levels();
             secondWindow.Show();
             this.Close();
-
         }
-
-
     }
 
 
 }
 public class Game
 {
-    private class game_state
+    public class game_state
     {
         /// <summary>
         /// the position of the car from the terrain
@@ -514,12 +516,7 @@ public class Game
     private static class physics
     {
 
-        //public static (UIElement,double) is_greatest_distance(UIElement one, UIElement two)
-        //{
 
-        //    return (one, 5);
-        //}
-        //collision
 
 
 
@@ -639,7 +636,8 @@ public class Game
 
     }
 
-    game_state current_game_state = new game_state();
+    public game_state current_game_state = new game_state();
+    public Stopwatch game_timer = new Stopwatch();
     Game_objects game_objects = new Game_objects();
 
     /// <summary>
@@ -660,15 +658,17 @@ public class Game
     public async Task Game_loop(Canvas main_canvas, bool WASDorARROW)
     {
         game_init_state(main_canvas);
-
+        game_timer.Start();
         while (true)
         {
+            
             Movement.keyboard_input(WASDorARROW, current_game_state);
             physics.movement(current_game_state, game_objects); //will be physics and it cannot update any objects
             Update_canvas(); //updates all objects
             await Task.Delay(10);
             if (current_game_state.car_position.X>5000) {break; }
         }
+        game_timer.Stop();
     }
 
     private void Update_canvas()
