@@ -23,6 +23,7 @@ namespace UItest
 
         public instellingen()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             PlayBackgroundMusic();
         }

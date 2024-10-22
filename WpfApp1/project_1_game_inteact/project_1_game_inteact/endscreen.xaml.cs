@@ -17,55 +17,52 @@ using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace project_1_game_inteact
 {
     /// <summary>
-    /// Interaction logic for endscreen.xaml
+    /// Interaction logic for EndScreen.xaml
     /// </summary>
     public partial class endscreen : Window
     {
         public int[] time1 { get; set; }
         public int[] time2 { get; set; }
+
         public endscreen()
         {
-
-
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;         
+            time1 = new int[1];
+            time2 = new int[1];
 
             InitializeComponent();
             time_s1.Content = "Tijd " + SharedData.Instance.Naam1 + ": " + SharedData.Instance.time1[0].ToString("0:00");
             time_s2.Content = "Tijd" + SharedData.Instance.Naam2 + ": " + SharedData.Instance.time2[0].ToString("0:00");
-
-
 
             if (SharedData.Instance.time1[0] < 10)
             {
                 int multiplier = 100;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
-
-
             }
             else if (SharedData.Instance.time1[0] < 15)
             {
                 int multiplier = 75;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
-
             }
             else if (SharedData.Instance.time1[0] < 25)
             {
                 int multiplier = 40;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
-
             }
             else
             {
                 int multiplier = 0;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
-
             }
 
             if (SharedData.Instance.time2[0] < 10)
@@ -79,7 +76,6 @@ namespace project_1_game_inteact
                 int multiplier = 75;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
-
             }
             else if (SharedData.Instance.time2[0] < 25)
             {
@@ -92,25 +88,72 @@ namespace project_1_game_inteact
                 int multiplier = 0;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
-
             }
 
-            //Console.WriteLine(SharedData.Instance.Geld1);
-
-
+            AddHighscoreToDatabase();
         }
 
-     
-            private void mainmenu_Click(object sender, RoutedEventArgs e)
+        private void AddHighscoreToDatabase()
+        {
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\bin\\Debug\\net8.0-windows\\resources\\db\\Database1.mdf;Integrated Security=True;Connect Timeout=30";
+
+            string query = "INSERT INTO [Table] ([name], [points]) VALUES (@name, @points)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                project_1_game_inteact.start start = new start();
-                start.Show();
-                this.Close();
+                try
+                {
+                    connection.Open();
+                                  
+                    string name1 = SharedData.Instance.Naam1;
+                    int points1 = SharedData.Instance.Geld1;
+
+                 
+                    //if (string.IsNullOrWhiteSpace(name1))
+                    //{                
+                    //    return;
+                    //}
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@name", name1);
+                        command.Parameters.AddWithValue("@points", points1);
+                        command.ExecuteNonQuery();
+              
+                    }
+                  
+                    string name2 = SharedData.Instance.Naam2;
+                    int points2 = SharedData.Instance.Geld2;
+
+                  
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@name", name2);
+                        command.Parameters.AddWithValue("@points", points2);
+                        command.ExecuteNonQuery();
+                       
+                    }
+                }             
+                catch (Exception ex)
+                {
+                    MessageBox.Show("error: " + ex.Message);
+                }
             }
+        }
+
+        private void mainmenu_Click(object sender, RoutedEventArgs e)
+        {
+            project_1_game_inteact.start start2 = new project_1_game_inteact.start();
+            start2.Show();
+            this.Close();
+        }
+
+        private void leaderboard_Click(object sender, RoutedEventArgs e)
+        {
+            project_1_game_inteact.leaderboardwindow lead = new project_1_game_inteact.leaderboardwindow();
+            lead.Show();
+            this.Close();
         }
     }
-
-
-
-
-
+}

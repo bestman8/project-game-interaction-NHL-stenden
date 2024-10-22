@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Runtime.CompilerServices;
 
 namespace project_1_game_inteact
 {
@@ -20,8 +21,10 @@ namespace project_1_game_inteact
     /// </summary>
     public partial class start : Window
     {
+        
         public start()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             nspeler1.Text = SharedData.Instance.Naam1;
             nspeler2.Text = SharedData.Instance.Naam2;

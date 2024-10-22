@@ -33,6 +33,7 @@ namespace project_1_game_inteact
         bool Go = false;
         public Spel_scherm()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
 #if DEBUG
@@ -103,6 +104,7 @@ namespace project_1_game_inteact
                 SharedData.Instance.time2 = new double[] { rightsw.Elapsed.Seconds };               
                 project_1_game_inteact.endscreen test = new project_1_game_inteact.endscreen();
                 test.Show();
+                this.Close();
             }
         }
 

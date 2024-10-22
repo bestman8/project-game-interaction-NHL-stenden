@@ -29,6 +29,7 @@ namespace project_1_game_inteact
         private int MaxRood = 10;
         public Upgrades()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             Upgrades_Check();
             timer = new DispatcherTimer();

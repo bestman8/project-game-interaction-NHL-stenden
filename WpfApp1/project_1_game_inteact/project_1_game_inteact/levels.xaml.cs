@@ -22,6 +22,7 @@ namespace UItest
     {
         public levels()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
            

@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="afbeelding.jpg" />
     <Resource Include="BackMusic.mp3" />
     <Resource Include="mute.png">
@@ -44,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="resources\db\Database1.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\db\Database1_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="resources\images\car-full.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
