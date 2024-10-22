@@ -49,11 +49,11 @@ namespace project_1_game_inteact
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
         #endif
-        private async void Upgrades_button_Click(object sender, RoutedEventArgs e)
+        private void Upgrades_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
+            this.Close();
         }
         //Klok voor de countdown en timer
         private void Timer(object sender, EventArgs e)
@@ -81,15 +81,18 @@ namespace project_1_game_inteact
 
         }
         //knop om de countdown en timer te starten
-        private void StartCountdown_Click(object sender, RoutedEventArgs e)
+        private async void StartCountdown_Click(object sender, RoutedEventArgs e)
         {
             StartCountdown.Visibility = Visibility.Hidden;
             Go = true;
 
             Game left = new Game();
             Game right = new Game();
-            left.Game_loop(LeftCanvas, true);
-            right.Game_loop(RightCanvas, false);
+
+
+            await Task.WhenAll(left.Game_loop(LeftCanvas, true), right.Game_loop(RightCanvas, false));
+
+            Console.WriteLine("this should run after the game loop");
             //string currentDirectory = Environment.CurrentDirectory;
             //MessageBox.Show($"Current Directory: {currentDirectory}");
 
@@ -147,7 +150,7 @@ public class Game
         public double acceleration = 0.1;
         public double deceleration = 0.07;
         public double max_speed = 5;
-        public double gravity = 0.05; //0.01 is natural ish
+        public double gravity = 0.1; //0.01 is natural ish
         public double terminal_velocity_car = 10;
     }
 
@@ -182,10 +185,14 @@ public class Game
             inner_canvas.Children.Add(carImage);
             inner_canvas.Children.Add(wheel_back);
             inner_canvas.Children.Add(wheel_front);
+            inner_canvas.Children.Add(center_point);
 
+
+            Canvas.SetLeft(center_point, 40);
+            Canvas.SetTop(center_point, 25);
             Canvas.SetLeft(wheel_back, 12);
             Canvas.SetTop(wheel_back, 33);
-            Canvas.SetLeft(wheel_front, 80 - 12);
+            Canvas.SetLeft(wheel_front, 80 - 15);
             Canvas.SetTop(wheel_front, 33);
             Main_canvas.Children.Add(inner_canvas);
 
@@ -204,6 +211,7 @@ public class Game
             Background = Brushes.Transparent 
 #endif
         };
+        public RotateTransform rotation_inner_canvas = new RotateTransform();
         public Image carImage;
         public Polygon terrain = new Polygon
         {
@@ -239,6 +247,20 @@ public class Game
 #endif
         };
 
+        /// <summary>
+        /// the collision point for the front wheel
+        /// </summary>
+        public Ellipse center_point = new Ellipse
+        {
+            Width = 3,
+            Height = 3,
+#if DEBUG
+            Fill = Brushes.Red
+#else
+        Fill = Brushes.Transparent
+#endif
+        };
+
 
     }
 
@@ -262,7 +284,7 @@ public class Game
             PointCollection terrain_points = new PointCollection();
 
             terrain_points.Add(new Point(-500, 1200));
-            for (int x = -500; x < 8000; x++)
+            for (int x = -500; x < 8000; x+=3)
             {
                 //terrain_points.Add(new Point(x, 50 * terrain_gen_function(x * 0.02) + 350));
                 terrain_points.Add(new Point(x, terrain_gen_function(x)));
@@ -285,9 +307,10 @@ public class Game
 
             if (rel_movement.X < game_State.max_speed)
             {
-                rel_movement.X += game_State.acceleration;
+                double degreen_in_rad = helper.degree_to_rad(game_State.actual_rotation);
+                double cos_value = Math.Cos(degreen_in_rad);
+                rel_movement.X += cos_value* game_State.acceleration;
             }
-
             game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
         }
         private static void backward_movement(game_state game_State)
@@ -296,7 +319,7 @@ public class Game
 
             if (rel_movement.X > -game_State.max_speed)
             {
-                rel_movement.X -= game_State.acceleration;
+                rel_movement.X -= Math.Cos(helper.degree_to_rad(game_State.actual_rotation)) * game_State.acceleration;
             }
             game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
 
@@ -387,6 +410,22 @@ public class Game
         {
             return degree * (Math.PI / 180);
         }
+        public static Vector difference_distance_between_points(UIElement from, UIElement to)
+        {
+            double x1 = Canvas.GetLeft(from);
+            double x2 = Canvas.GetLeft(to);
+            double y1 = Canvas.GetTop(from);
+            double y2 = Canvas.GetTop(to);
+
+            double dx = x1 - x2;
+            double dy = y1 - y2;
+
+            return new Vector(dx, dy);
+        }
+        public static double pythagoras(Vector difference)
+        {
+            return Math.Sqrt(Math.Pow(difference.X, 2) + Math.Pow(difference.Y, 2));
+        }
 
         public static Vector abs_movement_rel_movement(Vector abs_movement, double rotation_angle)
         {
@@ -396,21 +435,7 @@ public class Game
             relative_movement.Y = abs_movement.X * Math.Sin(-degree_to_rad(rotation_angle)) + abs_movement.Y * Math.Cos(-degree_to_rad(rotation_angle));
             return relative_movement;
         }
-        public static Vector rel_movement_to_abs_movent(Vector rel_movement, double rotation_angle)
-        {
-            Vector absolute_movement = new Vector();
-            double rad = degree_to_rad(rotation_angle);
-            absolute_movement.X = rel_movement.X * Math.Cos(rad) - rel_movement.Y * Math.Sin(rad);
-            absolute_movement.Y = rel_movement.X * Math.Sin(rad) + rel_movement.Y * Math.Cos(rad);
-            return absolute_movement;
-        }
-
-    }
-
-    private static class physics
-    {
-        //collision
-        private static Point absolute_position_inside_canvas(Game_objects Game_objects, UIElement reference_object)
+        public static Point absolute_position_inside_canvas(Game_objects Game_objects, UIElement reference_object)
         {
             var transform = Game_objects.inner_canvas.RenderTransform;
 
@@ -425,44 +450,80 @@ public class Game
 
             return absolute_point;
         }
-
-        public static void car_rotation_calc(Game_objects Game_objects, game_state game_State)
+        public static Vector rel_movement_to_abs_movent(Vector rel_movement, double rotation_angle)
         {
-            Point absolute_position_wheel_back = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
-            Point absolute_position_wheel_front = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_front);
-            game_State.actual_rotation = Math.Atan2(absolute_position_wheel_back.X - absolute_position_wheel_front.X, absolute_position_wheel_back.Y - absolute_position_wheel_front.Y);
-
-#if DEBUG
-            Console.WriteLine(game_State.actual_rotation);
-#endif
+            Vector absolute_movement = new Vector();
+            double rad = degree_to_rad(rotation_angle);
+            absolute_movement.X = rel_movement.X * Math.Cos(rad) - rel_movement.Y * Math.Sin(rad);
+            absolute_movement.Y = rel_movement.X * Math.Sin(rad) + rel_movement.Y * Math.Cos(rad);
+            return absolute_movement;
         }
+
+
+    }
+
+    private static class physics
+    {
+
+        //public static (UIElement,double) is_greatest_distance(UIElement one, UIElement two)
+        //{
+
+        //    return (one, 5);
+        //}
+        //collision
+
+
 
         private static double collision_depth(Game_objects Game_objects, UIElement reference_object, game_state game_State)
         {
-            Point location = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
+            Point location = helper.absolute_position_inside_canvas(Game_objects, reference_object);
 
             return location.Y - Terrain_methods.terrain_gen_function(location.X + game_State.car_position.X);
         }
 
-        public static void collision(Game_objects Game_objects, game_state game_State)
+        private static void solve_collision(game_state game_State, Game_objects game_Objects, double collision_depth, bool front_or_back, double collision_depth_other)
         {
+            // Adjust the car's position based on the collision depth
 
-            Point absolute_position_wheel_back = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
-            Point absolute_position_wheel_front = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_front);
-
-            bool back_wheel_collision = absolute_position_wheel_back.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_back.X + game_State.car_position.X);
-            bool front_wheel_collision = absolute_position_wheel_front.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_front.X + game_State.car_position.X);
-
-            if (back_wheel_collision && front_wheel_collision)
+            
+            if (front_or_back)
             {
-                game_State.is_touching_ground = true;
-                //game_State.car_rotation_speed = 0;
+                // Collision with the front wheel
+                // Move the car back by the collision depth
+                game_State.car_position.Y -= collision_depth; // Move up to resolve collision
+                game_State.car_velocity_abs.Y = 0; // Stop vertical movement
+                game_State.is_touching_ground = true; // Assume it is touching ground after collision
 
+                if (collision_depth_other < -1)
+                {
+                    double distance_from_wheel_to_center = helper.pythagoras( helper.difference_distance_between_points(game_Objects.wheel_front,game_Objects.center_point));
+
+                    helper.difference_distance_between_points(game_Objects.wheel_front, game_Objects.wheel_back);
+                    game_State.actual_rotation -= 8;
+                    //game_State.car_position.X += distance_from_wheel_to_center * Math.Cos(helper.degree_to_rad(-2)); 
+                    //game_State.car_position.Y += distance_from_wheel_to_center * Math.Sin(helper.degree_to_rad(-2));
+
+                }
             }
             else
             {
-                game_State.is_touching_ground = false;
+                // Collision with the back wheel
+                // Move the car back by the collision depth
+                game_State.car_position.Y -= collision_depth; // Move up to resolve collision
+                game_State.car_velocity_abs.Y = 0; // Stop vertical movement
+                game_State.is_touching_ground = true; // Assume it is touching ground after collision
 
+                if (collision_depth_other < -1)
+                {
+                    double distance_from_wheel_to_center = helper.pythagoras(helper.difference_distance_between_points(game_Objects.wheel_back, game_Objects.center_point));
+
+                    helper.difference_distance_between_points(game_Objects.wheel_front, game_Objects.wheel_back);
+                    game_State.actual_rotation += 2;
+                    //game_State.car_position.X += distance_from_wheel_to_center * Math.Cos(helper.degree_to_rad(2));
+                    //game_State.car_position.Y += distance_from_wheel_to_center * Math.Sin(helper.degree_to_rad(2));
+
+
+                }
             }
         }
 
@@ -473,6 +534,35 @@ public class Game
             Movement.slow_down(game_State);
             Gravity(game_State);
             game_State.car_position += game_State.car_velocity_abs;
+
+            double collision_depth_front = collision_depth(game_objects, game_objects.wheel_front, game_State);
+            double collision_depth_back = collision_depth(game_objects, game_objects.wheel_back, game_State);
+            if (collision_depth_front > 0 || collision_depth_back >0)
+            {
+                game_State.is_touching_ground = true ;
+                bool front_or_back;
+                double collision_depth_other =0;
+                double largest_collision_depth;
+                if (collision_depth_front >= collision_depth_back)
+                {
+                    largest_collision_depth=collision_depth_front;
+                    collision_depth_other=collision_depth_back;
+                    front_or_back = true;
+                }
+                else
+                {
+                    largest_collision_depth = collision_depth_back;
+                    collision_depth_other = collision_depth_front;
+
+                    front_or_back = false;
+                }
+
+                solve_collision(game_State, game_objects, largest_collision_depth, front_or_back, collision_depth_other);
+            }else
+            {
+                game_State.is_touching_ground=false ;
+            }
+
 
 
 
@@ -528,13 +618,15 @@ public class Game
             physics.movement(current_game_state, game_objects); //will be physics and it cannot update any objects
             Update_canvas(); //updates all objects
             await Task.Delay(10);
-
+            if (current_game_state.car_position.X>5000) {break; }
         }
     }
 
     private void Update_canvas()
     {
         // Update the car's position on the canvas
+        game_objects.rotation_inner_canvas.Angle = current_game_state.actual_rotation;
+        game_objects.inner_canvas.RenderTransform = game_objects.rotation_inner_canvas;
         Canvas.SetTop(game_objects.inner_canvas, current_game_state.car_position.Y);
         //Canvas.SetLeft(carImage, car_position.X);
 
