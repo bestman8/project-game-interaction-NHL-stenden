@@ -101,8 +101,11 @@ namespace project_1_game_inteact
                 SharedData.Instance.acceleration = 0.1;
                 SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
                 SharedData.Instance.volumeSlider.Value = 100;
+                SharedData.Instance.Naam1 = "Speler 1";
+                SharedData.Instance.Naam2 = "Speler 2";
 
-    }
+
+            }
         }
 
         private void nspeler2_KeyUp(object sender, KeyEventArgs e)

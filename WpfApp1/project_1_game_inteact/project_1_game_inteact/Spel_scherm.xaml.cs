@@ -53,9 +53,9 @@ namespace project_1_game_inteact
         #endif
         private async void Upgrades_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             Upgrades upgradesWindow = new Upgrades();
             upgradesWindow.Show();
+            this.Close();
         }
         //Klok voor de countdown en timer
         private void Timer(object sender, EventArgs e)
