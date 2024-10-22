@@ -318,6 +318,8 @@ public class Game
     private bool end = false;
 
     private double end_pos = 1800;
+
+ 
     public void collision(Canvas The_canvas_being_used)
     {
 
@@ -338,18 +340,6 @@ public class Game
             {
                 inner_canvas.RenderTransform = new RotateTransform(gamma2.Y - gamma.Y, 5, 5);
             }
-
-          
-
-
-            //else if (back_wheel_collision && front_wheel_collision)
-            //{
-            //    inner_canvas.RenderTransform = new RotateTransform(0, 5, 5);
-            //}
-            //else
-            //{
-            //    inner_canvas.RenderTransform = new RotateTransform(45, 5, 5);
-            //}
             else
             {
                 car_position.Y += 10;
@@ -428,6 +418,30 @@ public class Game
             car_velocity.Y += 0.005;
         }
     }
+
+    public void upgradeswheel()
+    {
+        if (SharedData.Instance.Upgr1[1] == 1 || SharedData.Instance.Upgr2[1] == 1)
+        {
+            car_velocity.X -= 0.07;
+        }
+        else if (SharedData.Instance.Upgr1[1] == 2 || SharedData.Instance.Upgr2[1] == 2)
+        {
+            car_velocity.X -= 0.1;
+        }
+        else if (SharedData.Instance.Upgr1[1] == 3 || SharedData.Instance.Upgr2[1] == 3)
+        {
+            car_velocity.X -= 0.15;
+        }
+        else if (SharedData.Instance.Upgr1[1] == 4 || SharedData.Instance.Upgr2[1] == 4)
+        {
+            car_velocity.X -= 0.2;
+        }
+        else if (SharedData.Instance.Upgr1[1] == 5 || SharedData.Instance.Upgr2[1] == 5)
+        {
+            car_velocity.X -= 0.25;
+        }
+    }
         public void Gravity()
     {
         if (!is_touching_ground)
@@ -497,21 +511,21 @@ public class Game
         if (WASDorARROW)
         {
 
-            if (Keyboard.IsKeyDown(Key.Up))
+            if (Keyboard.IsKeyDown(Key.W))
             {
                 up_ward_movement();
 
             }
-            if (Keyboard.IsKeyDown(Key.Down))
+            if (Keyboard.IsKeyDown(Key.S))
             {
                 down_ward_movement();
 
             }
-            if (Keyboard.IsKeyDown(Key.Right))
+            if (Keyboard.IsKeyDown(Key.D))
                 forward_movement();
             {
             }
-            if (Keyboard.IsKeyDown(Key.Left))
+            if (Keyboard.IsKeyDown(Key.A))
             {
                 backward_movement();
             }
@@ -519,19 +533,19 @@ public class Game
         else
         {
 
-            if (Keyboard.IsKeyDown(Key.W))
+            if (Keyboard.IsKeyDown(Key.Up))
             {
                 up_ward_movement();
             }
-            if (Keyboard.IsKeyDown(Key.S))
+            if (Keyboard.IsKeyDown(Key.Down))
             {
                 down_ward_movement();
             }
-            if (Keyboard.IsKeyDown(Key.A))
+            if (Keyboard.IsKeyDown(Key.Left))
             {
                 backward_movement();
             }
-            if (Keyboard.IsKeyDown(Key.D))
+            if (Keyboard.IsKeyDown(Key.Right))
             {
                 forward_movement();
             }
