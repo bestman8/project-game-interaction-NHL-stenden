@@ -83,8 +83,11 @@ namespace project_1_game_inteact
             public int[] Upgr1 { get; set; }
             public int[] Upgr2 { get; set; }
             public double max_Speed { get; set; }
-            public double acceleration {  get; set; }
+            public double acceleration { get; set; }
             public double gravity { get; set; }
+
+            public double[] time1 { get; set; } = new double[] { 0.0 };
+            public double[] time2 { get; set; } = new double[] { 0.0 };
         }
         private void startinf()
         {
@@ -97,8 +100,9 @@ namespace project_1_game_inteact
                 SharedData.Instance.Geld2 = 50;
                 SharedData.Instance.acceleration = 0.1;
                 SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
-
-    }
+                SharedData.Instance.time1 = new double[] { 0.0 };
+                SharedData.Instance.time2 = new double[] { 0.0 };
+            }
         }
 
         private void nspeler2_KeyUp(object sender, KeyEventArgs e)

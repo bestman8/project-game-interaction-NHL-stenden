@@ -59,15 +59,23 @@ namespace project_1_game_inteact
             if (speler == 0)
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
+                {
                     P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[0]);
+                    SharedData.Instance.max_Speed = SharedData.Instance.Upgr1[0] * 1.1; }
                 else
                     P1M.Content = "Max Motor";
                 if (SharedData.Instance.Upgr1[1] < 5)
+                {
                     P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[1]);
+                }
+
                 else
                     P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr1[2] < 5)
+                {
                     P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[2]);
+                    SharedData.Instance.gravity = SharedData.Instance.Upgr1[2] * 0.01;
+                }
                 else
                     P1S.Content = "Max Suspensie ";
             }

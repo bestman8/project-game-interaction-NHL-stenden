@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
+using System.Diagnostics;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -78,21 +79,31 @@ namespace project_1_game_inteact
                 --Countdown;
 
             }
-
+            
         }
         //knop om de countdown en timer te starten
-        private void StartCountdown_Click(object sender, RoutedEventArgs e)
+        private async void StartCountdown_Click(object sender, RoutedEventArgs e)
         {
             StartCountdown.Visibility = Visibility.Hidden;
+
             Go = true;
 
             Game left = new Game();
             Game right = new Game();
-            left.Game_loop(LeftCanvas, true);
-            right.Game_loop(RightCanvas, false);
-            //string currentDirectory = Environment.CurrentDirectory;
-            //MessageBox.Show($"Current Directory: {currentDirectory}");
 
+            await left.Game_loop(LeftCanvas, true);
+            await right.Game_loop(RightCanvas, false);
+
+            Stopwatch leftsw = left.sw;
+            Stopwatch rightsw = right.sw;
+
+            if (!leftsw.IsRunning && !rightsw.IsRunning)
+            {
+                SharedData.Instance.time1 = new double[] { leftsw.Elapsed.Seconds };
+                SharedData.Instance.time2 = new double[] { rightsw.Elapsed.Seconds };               
+                project_1_game_inteact.endscreen test = new project_1_game_inteact.endscreen();
+                test.Show();
+            }
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
@@ -115,8 +126,6 @@ namespace project_1_game_inteact
             this.Close();
 
         }
-
-
     }
 
 
@@ -144,10 +153,10 @@ public class Game
         public bool is_touching_ground = false;
 
 
-        public double acceleration = 0.1;
+        public double acceleration = SharedData.Instance.max_Speed;
         public double deceleration = 0.07;
         public double max_speed = 5;
-        public double gravity = 0.05; //0.01 is natural ish
+        public double gravity = SharedData.Instance.gravity; //0.01 is natural ish
         public double terminal_velocity_car = 10;
     }
 
@@ -250,7 +259,7 @@ public class Game
             X *= 0.02;
             double large_terrain = (Math.Sin(X * 0.3) + Math.Sin(X * 0.75 + 10) + Math.Sin(X * 1 + 486) + Math.Sin(X * 1.3 + 123) + Math.Sin(X * 1.5 + 7846)) / 5;
             double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 4 + 32));
-            double result = 1.6 * large_terrain * bumbs_terrain;
+            double result = 1.6 * large_terrain;
 
 
 
@@ -430,8 +439,9 @@ public class Game
         {
             Point absolute_position_wheel_back = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
             Point absolute_position_wheel_front = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_front);
-            game_State.actual_rotation = Math.Atan2(absolute_position_wheel_back.X - absolute_position_wheel_front.X, absolute_position_wheel_back.Y - absolute_position_wheel_front.Y);
+            game_State.actual_rotation = Math.Atan2(absolute_position_wheel_back.Y - absolute_position_wheel_front.Y, absolute_position_wheel_back.X - absolute_position_wheel_front.X);
 
+           
 #if DEBUG
             Console.WriteLine(game_State.actual_rotation);
 #endif
@@ -453,11 +463,12 @@ public class Game
             bool back_wheel_collision = absolute_position_wheel_back.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_back.X + game_State.car_position.X);
             bool front_wheel_collision = absolute_position_wheel_front.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_front.X + game_State.car_position.X);
 
-            if (back_wheel_collision && front_wheel_collision)
+            if (back_wheel_collision || front_wheel_collision)
             {
-                game_State.is_touching_ground = true;
-                //game_State.car_rotation_speed = 0;
 
+                game_State.car_position.Y = Math.Min(Terrain_methods.terrain_gen_function(absolute_position_wheel_back.X + game_State.car_position.X), Terrain_methods.terrain_gen_function(absolute_position_wheel_front.X + game_State.car_position.X)) - Game_objects.carImage.Height + 10;
+                game_State.is_touching_ground = true;
+             
             }
             else
             {
@@ -517,19 +528,46 @@ public class Game
     }
 
 
+    public Stopwatch sw = new Stopwatch();
     //game_loop
     public async Task Game_loop(Canvas main_canvas, bool WASDorARROW)
     {
+        sw.Start();
         game_init_state(main_canvas);
 
+        //sw = Stopwatch.StartNew();
+     ;
         while (true)
         {
+            // Handle keyboard input
             Movement.keyboard_input(WASDorARROW, current_game_state);
-            physics.movement(current_game_state, game_objects); //will be physics and it cannot update any objects
-            Update_canvas(); //updates all objects
-            await Task.Delay(10);
 
+            // Apply physics
+            physics.movement(current_game_state, game_objects);
+            physics.car_rotation_calc(game_objects, current_game_state);
+            physics.collision(game_objects, current_game_state);
+
+            // Update canvas
+            Update_canvas();
+
+            if (current_game_state.car_position.X > 2000)
+            {
+      
+          
+                break;
+            }
+          
+            await Task.Delay(10);
         }
+        sw.Stop();
+        Label end_screen = new Label
+        {
+            Content = string.Format("your time is \n{0}", sw.Elapsed.ToString("mm\\:ss\\.ff")),
+            FontSize = 50
+        };
+        main_canvas.Children.Add(end_screen);
+        Canvas.SetLeft(end_screen, 50);
+        Canvas.SetTop(end_screen, 50);
     }
 
     private void Update_canvas()
