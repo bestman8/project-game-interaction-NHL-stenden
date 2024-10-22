@@ -241,9 +241,6 @@ public class Game
         double large_terrain = (Math.Sin(X * 0.3) + Math.Sin(X * 0.75 + 10) + Math.Sin(X * 1 + 486) + Math.Sin(X * 1.3 + 123) + Math.Sin(X * 1.5 + 7846)) / 5;
         double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 4 + 32));
         double result = 1.6 * large_terrain * bumbs_terrain;
-
-
-
         return 50 * result + 400;
     }
 
@@ -330,54 +327,38 @@ public class Game
         bool back_wheel_collision = gamma.Y >= terrain_gen_function(gamma.X + car_position.X);
         bool front_wheel_collision = gamma2.Y >= terrain_gen_function(gamma2.X + car_position.X);
 
+
         if (back_wheel_collision || front_wheel_collision)
         {
-
-            is_touching_ground = true;
+            //is_touching_ground = true;
+            car_position.Y += 10;
             car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
-            //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
+            
+            if (front_wheel_collision || back_wheel_collision)
+            {
+                inner_canvas.RenderTransform = new RotateTransform(gamma2.Y - gamma.Y, 5, 5);
+            }
 
-            double angle = Math.Tan(Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X))) / 2;
+          
 
-            Console.WriteLine(angle);
 
-            RotateTransform rotation_inner_canvas = new RotateTransform(angle / 2);
-            carImage.RenderTransform = rotation_inner_canvas;
-            inner_canvas.RenderTransform = rotation_inner_canvas;
-
+            //else if (back_wheel_collision && front_wheel_collision)
+            //{
+            //    inner_canvas.RenderTransform = new RotateTransform(0, 5, 5);
+            //}
+            //else
+            //{
+            //    inner_canvas.RenderTransform = new RotateTransform(45, 5, 5);
+            //}
+            else
+            {
+                car_position.Y += 10;
+            }
 
         }
         else
         {
-            is_touching_ground = false;
-
-        }
-
-
-        if (car_position.X > end_pos)
-        {
-            car_position.X = -10000000000000000;
-            car_position.Y = -10000000000000000;
-
-            The_canvas_being_used.Visibility = Visibility.Hidden;
-            int x = 2;
-            if (The_canvas_being_used.Visibility == Visibility.Hidden)
-            {
-                x = x - 1;
-            }
-
-            if (x == 0)
-            {
-                project_1_game_inteact.endscreen end = new project_1_game_inteact.endscreen();             
-                end.Show();
-                end.HorizontalAlignment = HorizontalAlignment.Center;
-                end.VerticalAlignment = VerticalAlignment.Center;
-                Console.WriteLine("etsaasdadg");            
-            }
-            else
-            {
-                Console.WriteLine("no end");
-            }
+            car_position.Y += 0;
         }
     }
 
