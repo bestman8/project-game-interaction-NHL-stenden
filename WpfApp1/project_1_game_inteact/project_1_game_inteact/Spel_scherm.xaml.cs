@@ -104,8 +104,8 @@ namespace project_1_game_inteact
             await Task.WhenAll(left.Game_loop(LeftCanvas, true), right.Game_loop(RightCanvas, false));
 
             Console.WriteLine("this should run after the game loop");
-            Console.WriteLine("game timer left", left.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
-            Console.WriteLine("game timer right", right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+            Console.WriteLine("game timer left " + left.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+            Console.WriteLine("game timer right "+ right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
             //Console.WriteLine("this should run after the game loop");
 
         }
