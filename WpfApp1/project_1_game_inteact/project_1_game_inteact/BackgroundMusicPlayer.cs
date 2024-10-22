@@ -12,7 +12,7 @@ namespace UItest
         {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.Open(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "resources", "BackMusic.mp3")));
-            mediaPlayer.Volume = 1.0;
+            mediaPlayer.Volume = 1.0;  // Standaard volume is 100%
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             mediaPlayer.Play();
         }
@@ -43,6 +43,18 @@ namespace UItest
         public void Stop()
         {
             mediaPlayer.Stop();
+        }
+
+        // Methode om het volume in te stellen
+        public void SetVolume(double volume)
+        {
+            mediaPlayer.Volume = volume;
+        }
+
+        // Methode om het huidige volume op te halen
+        public double GetVolume()
+        {
+            return mediaPlayer.Volume;
         }
     }
 }
