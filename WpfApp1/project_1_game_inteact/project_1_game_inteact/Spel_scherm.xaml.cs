@@ -123,338 +123,425 @@ namespace project_1_game_inteact
 }
 public class Game
 {
-    private Vector car_position = new Vector(0, 250); // Relative position of the car
-    private Vector car_velocity = new Vector(0, 0);
-    private Vector background_position = new Vector();
-
-    private RotateTransform car_rotation = new RotateTransform();
-
-    //private double car_rotation = 0;
-    private Canvas inner_canvas = new Canvas
+    private class game_state
     {
-        Width = 80,
-        Height = 50,
+        /// <summary>
+        /// the position of the car from the terrain
+        /// </summary>
+        public Point car_position = new Point(0, 250); // absolute position of the car
+        /// <summary>
+        /// current speed of the car X,Y relative to car
+        /// </summary>
+        public Vector car_velocity_rel = new Vector(0, 0);
+        public Vector car_velocity_abs = new Vector(0, 0);
+
+        //car rotation 
+        //public double car_rotation_speed = 0;
+        public double actual_rotation = 0;
+        private Vector wheel_front_position = new Vector(0, 0);
+        private Vector wheel_back_position = new Vector(0, 0);
+
+        public bool is_touching_ground = false;
+
+
+        public double acceleration = 0.1;
+        public double deceleration = 0.07;
+        public double max_speed = 5;
+        public double gravity = 0.05; //0.01 is natural ish
+        public double terminal_velocity_car = 10;
+    }
+
+    private class Game_objects
+    {
+        /// <summary>
+        /// this is the max speed that the car can fall doww
+        /// </summary>
+        //the canvas from the car
+        /// <summary>
+        /// inner_canvas is the canvas that contains the car
+        /// </summary>
+        /// 
+        public Canvas Main_canvas;
+
+        public void init(Canvas main_canvas)
+        {
+            Main_canvas = main_canvas;
+
+            string imagePath = System.IO.Path.Combine(Environment.CurrentDirectory, "resources", "images", "car-full.png");
+            carImage = new Image
+            {
+                Height = 40,
+                Width = 80,
+                Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
+            };
+            carImage.Height = 40;
+            carImage.Width = 80;
+
+
+            // initing the inner_canvas with the elements like car_image and the collision points
+            inner_canvas.Children.Add(carImage);
+            inner_canvas.Children.Add(wheel_back);
+            inner_canvas.Children.Add(wheel_front);
+
+            Canvas.SetLeft(wheel_back, 12);
+            Canvas.SetTop(wheel_back, 33);
+            Canvas.SetLeft(wheel_front, 80 - 12);
+            Canvas.SetTop(wheel_front, 33);
+            Main_canvas.Children.Add(inner_canvas);
+
+            Canvas.SetLeft(inner_canvas, 125);
+            Canvas.SetTop(inner_canvas, 250);
+
+
+        }
+        public Canvas inner_canvas = new Canvas
+        {
+            Width = 80,
+            Height = 50,
 #if DEBUG
-        Background = Brushes.BlueViolet
+            Background = Brushes.BlueViolet
 #else
-        Background = Brushes.Transparent 
+            Background = Brushes.Transparent 
 #endif
-    };
-    private Image carImage;
-    private Polygon terrain = new Polygon
-    {
-        Fill = Brushes.LawnGreen,
-        Stroke = Brushes.Black,
-        StrokeThickness = 1,
-    };
-    private Ellipse wheel_back = new Ellipse
-    {
-        Width = 3,
-        Height = 3,
+        };
+        public Image carImage;
+        public Polygon terrain = new Polygon
+        {
+            Fill = Brushes.LawnGreen,
+            Stroke = Brushes.Black,
+            StrokeThickness = 1,
+        };
+        /// <summary>
+        /// the collision point for the back wheel
+        /// </summary>
+        public Ellipse wheel_back = new Ellipse
+        {
+            Width = 3,
+            Height = 3,
 #if DEBUG
-        Fill = Brushes.Red
+            Fill = Brushes.Red
 #else
-    Fill = Brushes.Transparent
+        Fill = Brushes.Transparent
 #endif
 
-    };
-    private Ellipse wheel_front = new Ellipse
-    {
-        Width = 3,
-        Height = 3,
+        };
+        /// <summary>
+        /// the collision point for the front wheel
+        /// </summary>
+        public Ellipse wheel_front = new Ellipse
+        {
+            Width = 3,
+            Height = 3,
 #if DEBUG
-        Fill = Brushes.Red
+            Fill = Brushes.Red
 #else
-    Fill = Brushes.Transparent
+        Fill = Brushes.Transparent
 #endif
-    };
+        };
+
+
+    }
+
+    private static class Terrain_methods
+    {
+        public static double terrain_gen_function(double X)
+        {
+            //Console.WriteLine(X);
+            X *= 0.02;
+            double large_terrain = (Math.Sin(X * 0.3) + Math.Sin(X * 0.75 + 10) + Math.Sin(X * 1 + 486) + Math.Sin(X * 1.3 + 123) + Math.Sin(X * 1.5 + 7846)) / 5;
+            double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 4 + 32));
+            double result = 1.6 * large_terrain * bumbs_terrain;
 
 
 
-    private double deceleration = 0.07;
-    private bool is_touching_ground = false;
-    private double terminal_velocity_car = 0.0015;
+            return 50 * result + 400;
+        }
 
-    private Vector wheel_front_position = new Vector(0, 0);
-    private Vector wheel_back_position = new Vector(0, 0);
+        public static void terrain_gen(Game_objects game_object)
+        {
+            PointCollection terrain_points = new PointCollection();
+
+            terrain_points.Add(new Point(-500, 1200));
+            for (int x = -500; x < 8000; x++)
+            {
+                //terrain_points.Add(new Point(x, 50 * terrain_gen_function(x * 0.02) + 350));
+                terrain_points.Add(new Point(x, terrain_gen_function(x)));
+
+            }
+            terrain_points.Add(new Point(8000, 1200));
+
+            game_object.terrain.Points = terrain_points;
+            game_object.Main_canvas.Children.Add(game_object.terrain);
+        }
+
+    }
+
+    private static class Movement
+    {
+
+        private static void forward_movement(game_state game_State)
+        {
+            Vector rel_movement = helper.abs_movement_rel_movement(game_State.car_velocity_abs, game_State.actual_rotation);
+
+            if (rel_movement.X < game_State.max_speed)
+            {
+                rel_movement.X += game_State.acceleration;
+            }
+
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+        }
+        private static void backward_movement(game_state game_State)
+        {
+            Vector rel_movement = helper.abs_movement_rel_movement(game_State.car_velocity_abs, game_State.actual_rotation);
+
+            if (rel_movement.X > -game_State.max_speed)
+            {
+                rel_movement.X -= game_State.acceleration;
+            }
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+
+        }
+        private static void up_ward_movement(game_state game_State)
+        {
+
+        }
+        private static void down_ward_movement(game_state game_State)
+        {
+
+        }
+        public static void slow_down(game_state game_State)
+        {
+            Vector rel_movement = helper.abs_movement_rel_movement(game_State.car_velocity_abs, game_State.actual_rotation);
+
+            if (rel_movement.X > 0)
+            {
+                rel_movement.X -= game_State.deceleration;
+                if (rel_movement.X < 0) rel_movement.X = 0;
+            }
+            else if (rel_movement.X < 0)
+            {
+                rel_movement.X += game_State.deceleration;
+                if (rel_movement.X > 0) rel_movement.X = 0;
+            }
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+
+        }
+
+        /// <summary>
+        /// does the keyboard_input 
+        /// </summary>
+        /// <param name="WASDorARROW">true does WASD False does Arrow</param>
+        public static void keyboard_input(bool WASDorARROW, game_state game_State)
+        {
+            if (WASDorARROW)
+            {
+
+                if (Keyboard.IsKeyDown(Key.Up))
+                {
+                    up_ward_movement(game_State);
+
+                }
+                if (Keyboard.IsKeyDown(Key.Down))
+                {
+                    down_ward_movement(game_State);
+
+                }
+                if (Keyboard.IsKeyDown(Key.Right))
+                    forward_movement(game_State);
+                {
+                }
+                if (Keyboard.IsKeyDown(Key.Left))
+                {
+                    backward_movement(game_State);
+                }
+            }
+            else
+            {
+                if (Keyboard.IsKeyDown(Key.W))
+                {
+                    up_ward_movement(game_State);
+                }
+                if (Keyboard.IsKeyDown(Key.S))
+                {
+                    down_ward_movement(game_State);
+                }
+                if (Keyboard.IsKeyDown(Key.A))
+                {
+                    backward_movement(game_State);
+                }
+                if (Keyboard.IsKeyDown(Key.D))
+                {
+                    forward_movement(game_State);
+                }
+            }
+        }
+
+    }
+    private static class helper
+    {
+        public static double rad_to_degree(double radians)
+        {
+            return radians * (180.0 / Math.PI);
+        }
+        public static double degree_to_rad(double degree)
+        {
+            return degree * (Math.PI / 180);
+        }
+
+        public static Vector abs_movement_rel_movement(Vector abs_movement, double rotation_angle)
+        {
+            Vector relative_movement = new Vector();
+            double degree = degree_to_rad(rotation_angle);
+            relative_movement.X = abs_movement.X * Math.Cos(-degree_to_rad(rotation_angle)) - abs_movement.Y * Math.Sin(-degree_to_rad(rotation_angle));
+            relative_movement.Y = abs_movement.X * Math.Sin(-degree_to_rad(rotation_angle)) + abs_movement.Y * Math.Cos(-degree_to_rad(rotation_angle));
+            return relative_movement;
+        }
+        public static Vector rel_movement_to_abs_movent(Vector rel_movement, double rotation_angle)
+        {
+            Vector absolute_movement = new Vector();
+            double rad = degree_to_rad(rotation_angle);
+            absolute_movement.X = rel_movement.X * Math.Cos(rad) - rel_movement.Y * Math.Sin(rad);
+            absolute_movement.Y = rel_movement.X * Math.Sin(rad) + rel_movement.Y * Math.Cos(rad);
+            return absolute_movement;
+        }
+
+    }
+
+    private static class physics
+    {
+        //collision
+        private static Point absolute_position_inside_canvas(Game_objects Game_objects, UIElement reference_object)
+        {
+            var transform = Game_objects.inner_canvas.RenderTransform;
+
+            Point relative_point = new Point(Canvas.GetLeft(reference_object), Canvas.GetTop(reference_object));
+
+            if (transform != null)
+            {
+                relative_point = transform.Transform(relative_point);
+            }
+
+            Point absolute_point = new Point(relative_point.X + Canvas.GetLeft(Game_objects.inner_canvas), relative_point.Y + Canvas.GetTop(Game_objects.inner_canvas));
+
+            return absolute_point;
+        }
+
+        public static void car_rotation_calc(Game_objects Game_objects, game_state game_State)
+        {
+            Point absolute_position_wheel_back = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
+            Point absolute_position_wheel_front = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_front);
+            game_State.actual_rotation = Math.Atan2(absolute_position_wheel_back.X - absolute_position_wheel_front.X, absolute_position_wheel_back.Y - absolute_position_wheel_front.Y);
+
+#if DEBUG
+            Console.WriteLine(game_State.actual_rotation);
+#endif
+        }
+
+        private static double collision_depth(Game_objects Game_objects, UIElement reference_object, game_state game_State)
+        {
+            Point location = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
+
+            return location.Y - Terrain_methods.terrain_gen_function(location.X + game_State.car_position.X);
+        }
+
+        public static void collision(Game_objects Game_objects, game_state game_State)
+        {
+
+            Point absolute_position_wheel_back = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_back);
+            Point absolute_position_wheel_front = absolute_position_inside_canvas(Game_objects, Game_objects.wheel_front);
+
+            bool back_wheel_collision = absolute_position_wheel_back.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_back.X + game_State.car_position.X);
+            bool front_wheel_collision = absolute_position_wheel_front.Y >= Terrain_methods.terrain_gen_function(absolute_position_wheel_front.X + game_State.car_position.X);
+
+            if (back_wheel_collision && front_wheel_collision)
+            {
+                game_State.is_touching_ground = true;
+                //game_State.car_rotation_speed = 0;
+
+            }
+            else
+            {
+                game_State.is_touching_ground = false;
+
+            }
+        }
+
+        //movement
+        public static void movement(game_state game_State, Game_objects game_objects)
+        {
+            //game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(game_State.car_velocity_rel, game_State.actual_rotation);ññ
+            Movement.slow_down(game_State);
+            Gravity(game_State);
+            game_State.car_position += game_State.car_velocity_abs;
 
 
+
+            //Movement.slow_down(current_game_state);
+
+        }
+
+
+
+        private static void Gravity(game_state game_State)
+        {
+            if (!game_State.is_touching_ground)
+            {
+                if (game_State.car_velocity_abs.Y < game_State.terminal_velocity_car)
+                {
+
+                    game_State.car_velocity_abs.Y += game_State.gravity;
+                }
+            }
+            else
+            {
+                game_State.car_velocity_abs.Y = 0;
+            }
+        }
+
+    }
+
+    game_state current_game_state = new game_state();
+    Game_objects game_objects = new Game_objects();
 
     /// <summary>
     /// Initialize the game
     /// </summary>
     /// <param name="my_canvas">this is the canvas you input to the function</param>
-    void game_init_state(Canvas my_canvas)
+    void game_init_state(Canvas main_canvas)
     {
-        my_canvas.Children.Clear(); //clear the canvas from everything
-
-        string imagePath = System.IO.Path.Combine(Environment.CurrentDirectory, "resources", "images", "car-full.png");
-        carImage = new Image
-        {
-            Height = 40,
-            Width = 80,
-            Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
-        };
-
-        //Rectangle rectangle = new Rectangle();
-        carImage.Height = 40;
-        carImage.Width = 80;
-        //rectangle.Fill = Brushes.Purple;
-
-
-
-        inner_canvas.Children.Add(carImage);
-        inner_canvas.Children.Add(wheel_back);
-        inner_canvas.Children.Add(wheel_front);
-
-
-        Canvas.SetLeft(wheel_back, 12);
-        Canvas.SetTop(wheel_back, 33);
-        Canvas.SetLeft(wheel_front, 80 - 12);
-        Canvas.SetTop(wheel_front, 33);
-        my_canvas.Children.Add(inner_canvas);
-
-        //inner_canvas.RenderTransform = new RotateTransform(90, 0.2, 0.2);
-
-        Canvas.SetLeft(inner_canvas, 125);
-        Canvas.SetTop(inner_canvas, 250);
-
-        terrain_gen();
-        my_canvas.Children.Add(terrain);
-
+        main_canvas.Children.Clear(); //clear the canvas from everything
+        game_objects.init(main_canvas);
+        Terrain_methods.terrain_gen(game_objects);
+        //Gam.Children.Add(game_objects.terrain);
 
     }
-    /// <summary>
-    /// this is a function and what it returns is the Y value for the x at that location
-    /// </summary>
-    /// <param name="X">a value between 0 left and 500 right</param>
-    /// <returns>y 0 assume 0 is the bottom and 250 is the max range it should be</returns>
-    private double terrain_gen_function(double X)
+
+
+    //game_loop
+    public async Task Game_loop(Canvas main_canvas, bool WASDorARROW)
     {
-        //Console.WriteLine(X);
-        X *= 0.02;
-        double large_terrain = (Math.Sin(X * 0.3) + Math.Sin(X * 0.75 + 10) + Math.Sin(X * 1 + 486) + Math.Sin(X * 1.3 + 123) + Math.Sin(X * 1.5 + 7846)) / 5;
-        double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 4 + 32));
-        double result = 1.6 * large_terrain * bumbs_terrain;
-
-
-
-        return 50 * result + 400;
-    }
-
-    private void terrain_gen()
-    {
-        PointCollection terrain_points = new PointCollection();
-
-        terrain_points.Add(new Point(-500, 1200));
-        for (int x = -500; x < 2000; x++)
-        {
-            //terrain_points.Add(new Point(x, 50 * terrain_gen_function(x * 0.02) + 350));
-            terrain_points.Add(new Point(x, terrain_gen_function(x)));
-
-        }
-        terrain_points.Add(new Point(2000, 1200));
-
-        terrain.Points = terrain_points;
-
-    }
-    public async Task Game_loop(Canvas The_canvas_being_used, bool WASDorARROW)
-    {
-        game_init_state(The_canvas_being_used);
+        game_init_state(main_canvas);
 
         while (true)
         {
-            keyboard_input(WASDorARROW);
-            movement();
-            slow_down();
-
-            Gravity();
-
-            //inner_canvas.RenderTransform = new RotateTransform(0, 0.5, 0.5);
-            Update_canvas(The_canvas_being_used);
-            collision(The_canvas_being_used);
+            Movement.keyboard_input(WASDorARROW, current_game_state);
+            physics.movement(current_game_state, game_objects); //will be physics and it cannot update any objects
+            Update_canvas(); //updates all objects
             await Task.Delay(10);
 
         }
     }
 
-    private void Update_canvas(Canvas The_canvas_being_used)
+    private void Update_canvas()
     {
         // Update the car's position on the canvas
-        Canvas.SetTop(inner_canvas, car_position.Y);
+        Canvas.SetTop(game_objects.inner_canvas, current_game_state.car_position.Y);
         //Canvas.SetLeft(carImage, car_position.X);
 
         // Update the terrain's position on the canvas
-        Point back_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
-
-
-        Point front_wheel_position = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
-        Canvas.SetLeft(terrain, -(car_position.X));
-    }
-
-    private Point absolute_position_inside_canvas(Canvas The_canvas_being_used, UIElement reference_object)
-    {
-        var transform = inner_canvas.RenderTransform;
-
-        Point relative_point = new Point(Canvas.GetLeft(reference_object), Canvas.GetTop(reference_object));
-
-        if (transform != null)
-        {
-            relative_point = transform.Transform(relative_point);
-        }
-
-        Point absolute_point = new Point(relative_point.X + Canvas.GetLeft(inner_canvas), relative_point.Y + Canvas.GetTop(inner_canvas));
-
-        return absolute_point;
-    }
-
-    public void car_rotation_calc()
-    {
-
-    }
-    public void collision(Canvas The_canvas_being_used)
-    {
-
-        Point gamma = absolute_position_inside_canvas(The_canvas_being_used, wheel_back);
-        Point gamma2 = absolute_position_inside_canvas(The_canvas_being_used, wheel_front);
-
-        bool back_wheel_collision = gamma.Y >= terrain_gen_function(gamma.X + car_position.X);
-        bool front_wheel_collision = gamma2.Y >= terrain_gen_function(gamma2.X + car_position.X);
-
-        if (back_wheel_collision || front_wheel_collision)
-        {
-
-            is_touching_ground = true;
-            car_position.Y = Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X)) - carImage.Height;
-            //carImage.RenderTransformOrigin = new Point(angle_gamma, angle_gamma2);
-
-            double angle = Math.Tan(Math.Min(terrain_gen_function(gamma.X + car_position.X), terrain_gen_function(gamma2.X + car_position.X))) / 2;
-
-            Console.WriteLine(angle);
-
-            RotateTransform rotation_inner_canvas = new RotateTransform(angle / 2);
-            carImage.RenderTransform = rotation_inner_canvas;
-            inner_canvas.RenderTransform = rotation_inner_canvas;
-
-
-        }
-        else
-        {
-            is_touching_ground = false;
-
-        }
+        Canvas.SetLeft(game_objects.terrain, -(current_game_state.car_position.X));
     }
 
 
-
-    public void movement()
-    {
-        car_position += car_velocity;
-    }
-    public void Gravity()
-    {
-        if (!is_touching_ground)
-        {
-            if (car_velocity.Y < terminal_velocity_car)
-            {
-
-            }
-            car_velocity.Y += SharedData.Instance.gravity;
-        }
-        else
-        {
-            car_velocity.Y = 0;
-        }
-    }
-
-    private void forward_movement()
-    {
-        if (car_velocity.X < SharedData.Instance.max_Speed)
-        {
-            car_velocity.X += SharedData.Instance.acceleration;
-
-        }
-    }
-    private void backward_movement()
-    {
-        if (car_velocity.X > -SharedData.Instance.max_Speed)
-        {
-            car_velocity.X -= SharedData.Instance.acceleration;
-        }
-
-    }
-    private void up_ward_movement()
-    {
-
-    }
-    private void down_ward_movement()
-    {
-
-    }
-    private void slow_down()
-    {
-        if (car_velocity.X > 0)
-        {
-            car_velocity.X -= deceleration;
-            if (car_velocity.X < 0) car_velocity.X = 0;
-        }
-        else if (car_velocity.X < 0)
-        {
-            car_velocity.X += deceleration;
-            if (car_velocity.X > 0) car_velocity.X = 0;
-        }
-    }
-
-    /// <summary>
-    /// does the keyboard_input 
-    /// </summary>
-    /// <param name="WASDorARROW">true does WASD False does Arrow</param>
-    private void keyboard_input(bool WASDorARROW)
-    {
-        if (WASDorARROW)
-        {
-
-            if (Keyboard.IsKeyDown(Key.Up))
-            {
-                up_ward_movement();
-
-            }
-            if (Keyboard.IsKeyDown(Key.Down))
-            {
-                down_ward_movement();
-
-            }
-            if (Keyboard.IsKeyDown(Key.Right))
-                forward_movement();
-            {
-            }
-            if (Keyboard.IsKeyDown(Key.Left))
-            {
-                backward_movement();
-            }
-        }
-        else
-        {
-
-            if (Keyboard.IsKeyDown(Key.W))
-            {
-                up_ward_movement();
-            }
-            if (Keyboard.IsKeyDown(Key.S))
-            {
-                down_ward_movement();
-            }
-            if (Keyboard.IsKeyDown(Key.A))
-            {
-                backward_movement();
-            }
-            if (Keyboard.IsKeyDown(Key.D))
-            {
-                forward_movement();
-            }
-        }
-
-
-        // Movement logic can be added here if needed
-    }
 }
+
