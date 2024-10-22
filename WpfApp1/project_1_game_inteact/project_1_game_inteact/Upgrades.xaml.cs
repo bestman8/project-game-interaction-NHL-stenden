@@ -34,6 +34,7 @@ namespace project_1_game_inteact
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(200);
             timer.Tick += Roodgeld;
+            BackgroundMusicPlayer.Instance.Play();
 
         }
         private void LevelsClick(object sender, RoutedEventArgs e)

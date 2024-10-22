@@ -23,8 +23,8 @@ namespace UItest
         public levels()
         {
             InitializeComponent();
+            BackgroundMusicPlayer.Instance.Play();
 
-           
 
 
         }
