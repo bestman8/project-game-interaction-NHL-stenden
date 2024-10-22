@@ -85,6 +85,7 @@ namespace project_1_game_inteact
             public double max_Speed { get; set; }
             public double acceleration {  get; set; }
             public double gravity { get; set; }
+            public int levels { get; set; }
         }
         private void startinf()
         {
@@ -99,6 +100,7 @@ namespace project_1_game_inteact
                 SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
                 SharedData.Instance.Naam1 = "Speler 1";
                 SharedData.Instance.Naam2 = "Speler 2";
+                SharedData.Instance.levels = 1;
 
             }
         }
