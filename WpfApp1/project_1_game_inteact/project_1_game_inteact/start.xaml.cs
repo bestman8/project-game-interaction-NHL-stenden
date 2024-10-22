@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using UItest;
 
 namespace project_1_game_inteact
 {
@@ -26,6 +27,7 @@ namespace project_1_game_inteact
             nspeler1.Text = SharedData.Instance.Naam1;
             nspeler2.Text = SharedData.Instance.Naam2;
             startinf();
+            BackgroundMusicPlayer.Instance.Play();
         }
 
         private void solo_Click(object sender, RoutedEventArgs e)
@@ -85,6 +87,9 @@ namespace project_1_game_inteact
             public double max_Speed { get; set; }
             public double acceleration {  get; set; }
             public double gravity { get; set; }
+            public int VolumeSlider { get; set; }
+
+            public int levels { get; set; }
         }
         private void startinf()
         {
@@ -97,8 +102,13 @@ namespace project_1_game_inteact
                 SharedData.Instance.Geld2 = 50;
                 SharedData.Instance.acceleration = 0.1;
                 SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
+                SharedData.Instance.VolumeSlider = 100;
+                SharedData.Instance.Naam1 = "Speler 1";
+                SharedData.Instance.Naam2 = "Speler 2";
+                SharedData.Instance.levels = 1;
 
-    }
+
+            }
         }
 
         private void nspeler2_KeyUp(object sender, KeyEventArgs e)
