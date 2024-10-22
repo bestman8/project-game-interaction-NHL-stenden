@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using static project_1_game_inteact.start;
 using System.Windows.Threading;
 using UItest;
+using System.Diagnostics.Eventing.Reader;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -231,7 +232,24 @@ public class Game
     /// </summary>
     /// <param name="X">a value between 0 left and 500 right</param>
     /// <returns>y 0 assume 0 is the bottom and 250 is the max range it should be</returns>
+
     private double terrain_gen_function(double X)
+    { 
+       switch (SharedData.Instance.levels)
+        {
+            case (0):
+                return terrain_1(X);
+                case (1):
+                return terrain_2(X);
+                case (2):
+                return terrain_3(X);
+                case (3):
+                return terrain_4(X);
+            default: return 0;    
+        
+        }
+    }
+    private double terrain_1(double X)
     {
         //Console.WriteLine(X);
         X *= 0.02;
@@ -240,10 +258,38 @@ public class Game
         double result = 1.6 * large_terrain * bumbs_terrain;
 
 
+        return 50 * result + 400;
+    }
+    private double terrain_2(double X) 
+    {
+        X *= 0.02;
+        double large_terrain = (Math.Sin(X * 0.8) + Math.Sin(X * 0.90 + 10) + Math.Sin(X * 1 + 500) + Math.Sin(X * 1.7 + 199) + Math.Sin(X * 1.4 + 8111)) / 5;
+        double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 3 + 30));
+        double result = 1.8 * large_terrain * bumbs_terrain;
+
 
         return 50 * result + 400;
     }
+    private double terrain_3(double X) 
+    {
+        X *= 0.02;
+        double large_terrain = (Math.Sin(X * 0.7) + Math.Sin(X * 0.58 + 10) + Math.Sin(X * 1 + 1000) + Math.Sin(X * 1.5 + 273) + Math.Sin(X * 1.7 +8646)) / 5;
+        double bumbs_terrain = 1 + 0.2 * (Math.Sin(X * 3 + 18656) * Math.Sin(X * 6 + 46));
+        double result = 1.6 * large_terrain * bumbs_terrain;
 
+
+        return 50 * result + 400;
+    }
+    private double terrain_4(double X)
+    {
+        X *= 0.02;
+        double large_terrain = (Math.Sin(X * 0.6) + Math.Sin(X * 0.96 + 15) + Math.Sin(X * 1 + 786) + Math.Sin(X * 1.6 + 423) + Math.Sin(X * 1.9 + 9000)) / 5;
+        double bumbs_terrain = 1 + 0.3 * (Math.Sin(X * 3 + 17856) * Math.Sin(X * 4 + 60));
+        double result = 1.6 * large_terrain * bumbs_terrain;
+
+
+        return 50 * result + 400;
+    }
     private void terrain_gen()
     {
         PointCollection terrain_points = new PointCollection();

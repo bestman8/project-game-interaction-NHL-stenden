@@ -88,6 +88,8 @@ namespace project_1_game_inteact
             public double acceleration {  get; set; }
             public double gravity { get; set; }
             public int VolumeSlider { get; set; }
+
+            public int levels { get; set; }
         }
         private void startinf()
         {
@@ -103,6 +105,7 @@ namespace project_1_game_inteact
                 SharedData.Instance.volumeSlider.Value = 100;
                 SharedData.Instance.Naam1 = "Speler 1";
                 SharedData.Instance.Naam2 = "Speler 2";
+                SharedData.Instance.levels = 1;
 
 
             }
