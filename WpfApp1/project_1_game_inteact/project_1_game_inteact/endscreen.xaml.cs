@@ -95,16 +95,11 @@ namespace project_1_game_inteact
 
         private void AddHighscoreToDatabase()
         {
-<<<<<<< HEAD
 
 
-            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin", "resources", "db", "Database1.mdf");
+
+            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "db", "Database1.mdf");
             string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativepath};Integrated Security=True";
-
-=======
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\bin\\Debug\\net8.0-windows\\resources\\db\\Database1.mdf;Integrated Security=True;Connect Timeout=30";
->>>>>>> parent of 83d15c8 (hopelijk compiled?)
-
             string query = "INSERT INTO [Table] ([name], [points]) VALUES (@name, @points)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
