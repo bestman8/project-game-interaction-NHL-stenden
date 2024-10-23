@@ -93,13 +93,15 @@ namespace project_1_game_inteact
             //create instances of game
             Game left = new Game();
             Game right = new Game();
-            //left.current_game_state.max_speed = 0;      //change max speed of player 1
-            //left.current_game_state.acceleration = 0;   //change acceleration of player 1
-            //left.current_game_state.gravity = 0;        //change gravity player 1            
+            left.current_game_state.max_speed = SharedData.Instance.max_Speed1;      //change max speed of player 1
+            left.current_game_state.acceleration = SharedData.Instance.acceleration1;   //change acceleration of player 1
+            left.current_game_state.gravity = SharedData.Instance.gravity1;        //change gravity player 1
+            left.current_game_state.deceleration = SharedData.Instance.deceleration1;
 
-            //right.current_game_state.max_speed = 0;      //change max speed of player 2
-            //right.current_game_state.acceleration = 0;   //change acceleration of player 2
-            //right.current_game_state.gravity = 0;        //change gravity player 2
+            right.current_game_state.max_speed = SharedData.Instance.max_Speed2;      //change max speed of player 2
+            right.current_game_state.acceleration = SharedData.Instance.acceleration2;   //change acceleration of player 2
+            right.current_game_state.gravity = SharedData.Instance.gravity2;
+            left.current_game_state.deceleration = SharedData.Instance.deceleration2; //change gravity player 2
 
             //run game async and continue when both are done
             await Task.WhenAll(left.Game_loop(LeftCanvas, true), right.Game_loop(RightCanvas, false));
