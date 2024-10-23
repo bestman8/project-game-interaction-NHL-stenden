@@ -16,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System;
 using System.Runtime.InteropServices;
+using Microsoft.VisualBasic;
+using System.Diagnostics;
+using System.Resources;
 
 namespace project_1_game_inteact
 {
@@ -31,8 +34,11 @@ namespace project_1_game_inteact
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\bin\\Debug\\net8.0-windows\\resources\\db\\Database1.mdf;Integrated Security=True;Connect Timeout=30";
-            
+
+            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "db", "Database1.mdf");
+            string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativepath};Integrated Security=True";
+
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

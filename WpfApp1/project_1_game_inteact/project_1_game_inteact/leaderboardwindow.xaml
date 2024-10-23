@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Grid.ColumnSpan="7" Margin="0,-6,0,-3" Grid.RowSpan="10" Stretch="Fill" />
 
-        <DataGrid x:Name="datag" AutoGenerateColumns="True" SelectionChanged="datag_SelectionChanged" Grid.Column="2" Grid.ColumnSpan="3" Margin="16,0,24,10" Grid.RowSpan="10" Loaded="datag_Loaded"  />
+        <DataGrid x:Name="datag" AutoGenerateColumns="True" SelectionChanged="datag_SelectionChanged" Grid.Column="2" Grid.ColumnSpan="3" Margin="16,0,24,10" Grid.RowSpan="10" Loaded="datag_Loaded" Background="LawnGreen"/>
 
     </Grid>
 </Window>

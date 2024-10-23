@@ -13,6 +13,7 @@
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
     <None Remove="BackMusic.mp3" />
+    <None Remove="resources\db\Database1.mdf" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="resources\images\Upgrades\autoMunt.png" />
@@ -21,6 +22,12 @@
     <None Remove="resources\images\Upgrades\Suspensie.png" />
     <None Remove="resources\images\Upgrades\Wiel.png" />
     <None Remove="volume.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="resources\db\Database1.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -48,9 +55,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="resources\db\Database1.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="resources\db\Database1_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
