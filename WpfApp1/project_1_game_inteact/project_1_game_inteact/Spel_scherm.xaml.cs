@@ -90,7 +90,7 @@ namespace project_1_game_inteact
         {
             StartCountdown.Visibility = Visibility.Hidden;
             Go = true;
-
+            //create instances of game
             Game left = new Game();
             Game right = new Game();
             //left.current_game_state.max_speed = 0;      //change max speed of player 1
@@ -101,6 +101,7 @@ namespace project_1_game_inteact
             //right.current_game_state.acceleration = 0;   //change acceleration of player 2
             //right.current_game_state.gravity = 0;        //change gravity player 2
 
+            //run game async and continue when both are done
             await Task.WhenAll(left.Game_loop(LeftCanvas, true), right.Game_loop(RightCanvas, false));
 
             Console.WriteLine("this should run after the game loop");
