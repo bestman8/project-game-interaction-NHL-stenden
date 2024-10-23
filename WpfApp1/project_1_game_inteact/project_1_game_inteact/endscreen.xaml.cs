@@ -44,50 +44,50 @@ namespace project_1_game_inteact
             {
                 int multiplier = 100;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
+                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
             else if (SharedData.Instance.time1[0] < 15)
             {
                 int multiplier = 75;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
+                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
             else if (SharedData.Instance.time1[0] < 25)
             {
                 int multiplier = 40;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
+                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
             else
             {
                 int multiplier = 0;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + SharedData.Instance.time1[0] * multiplier);
+                SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
 
             if (SharedData.Instance.time2[0] < 10)
             {
                 int multiplier = 100;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
+                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
             else if (SharedData.Instance.time2[0] < 15)
             {
                 int multiplier = 75;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
+                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
             else if (SharedData.Instance.time2[0] < 25)
             {
                 int multiplier = 40;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
+                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
             else
             {
                 int multiplier = 0;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
-                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + SharedData.Instance.time2[0] * multiplier);
+                SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
 
             AddHighscoreToDatabase();
