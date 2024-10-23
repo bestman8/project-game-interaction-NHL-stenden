@@ -96,19 +96,19 @@ namespace project_1_game_inteact
         {
             if (Rood >= MaxRood)
             {
-                GeldSpeler1.Background = Brushes.LightGray;
-                GeldSpeler2.Background = Brushes.LightGray;
+                GeldSpeler1.Background = Brushes.LawnGreen;
+                GeldSpeler2.Background = Brushes.LawnGreen;
                 timer.Stop();
             }
             else
             {
                 if (speler == 0)
                 {
-                    GeldSpeler1.Background = (GeldSpeler1.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                    GeldSpeler1.Background = (GeldSpeler1.Background == Brushes.LawnGreen) ? Brushes.Red : Brushes.LawnGreen;
                 }
                 else
                 {
-                    GeldSpeler2.Background = (GeldSpeler2.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                    GeldSpeler2.Background = (GeldSpeler2.Background == Brushes.LawnGreen) ? Brushes.Red : Brushes.LawnGreen;
                 }
                 Rood++;
             }
@@ -121,7 +121,7 @@ namespace project_1_game_inteact
             if (speler == 0)
             {
                 timer.Stop();
-                GeldSpeler1.Background = Brushes.LightGray;
+                GeldSpeler1.Background = Brushes.LawnGreen;
                 Speler_1_Knop.IsEnabled = false;
                 Speler_2_Knop.IsEnabled = true;
                 speler = 1;
@@ -130,7 +130,7 @@ namespace project_1_game_inteact
             else
             {
                 timer.Stop();
-                GeldSpeler2.Background = Brushes.LightGray;
+                GeldSpeler2.Background = Brushes.LawnGreen;
                 Speler_1_Knop.IsEnabled = true;
                 Speler_2_Knop.IsEnabled = false;
                 speler = 0;
