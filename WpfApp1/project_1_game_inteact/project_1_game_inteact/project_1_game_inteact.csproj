@@ -63,7 +63,8 @@
   <ItemGroup>
 
     <None Update="resources\Database1_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
 
     <None Update="resources\BackMusic.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
