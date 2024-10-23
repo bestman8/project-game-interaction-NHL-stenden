@@ -25,12 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="resources\datastorage.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -55,6 +49,9 @@
 
   <ItemGroup>
     <None Update="resources\BackMusic.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\datastorage.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\images\car-full.png">
