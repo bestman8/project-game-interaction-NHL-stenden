@@ -56,7 +56,7 @@ namespace project_1_game_inteact
 
         private void handleiding2_Click(object sender, RoutedEventArgs e)
         {
-            project_1_game_inteact.Leaderboard handleiding2 = new Leaderboard();
+            project_1_game_inteact.handleiding handleiding2 = new project_1_game_inteact.handleiding();
             handleiding2.Show();
             this.Close();
         }
