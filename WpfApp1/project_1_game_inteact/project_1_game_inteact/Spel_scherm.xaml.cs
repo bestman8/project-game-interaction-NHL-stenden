@@ -358,11 +358,10 @@ public class Game
 
             if (rel_movement.X < game_State.max_speed)
             {
-                double degreen_in_rad = helper.degree_to_rad(game_State.actual_rotation);
-                double cos_value = Math.Cos(degreen_in_rad);
-                rel_movement.X += cos_value* game_State.acceleration;
+                rel_movement.X += Math.Cos(helper.degree_to_rad(game_State.actual_rotation - 25)) * 1.2 * game_State.acceleration;
+
             }
-            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movement(rel_movement, game_State.actual_rotation);
         }
         private static void backward_movement(game_state game_State)
         {
@@ -370,9 +369,9 @@ public class Game
 
             if (rel_movement.X > -game_State.max_speed)
             {
-                rel_movement.X -= Math.Cos(helper.degree_to_rad(game_State.actual_rotation)) * game_State.acceleration;
+                rel_movement.X -= Math.Cos(helper.degree_to_rad(game_State.actual_rotation+25))*1.2 * game_State.acceleration;
             }
-            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movement(rel_movement, game_State.actual_rotation);
 
         }
         private static void up_ward_movement(game_state game_State)
@@ -397,7 +396,7 @@ public class Game
                 rel_movement.X += game_State.deceleration;
                 if (rel_movement.X > 0) rel_movement.X = 0;
             }
-            game_State.car_velocity_abs = helper.rel_movement_to_abs_movent(rel_movement, game_State.actual_rotation);
+            game_State.car_velocity_abs = helper.rel_movement_to_abs_movement(rel_movement, game_State.actual_rotation);
 
         }
 
@@ -481,11 +480,21 @@ public class Game
         public static Vector abs_movement_rel_movement(Vector abs_movement, double rotation_angle)
         {
             Vector relative_movement = new Vector();
-            double degree = degree_to_rad(rotation_angle);
-            relative_movement.X = abs_movement.X * Math.Cos(-degree_to_rad(rotation_angle)) - abs_movement.Y * Math.Sin(-degree_to_rad(rotation_angle));
-            relative_movement.Y = abs_movement.X * Math.Sin(-degree_to_rad(rotation_angle)) + abs_movement.Y * Math.Cos(-degree_to_rad(rotation_angle));
+            double rad = degree_to_rad(rotation_angle);
+            relative_movement.X = abs_movement.X * Math.Cos(rad) + abs_movement.Y * Math.Sin(rad);
+            relative_movement.Y = -abs_movement.X * Math.Sin(rad) + abs_movement.Y * Math.Cos(rad);
             return relative_movement;
         }
+
+        public static Vector rel_movement_to_abs_movement(Vector rel_movement, double rotation_angle)
+        {
+            Vector absolute_movement = new Vector();
+            double rad = degree_to_rad(rotation_angle);
+            absolute_movement.X = rel_movement.X * Math.Cos(rad) - rel_movement.Y * Math.Sin(rad);
+            absolute_movement.Y = rel_movement.X * Math.Sin(rad) + rel_movement.Y * Math.Cos(rad);
+            return absolute_movement;
+        }
+
         public static Point absolute_position_inside_canvas(Game_objects Game_objects, UIElement reference_object)
         {
             var transform = Game_objects.inner_canvas.RenderTransform;
@@ -500,14 +509,6 @@ public class Game
             Point absolute_point = new Point(relative_point.X + Canvas.GetLeft(Game_objects.inner_canvas), relative_point.Y + Canvas.GetTop(Game_objects.inner_canvas));
 
             return absolute_point;
-        }
-        public static Vector rel_movement_to_abs_movent(Vector rel_movement, double rotation_angle)
-        {
-            Vector absolute_movement = new Vector();
-            double rad = degree_to_rad(rotation_angle);
-            absolute_movement.X = rel_movement.X * Math.Cos(rad) - rel_movement.Y * Math.Sin(rad);
-            absolute_movement.Y = rel_movement.X * Math.Sin(rad) + rel_movement.Y * Math.Cos(rad);
-            return absolute_movement;
         }
 
 
