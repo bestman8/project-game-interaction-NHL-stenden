@@ -9,16 +9,16 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Height="450" Grid.ColumnSpan="7" Margin="0,-7,0,-9" Grid.RowSpan="9" Stretch="Fill" />
-        <Label Name="handleiding2" Content="Handleiding" Foreground="White" Background="LawnGreen" Grid.Column="2" Width="150" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="96,18,96,28" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="0.5" />
+        <Label Name="Handleiding" Grid.Column="2" Grid.ColumnSpan="3" Margin="57,4,0,0" Content="Handleiding" FontWeight="Bold" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2"></Label>
         <Canvas Margin="0,48,0,48" Grid.RowSpan="3" Grid.Row="1" Grid.ColumnSpan="7">
-            <Button Cursor="Hand" Name="bewegen" Content="het spel" Width="150" Height="50" Foreground="White" Background="LawnGreen" HorizontalAlignment="Left" Canvas.Left="78" VerticalAlignment="Center" Click="bewegen_Click"></Button>
-            <Button Cursor="Hand" Name="instellingen" Content="instellingen" Width="150" Height="50" Foreground="White" Background="LawnGreen" Canvas.Left="577" HorizontalAlignment="Center" VerticalAlignment="Top" Click="instellingen_Click" Canvas.Top="-1"/>
-            <Button Cursor="Hand" Name="upgrades" Content="upgrades" Width="150" Height="50" Foreground="White" Background="LawnGreen" HorizontalAlignment="Left" Canvas.Left="325" VerticalAlignment="Top" RenderTransformOrigin="-0.685,0.512" Canvas.Top="-1" Click="upgrades_Click"></Button>
+            <Button Cursor="Hand" Name="bewegen" Content="Besturing" Width="120" Height="47" Foreground="Black" Background="LawnGreen" FontSize="28"  HorizontalAlignment="Left" Canvas.Left="186" VerticalAlignment="Top" Click="bewegen_Click" Canvas.Top="-1"></Button>
+            <Button Cursor="Hand" Name="spelen" Content="Het spel" Width="120" Height="47" Foreground="Black" Background="LawnGreen" FontSize="28" HorizontalAlignment="Left" Canvas.Left="342" VerticalAlignment="Center" RenderTransformOrigin="-0.685,0.512" Canvas.Top="-1" Click="spelen_Click"></Button>
+            <Button Cursor="Hand" Name="Punten" Content="Punten" Foreground="Black" Background="LawnGreen" FontSize="28" RenderTransformOrigin="-0.685,0.512" Click="punten_Click" Height="47" Canvas.Left="501" Canvas.Top="-1" Width="120"/>
             <Canvas Cursor="Hand" Name="tekst" Width="649" Height="208" HorizontalAlignment="Center" Canvas.Top="60" VerticalAlignment="Top" Canvas.Left="78">
-                <Label Name="hnd_txt" Content="" Height="191" Width="649" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label Name="hnd_txt" Content="" Height="274" Width="727" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Foreground="Red" Background="LightGray" Canvas.Left="-34"/>
             </Canvas>
-            <Button Cursor="Hand" x:Name="return" Content="Ga terug" Width="150" Height="50" Foreground="White" Background="LawnGreen" Canvas.Left="78" Click="return_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="-77"/>
         </Canvas>
+        <Button Cursor="Hand" x:Name="return" Content="Ga terug" Width="150" Height="50" Foreground="Black" Background="LawnGreen" FontSize="28" Click="return_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="21,15,0,0" Grid.RowSpan="2"/>
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
             </ColumnDefinition>
