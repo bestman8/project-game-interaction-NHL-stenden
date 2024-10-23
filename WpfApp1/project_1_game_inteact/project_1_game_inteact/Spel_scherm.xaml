@@ -10,8 +10,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1121*"/>
-            <ColumnDefinition Width="167*"/>
         </Grid.ColumnDefinitions>
+        <Grid Width=" 150" Height="50" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Top" Panel.ZIndex="1">
+            <Button Cursor="Hand" x:Name = "StartCountdown" Click = "StartCountdown_Click" Background="LawnGreen" Content = "Start" Grid.ColumnSpan="3"></Button> 
+        </Grid>
         <Grid Margin="10,10,10,90" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"/>
@@ -46,7 +48,6 @@
                 <Label x:Name = "LabelCountdown" FontSize = "25" HorizontalContentAlignment = "Center" Margin = "66,56,66,60" />
                 <Label x:Name = "Label2Countdown" FontSize = "25" HorizontalContentAlignment = "Center" Margin = "44,48,55,68" Grid.Column = "3" />
                 <Label x:Name = "GlobalTimer" HorizontalAlignment  = "Center" HorizontalContentAlignment = "Center"  Margin = "0,-20,0,362" Width = "128" Grid.Column="1" />
-                <Button Cursor="Hand" x:Name = "StartCountdown" Click = "StartCountdown_Click" Background="LawnGreen" Margin = "391,-4,391,346" Content = "Start" Grid.ColumnSpan="3" />
 
             </Grid>
 
