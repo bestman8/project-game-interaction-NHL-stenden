@@ -1,0 +1,22 @@
+{
+  "entries": {
+    "level_1": [
+      {
+        "Name": "Player1",
+        "Punten": 100
+      },
+      {
+        "Name": "Player2",
+        "Punten": 200
+      }
+    ]
+  },
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

@@ -56,7 +56,7 @@ namespace project_1_game_inteact
 
         private void handleiding2_Click(object sender, RoutedEventArgs e)
         {
-            project_1_game_inteact.handleiding handleiding2 = new handleiding();
+            project_1_game_inteact.handleiding handleiding2 = new project_1_game_inteact.handleiding();
             handleiding2.Show();
             this.Close();
         }
@@ -89,6 +89,8 @@ namespace project_1_game_inteact
             public double gravity { get; set; }
             public int VolumeSlider { get; set; }
 
+            public double[] time1 { get; set; } =  new double[1];
+            public double[] time2 { get; set; } = new double[1];
             public int levels { get; set; }
         }
         private void startinf()
@@ -106,7 +108,8 @@ namespace project_1_game_inteact
                 SharedData.Instance.Naam1 = "Speler 1";
                 SharedData.Instance.Naam2 = "Speler 2";
                 SharedData.Instance.levels = 1;
-
+                SharedData.Instance.time2 = new double[] { 0.0 };
+                SharedData.Instance.time2 = new double[] { 0.0 };
 
             }
         }
