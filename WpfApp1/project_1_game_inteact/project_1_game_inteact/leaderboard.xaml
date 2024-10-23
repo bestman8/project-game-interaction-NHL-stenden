@@ -1,0 +1,40 @@
+﻿<Window x:Class="project_1_game_inteact.leaderboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project_1_game_inteact"
+        mc:Ignorable="d"
+        Title="leaderboard" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Grid.ColumnSpan="7" Margin="0,-6,0,-3" Grid.RowSpan="10" Stretch="Fill" />
+
+        <DataGrid x:Name="LeaderboardDataGrid" AutoGenerateColumns="False" Grid.Column="2" Margin="57,20,57,23" Grid.RowSpan="10" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*" />
+                <DataGridTextColumn Header="Points" Binding="{Binding points}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

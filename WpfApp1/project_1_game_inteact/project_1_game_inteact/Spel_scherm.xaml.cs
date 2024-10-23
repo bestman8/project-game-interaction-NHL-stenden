@@ -18,6 +18,7 @@ using static project_1_game_inteact.start;
 using System.Windows.Threading;
 using UItest;
 using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics;
 //using static System.Net.Mime.MediaTypeNames;
 //using static System.Net.Mime.MediaTypeNames;
 
@@ -28,6 +29,7 @@ namespace project_1_game_inteact
     /// </summary>
     public partial class Spel_scherm : Window
     {
+        
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private int tijd = 0;
         int Countdown = 5;
@@ -83,6 +85,7 @@ namespace project_1_game_inteact
             }
 
         }
+        public Stopwatch sw = new Stopwatch();
         //knop om de countdown en timer te starten
         private void StartCountdown_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +98,7 @@ namespace project_1_game_inteact
             right.Game_loop(RightCanvas, false);
             //string currentDirectory = Environment.CurrentDirectory;
             //MessageBox.Show($"Current Directory: {currentDirectory}");
-
+         
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)
