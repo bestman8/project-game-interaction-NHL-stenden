@@ -19,7 +19,7 @@ using static project_1_game_inteact.start;
 namespace project_1_game_inteact
 {
     /// <summary>
-    /// Functionaliteit van de upgrade knopen doet nog niks, switcht nu nog alleen tussen de upgrades zelf
+    /// Interaction logic for Upgrades.xaml
     /// </summary>
     public partial class Upgrades : Window
     {
@@ -315,4 +315,3 @@ namespace project_1_game_inteact
         //Einde info
     }
 }
-// Funtionalitiet knoppen nog toevoegen en switchen tussen upgrades player 1 en 2 doet niks

@@ -104,8 +104,8 @@ namespace project_1_game_inteact
             {
                 SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, };
                 SharedData.Instance.Upgr2 = new int[] { 1, 1, 1, };
-                SharedData.Instance.Geld1 = 5000;
-                SharedData.Instance.Geld2 = 5000;
+                SharedData.Instance.Geld1 = 0;
+                SharedData.Instance.Geld2 = 0;
                 SharedData.Instance.max_Speed1 = 5;
                 SharedData.Instance.acceleration1 = 0.1;
                 SharedData.Instance.gravity1 = 0.1; //0.01 is natural ish
