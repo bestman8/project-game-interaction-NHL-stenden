@@ -60,7 +60,7 @@ namespace project_1_game_inteact
                 datag.ItemsSource = datatable.DefaultView;
                 datag.Background = Brushes.LawnGreen;
                
-                
+                //
             }
 
            
