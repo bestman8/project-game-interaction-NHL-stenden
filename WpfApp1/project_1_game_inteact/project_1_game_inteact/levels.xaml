@@ -9,12 +9,12 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Grid.ColumnSpan="8" Margin="0,0,0,-9" Grid.RowSpan="6" Stretch="Fill" />
-        <Button Name="startscherm" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="startscherm" Background="LawnGreen" Click="Startscherm_Click"></Button>
-        <Button Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="upgrades" Background="LawnGreen" Click="upgrades_click"/>
-        <Button Name="Level1"  Grid.Column="1" Margin="65,35,35,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 1" Background="LawnGreen" Click="level1_click" Grid.Row="2"/>
-        <Button Name="Level2"  Grid.Column="3" Margin="50,35,50,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 2" Background="LawnGreen" Click="level2_click" Grid.Row="2"/>
-        <Button Name="Level3"  Grid.Column="5" Margin="35,35,65,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 3" Background="LawnGreen" Click="level3_click" Grid.Row="2"/>
-        <Label Name="llevels" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,-5,0,5" Content="Levels" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Button Cursor="Hand" Name="startscherm" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="Startscherm" Background="LawnGreen" Click="Startscherm_Click"></Button>
+        <Button Cursor="Hand" Name="Upgrades"  Grid.Column="4" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="Upgrades" Background="LawnGreen" Click="upgrades_click"/>
+        <Button Cursor="Hand" Name="Level1"  Grid.Column="1" Margin="65,35,35,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 1" Background="LawnGreen" Click="level1_click" Grid.Row="2"/>
+        <Button Cursor="Hand" Name="Level2"  Grid.Column="3" Margin="50,35,50,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 2" Background="LawnGreen" Click="level2_click" Grid.Row="2"/>
+        <Button Cursor="Hand" Name="Level3"  Grid.Column="5" Margin="35,35,65,36" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="28" Content="Level 3" Background="LawnGreen" Click="level3_click" Grid.Row="2"/>
+        <Label  Name="llevels" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,-5,0,5" Content="Levels" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
 
 
