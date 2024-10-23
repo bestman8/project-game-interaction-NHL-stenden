@@ -141,7 +141,7 @@ namespace project_1_game_inteact {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;component/spel_scherm.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;V1.0.0.0;component/spel_scherm.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Spel_scherm.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

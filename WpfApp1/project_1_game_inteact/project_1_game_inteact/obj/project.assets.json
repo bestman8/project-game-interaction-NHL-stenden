@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\project_1_game_inteact.csproj",
+      "projectUniqueName": "C:\\Users\\svenh\\Source\\Repos\\project-game-interaction-NHL-stenden2\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\project_1_game_inteact.csproj",
       "projectName": "project_1_game_inteact",
-      "projectPath": "C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\project_1_game_inteact.csproj",
+      "projectPath": "C:\\Users\\svenh\\Source\\Repos\\project-game-interaction-NHL-stenden2\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\project_1_game_inteact.csproj",
       "packagesPath": "C:\\Users\\svenh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\svenh\\source\\repos\\project-game-interaction-NHL-stenden\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\obj\\",
+      "outputPath": "C:\\Users\\svenh\\Source\\Repos\\project-game-interaction-NHL-stenden2\\WpfApp1\\project_1_game_inteact\\project_1_game_inteact\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\svenh\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -77,7 +77,7 @@ namespace UItest {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;component/instellingen.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;V1.0.0.0;component/instellingen.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\instellingen.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
