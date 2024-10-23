@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Upgrades" Height="450" Width="800">
     <Grid Margin="0,-18,-11,0" x:Name="MainGrid">
@@ -27,18 +28,18 @@
         <Button x:Name="Speler_1_Knop" Background="LightGray" Grid.Column="1" Margin="27,40,648,42" Click="SpelerClick" Foreground="White" Grid.RowSpan="2"/>
         <Button x:Name="Speler_2_Knop" Background="LightGray" Grid.Column="1" Margin="28,40,648,47" Click="SpelerClick" IsEnabled="False" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
 
-        <Label x:Name="Suspensie_info" Margin="619,186,48,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+        <Label x:Name="Suspensie_info" Margin="576,186,91,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText  TextWrapping="WrapWithOverflow" Text="Verlies minder snelheid als je de grond raakt."/>
         </Label>
-        <Label x:Name="Motor_Info" Margin="201,186,474,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+        <Label x:Name="Motor_Info" Margin="88,186,587,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je maximale snelheid."/>
         </Label>
-        <Label x:Name="Wiel_info" Margin="449,186,226,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+        <Label x:Name="Wiel_info" Margin="338,186,337,36" Background="LightGray" Foreground="white" Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <AccessText TextWrapping="WrapWithOverflow" Text="Verhoog je versnelling."/>
         </Label>
-        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="89,96,587,101" Grid.Column="1" Click="P1M_Click" Grid.Row="3"/>
-        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="337,96,337,101" Grid.Column="1" Click="P1W_Click" Grid.Row="3"/>
-        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="575,96,91,101" Grid.Column="1" Click="P1S_Click" Grid.Row="3" />
+        <Button  x:Name="P1M" Background="LightGray" Foreground="White" Margin="89,96,587,101" Grid.Column="1" Click="P1M_Click" Grid.Row="3" MouseEnter="Motor_MouseEnter" MouseLeave="Motor_MouseLeave"/>
+        <Button  x:Name="P1W" Background="LightGray" Foreground="White" Margin="337,96,337,101" Grid.Column="1" Click="P1W_Click" Grid.Row="3" MouseEnter="Wiel_MouseEnter" MouseLeave="Wiel_MouseLeave"/>
+        <Button  x:Name="P1S" Background="LightGray" Foreground="White" Margin="575,96,91,101" Grid.Column="1" Click="P1S_Click" Grid.Row="3" MouseLeave="Suspensie_MouseLeave" MouseEnter="Suspensie_MouseEnter" />
 
 
         <Image Source="\resources\Images\Upgrades\AutoMunt.png" Margin="757,2,7,64" Grid.Column="1" RenderTransformOrigin="0.801,0.707" Grid.RowSpan="2"/>

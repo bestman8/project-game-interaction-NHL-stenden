@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using static project_1_game_inteact.start;
 namespace UItest
 {
     /// <summary>
@@ -24,17 +24,17 @@ namespace UItest
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            BackgroundMusicPlayer.Instance.Play();
 
-           
 
 
         }
 
-        private void home_Click(object sender, RoutedEventArgs e)
+        private void Startscherm_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            UItest.MainWindow secondWindow = new UItest.MainWindow();
-            secondWindow.Show();
+            start start = new start();
+            start.Show();
             this.Close();
         }
         private void upgrades_click(object sender, RoutedEventArgs e)
@@ -46,6 +46,7 @@ namespace UItest
         }
         private void level1_click(object sender, RoutedEventArgs e)
         {
+            SharedData.Instance.levels = 1;
             this.Hide();
             Spel_scherm spel = new Spel_scherm();
             spel.Show();
@@ -55,19 +56,24 @@ namespace UItest
         }
         private void level2_click(object sender, RoutedEventArgs e)
         {
+            SharedData.Instance.levels = 2;
             this.Hide();
-            start start = new start();
-            start.Show();
+            Spel_scherm spel = new Spel_scherm();
+            spel.Show();
             this.Close();
 
-
+            
         }
         private void level3_click(object sender, RoutedEventArgs e)
         {
+
+            SharedData.Instance.levels = 3;
             this.Hide();
-            start start = new start();
-            start.Show();
+            Spel_scherm spel = new Spel_scherm();
+            spel.Show();
             this.Close();
+           
+
         }
     }
 }

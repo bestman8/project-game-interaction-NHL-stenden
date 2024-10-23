@@ -43,7 +43,6 @@
 
   <ItemGroup>
     <Resource Include="afbeelding.jpg" />
-    <Resource Include="BackMusic.mp3" />
     <Resource Include="mute.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -62,8 +61,13 @@
   </ItemGroup>
 
   <ItemGroup>
+
     <None Update="resources\Database1_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+
+    <None Update="resources\BackMusic.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+
     </None>
     <None Update="resources\images\car-full.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

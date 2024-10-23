@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UItest
 {
@@ -19,21 +9,13 @@ namespace UItest
     /// </summary>
     public partial class instellingen : Window
     {
-        private MediaPlayer mediaPlayer;
-
         public instellingen()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            PlayBackgroundMusic();
-        }
 
-        private void PlayBackgroundMusic()
-        {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://application:,,,/BackMusic.mp3"));
-            mediaPlayer.Volume = 1;  // Set the volume (0.0 to 1.0)
-            mediaPlayer.Play();
+            // Zet de slider op het huidige volume van de muziek
+            volumeSlider.Value = BackgroundMusicPlayer.Instance.GetVolume();
         }
 
         private void Startscherm_Click(object sender, RoutedEventArgs e)
@@ -42,6 +24,16 @@ namespace UItest
             project_1_game_inteact.start start2 = new project_1_game_inteact.start();
             start2.Show();
             this.Close();
+        }
+
+        // Event handler voor het aanpassen van het volume
+        private void volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (BackgroundMusicPlayer.Instance != null)
+            {
+                // Stel het volume in op basis van de sliderwaarde
+                BackgroundMusicPlayer.Instance.SetVolume(volumeSlider.Value);
+            }
         }
     }
 }
