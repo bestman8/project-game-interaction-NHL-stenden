@@ -48,7 +48,7 @@ namespace project_1_game_inteact
             gameTimer.Tick += Timer;
             gameTimer.Start();
             BackgroundMusicPlayer.Instance.Play();
-
+           
         }
 #if DEBUG
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
@@ -106,8 +106,16 @@ namespace project_1_game_inteact
 
             Console.WriteLine("this should run after the game loop");
             Console.WriteLine("game timer left " + left.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
-            Console.WriteLine("game timer right "+ right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+            Console.WriteLine("game timer right " + right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
+
+            double timesp1 = left.game_timer.Elapsed.TotalSeconds;
+            double timesp2 = right.game_timer.Elapsed.TotalSeconds;
             //Console.WriteLine("this should run after the game loop");
+            SharedData.Instance.time1[0] = timesp1;
+            SharedData.Instance.time2[0] = timesp2;
+
+            project_1_game_inteact.endscreen endscreen = new endscreen();
+            endscreen.Show();
 
         }
 
