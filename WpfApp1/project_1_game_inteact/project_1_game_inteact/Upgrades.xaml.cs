@@ -19,7 +19,7 @@ using static project_1_game_inteact.start;
 namespace project_1_game_inteact
 {
     /// <summary>
-    /// Interaction logic for Upgrades.xaml
+    /// Functionaliteit van de upgrade knopen doet nog niks, switcht nu nog alleen tussen de upgrades zelf
     /// </summary>
     public partial class Upgrades : Window
     {
@@ -41,14 +41,14 @@ namespace project_1_game_inteact
         {
             levels gm = new levels();
             gm.Visibility = Visibility.Visible;
-            this.Visibility = Visibility.Hidden;
+            this.Close();
         }
 
         private void StartschermClick(object sender, RoutedEventArgs e)
         {
             start gm = new start();
             gm.Visibility = Visibility.Visible;
-            this.Visibility = Visibility.Hidden;
+            this.Close();
         }
         // checkt geld en level upgrades en zet nieuwe waarden
         public void Upgrades_Check()
@@ -61,22 +61,22 @@ namespace project_1_game_inteact
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
                 {
-                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[0]);
-                    SharedData.Instance.max_Speed = SharedData.Instance.Upgr1[0] * 1.1;
+                    double prijs = 50 * (SharedData.Instance.Upgr1[0] * 0.5);
+                    P1M.Content = "Motor " + Convert.ToString(SharedData.Instance.Upgr1[0]) + " :" + prijs;
                 }
                 else
                     P1M.Content = "Max Motor";
                 if (SharedData.Instance.Upgr1[1] < 5)
                 {
-                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[1]);
+                    double prijs = 50 * (SharedData.Instance.Upgr1[1] * 0.5);
+                    P1W.Content = "Wiel " + Convert.ToString(SharedData.Instance.Upgr1[1]) + " :" + prijs;
                 }
-
                 else
                     P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr1[2] < 5)
                 {
-                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[2]);
-                    SharedData.Instance.gravity = SharedData.Instance.Upgr1[2] * 0.01;
+                    double prijs = 50 * (SharedData.Instance.Upgr1[2] * 0.5);
+                    P1S.Content = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr1[2]) + " :" + prijs;
                 }
                 else
                     P1S.Content = "Max Suspensie ";
@@ -84,16 +84,25 @@ namespace project_1_game_inteact
             else
             {
                 if (SharedData.Instance.Upgr2[0] < 5)
-                    P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[0]);
+                {
+                    double prijs = 50 * (SharedData.Instance.Upgr2[0] * 0.5);
+                    P1M.Content = "Motor " + Convert.ToString(SharedData.Instance.Upgr2[0]) + " :" + prijs;
+                }
                 else
                     P1M.Content = "Max Motor ";
 
                 if (SharedData.Instance.Upgr2[1] < 5)
-                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[1]);
+                {
+                    double prijs = 50 * (SharedData.Instance.Upgr2[1] * 0.5);
+                    P1W.Content = "Wiel " + Convert.ToString(SharedData.Instance.Upgr2[1]) + " :" + prijs;
+                }
                 else
                     P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr2[2] < 5)
-                    P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[2]);
+                {
+                    double prijs = 50 * (SharedData.Instance.Upgr2[2] * 0.5);
+                    P1S.Content = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr2[2]) + " :" + prijs;
+                }
                 else
                     P1S.Content = "Max Suspensie ";
 
@@ -155,11 +164,14 @@ namespace project_1_game_inteact
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
                 {
-                    if (SharedData.Instance.Geld1 >= 5)
+                    double prijs1m = 50 * (SharedData.Instance.Upgr1[0] * 0.5);
+                    if (SharedData.Instance.Geld1 >= prijs1m)
                     {
                         SharedData.Instance.Upgr1[0] = SharedData.Instance.Upgr1[0] + 1;
-                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
-                        SharedData.Instance.max_Speed = SharedData.Instance.max_Speed + 5;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - Convert.ToInt16(prijs1m);
+                        prijs1m = prijs1m * 1.5; ;
+                        SharedData.Instance.max_Speed1 = SharedData.Instance.max_Speed1 + 0.5;
+                        SharedData.Instance.acceleration1 = SharedData.Instance.acceleration1 + 0.01;
                         Upgrades_Check();
                     }
                     else
@@ -171,10 +183,14 @@ namespace project_1_game_inteact
             }
             else if (SharedData.Instance.Upgr2[0] < 5)
             {
-                if (SharedData.Instance.Geld2 >= 5)
+                double prijs = 50 * (SharedData.Instance.Upgr2[0] * 0.5);
+                if (SharedData.Instance.Geld2 >= prijs)
                 {
                     SharedData.Instance.Upgr2[0] = SharedData.Instance.Upgr2[0] + 1;
-                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - Convert.ToInt16(prijs);
+                    prijs = prijs * 1.5;
+                    SharedData.Instance.max_Speed2 = SharedData.Instance.max_Speed2 + 0.5;
+                    SharedData.Instance.acceleration2 = SharedData.Instance.acceleration2 + 0.01;
                     Upgrades_Check();
                 }
                 else
@@ -190,11 +206,13 @@ namespace project_1_game_inteact
             {
                 if (SharedData.Instance.Upgr1[1] < 5)
                 {
-                    if (SharedData.Instance.Geld1 >= 5)
+                    double prijs = 50 * (SharedData.Instance.Upgr1[1] * 0.5);
+                    if (SharedData.Instance.Geld1 >= prijs)
                     {
                         SharedData.Instance.Upgr1[1] = SharedData.Instance.Upgr1[1] + 1;
-                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 1;
-                        SharedData.Instance.acceleration = SharedData.Instance.acceleration + 0.02;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - Convert.ToInt16(prijs);
+                        prijs = prijs * 1.5; ;
+                        SharedData.Instance.deceleration1 = SharedData.Instance.deceleration1 - 0.0005;
                         Upgrades_Check();
                     }
                     else
@@ -206,10 +224,13 @@ namespace project_1_game_inteact
             }
             else if (SharedData.Instance.Upgr2[1] < 5)
             {
-                if (SharedData.Instance.Geld2 >= 5)
+                double prijs = 50 * (SharedData.Instance.Upgr2[1] * 0.5);
+                if (SharedData.Instance.Geld2 >= prijs)
                 {
                     SharedData.Instance.Upgr2[1] = SharedData.Instance.Upgr2[1] + 1;
-                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - Convert.ToInt16(prijs);
+                    prijs = prijs * 1.5; ;
+                    SharedData.Instance.deceleration2 = SharedData.Instance.deceleration2 - 0.0005;
                     Upgrades_Check();
                 }
                 else
@@ -225,11 +246,13 @@ namespace project_1_game_inteact
             {
                 if (SharedData.Instance.Upgr1[2] < 5)
                 {
-                    if (SharedData.Instance.Geld1 >= 5)
+                    double prijs = 50 * (SharedData.Instance.Upgr1[2] * 0.5);
+                    if (SharedData.Instance.Geld1 >= prijs)
                     {
                         SharedData.Instance.Upgr1[2] = SharedData.Instance.Upgr1[2] + 1;
-                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - 5;
-                        SharedData.Instance.gravity = SharedData.Instance.gravity - 0.0001;
+                        SharedData.Instance.Geld1 = SharedData.Instance.Geld1 - Convert.ToInt16(prijs);
+                        prijs = prijs * 1.5;
+                        SharedData.Instance.gravity1 = SharedData.Instance.gravity1 - 0.01;
                         Upgrades_Check();
                     }
                     else
@@ -241,10 +264,13 @@ namespace project_1_game_inteact
             }
             else if (SharedData.Instance.Upgr2[2] < 5)
             {
-                if (SharedData.Instance.Geld2 >= 5)
+                double prijs = 50 * (SharedData.Instance.Upgr2[2] * 0.5);
+                if (SharedData.Instance.Geld2 >= prijs)
                 {
                     SharedData.Instance.Upgr2[2] = SharedData.Instance.Upgr2[2] + 1;
-                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - 5;
+                    SharedData.Instance.Geld2 = SharedData.Instance.Geld2 - Convert.ToInt16(prijs);
+                    prijs = prijs * 1.5; ;
+                    SharedData.Instance.gravity2 = SharedData.Instance.gravity2 - 0.01;
                     Upgrades_Check();
                 }
                 else

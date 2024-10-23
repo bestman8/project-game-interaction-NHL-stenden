@@ -84,9 +84,14 @@ namespace project_1_game_inteact
             public int Geld2 { get; set; }
             public int[] Upgr1 { get; set; }
             public int[] Upgr2 { get; set; }
-            public double max_Speed { get; set; }
-            public double acceleration {  get; set; }
-            public double gravity { get; set; }
+            public double max_Speed1 { get; set; }
+            public double acceleration1 { get; set; }
+            public double gravity1 { get; set; }
+            public double deceleration1 { get; set; }
+            public double max_Speed2 { get; set; }
+            public double acceleration2 { get; set; }
+            public double deceleration2 { get; set; }
+            public double gravity2 { get; set; }
             public int VolumeSlider { get; set; }
 
             public double[] time1 { get; set; } =  new double[1];
@@ -99,17 +104,23 @@ namespace project_1_game_inteact
             {
                 SharedData.Instance.Upgr1 = new int[] { 1, 1, 1, };
                 SharedData.Instance.Upgr2 = new int[] { 1, 1, 1, };
-                SharedData.Instance.max_Speed = 5;
-                SharedData.Instance.Geld1 = 50;
-                SharedData.Instance.Geld2 = 50;
-                SharedData.Instance.acceleration = 0.1;
-                SharedData.Instance.gravity = 0.00051; //0.01 is natural ish
+                SharedData.Instance.Geld1 = 5000;
+                SharedData.Instance.Geld2 = 5000;
+                SharedData.Instance.max_Speed1 = 5;
+                SharedData.Instance.acceleration1 = 0.1;
+                SharedData.Instance.gravity1 = 0.1; //0.01 is natural ish
+                SharedData.Instance.max_Speed2 = 5;
+                SharedData.Instance.acceleration2 = 0.1;
+                SharedData.Instance.gravity2 = 0.1; //0.01 is natural ish
                 SharedData.Instance.VolumeSlider = 100;
                 SharedData.Instance.Naam1 = "Speler 1";
                 SharedData.Instance.Naam2 = "Speler 2";
                 SharedData.Instance.levels = 1;
                 SharedData.Instance.time2 = new double[] { 0.0 };
                 SharedData.Instance.time2 = new double[] { 0.0 };
+                SharedData.Instance.deceleration1 = 0.07;
+                SharedData.Instance.deceleration2 = 0.07;
+
 
             }
         }
