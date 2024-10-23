@@ -3,31 +3,25 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using System.Windows;
-
+using static project_1_game_inteact.start;
 namespace project_1_game_inteact
 {
     public class LeaderboardEntry
     {
-        public string Name { get; set; }
-        public int Punten { get; set; }  // Changed Time to Punten
+        public string Namen { get; set; }
+        public int Punten { get; set; }  
     }
 
-    public partial class Leaderboard : Window  // Assuming this is a WPF Window
+    public partial class Leaderboard : Window  
     {
         private Dictionary<string, List<LeaderboardEntry>> entries = new Dictionary<string, List<LeaderboardEntry>>();
 
         public Leaderboard()
         {
-            InitializeComponent();  // Ensure you have this if it's a WPF window
-            Load("datastorage.json");  // Load data from datastorage.json when the window is initialized
-          
-            // Use ShareData to add entries to the leaderboard
-            AddEntry("level_1", SharedData.Instance.Naam1, SharedData.Instance.Geld1, SharedData.Instance.Naam2, SharedData.Instance.Geld2);
-          
-
-            DisplayEntries();  // Display the entries in the DataGrid
+            InitializeComponent();  
+            Load("datastorage.json");              
+            AddEntry("level_1");               
         }
-
         public void Load(string filename)
         {
             filename = "datastorage.json";
@@ -36,11 +30,11 @@ namespace project_1_game_inteact
                 try
                 {
                     string json = File.ReadAllText(filename);
-                    var data = JsonConvert.DeserializeObject<RootObject>(json);
+                    var data = JsonConvert.DeserializeObject<structure>(json);
 
                     if (data?.entries != null)
                     {
-                        entries = data.entries;  // Assign the loaded entries
+                        entries = data.entries;  
                     }
 
                     Console.WriteLine("Leaderboard entries loaded successfully.");
@@ -60,59 +54,30 @@ namespace project_1_game_inteact
             {
                 Console.WriteLine("No existing leaderboard file found, initializing a new leaderboard.");
             }
+            LeaderboardDataGrid.ItemsSource = entries["level_1"];
+        
         }
 
-
-        public void AddEntry(string levelName, string name1, int punten1, string name2, int punten2)
+        public void AddEntry(string levelName)
         {
             if (!entries.ContainsKey(levelName))
             {
                 entries[levelName] = new List<LeaderboardEntry>();
-            }
-
-            entries[levelName].AddRange(new List<LeaderboardEntry>
-            {
-        new LeaderboardEntry { Name = name1, Punten = punten1 },
-        new LeaderboardEntry { Name = name2, Punten = punten2 }
-            });
-        }
-
-
-        public void Save(string filename)
-        {
-            string json = JsonConvert.SerializeObject(entries, Formatting.Indented);
-            File.WriteAllText(filename, json);
+            }         
+            entries[levelName].Add(new LeaderboardEntry{Namen = SharedData.Instance.Naam1, Punten = SharedData.Instance.Geld1});
+            entries[levelName].Add(new LeaderboardEntry{Namen = SharedData.Instance.Naam2, Punten = SharedData.Instance.Geld2});
             Save("datastorage.json");
         }
 
-        public void DisplayEntries()
+        public void Save(string filename)
         {
-            // You would implement this method to display entries in a WPF DataGrid
-            foreach (var level in entries)
-            {
-                Console.WriteLine($"Entries for {level.Key}:");
-                foreach (var entry in level.Value)
-                {
-                    Console.WriteLine($"Name: {entry.Name}, Punten: {entry.Punten}");
-                }
-            }
+            filename = "datastorage.json";
+            var rootObject = new structure { entries = entries }; 
+            string json = JsonConvert.SerializeObject(rootObject, Formatting.Indented);
+            File.WriteAllText(filename, json);
         }
 
-
-        public class SharedData
-        {
-            private static SharedData _instance;
-            public static SharedData Instance => _instance ??= new SharedData();
-
-            public string Naam1 { get; set; }
-            public string Naam2 { get; set; } 
-            public int Geld1 { get; set; } 
-            public int Geld2 { get; set; } 
-
-            // Constructor to initialize ShareData (optional)
-
-        }
-        public class RootObject
+        public class structure
         {
             public Dictionary<string, List<LeaderboardEntry>> entries { get; set; }
             public List<string> exclude { get; set; }
