@@ -98,7 +98,7 @@ namespace project_1_game_inteact
 
 
 
-            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "db", "Database1.mdf");
+            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "Database1.mdf");
             string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativepath};Integrated Security=True";
             string query = "INSERT INTO [Table] ([name], [points]) VALUES (@name, @points)";
 

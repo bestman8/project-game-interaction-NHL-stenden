@@ -32,7 +32,7 @@ namespace project_1_game_inteact
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
-            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "db", "Database1.mdf");
+            string relativepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources", "Database1.mdf");
             string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativepath};Integrated Security=True";            
 
             using (SqlConnection connection = new SqlConnection(connectionString))

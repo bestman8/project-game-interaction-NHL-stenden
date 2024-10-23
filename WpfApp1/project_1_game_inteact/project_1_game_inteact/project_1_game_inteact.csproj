@@ -9,11 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="resources\db\**" />
+    <EmbeddedResource Remove="resources\db\**" />
+    <None Remove="resources\db\**" />
+    <Page Remove="resources\db\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="afbeelding.jpg" />
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
     <None Remove="BackMusic.mp3" />
-    <None Remove="resources\db\Database1.mdf" />
+    <None Remove="resources\Database1.mdf" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="resources\images\Upgrades\autoMunt.png" />
@@ -25,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="resources\db\Database1.mdf">
+    <Content Include="resources\Database1.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -55,7 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="resources\db\Database1_log.ldf">
+    <None Update="resources\Database1_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="resources\images\car-full.png">

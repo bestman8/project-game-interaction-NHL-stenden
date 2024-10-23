@@ -117,7 +117,7 @@ namespace project_1_game_inteact {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;V1.0.0.0;component/handleiding.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/project_1_game_inteact;component/handleiding.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\handleiding.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
