@@ -92,10 +92,7 @@ namespace project_1_game_inteact
 
             
         }
-
-       
-        
-
+    
         private void mainmenu_Click(object sender, RoutedEventArgs e)
         {
             project_1_game_inteact.start start2 = new project_1_game_inteact.start();
@@ -108,6 +105,12 @@ namespace project_1_game_inteact
             project_1_game_inteact.Leaderboard lead = new project_1_game_inteact.Leaderboard();
             lead.Show();
             this.Close();
+        }
+
+        private void levels_Click(object sender, RoutedEventArgs e)
+        {
+            UItest.levels levels = new UItest.levels();
+            levels.Show();
         }
     }
 }

@@ -116,7 +116,7 @@ namespace project_1_game_inteact
 
             project_1_game_inteact.endscreen endscreen = new endscreen();
             endscreen.Show();
-
+            this.Close();
         }
 
         private void Startscherm_button_Click(object sender, RoutedEventArgs e)

@@ -35,24 +35,22 @@ namespace project_1_game_inteact
                     if (data?.entries != null)
                     {
                         entries = data.entries;  
-                    }
-
-                    Console.WriteLine("Leaderboard entries loaded successfully.");
+                    }               
                 }
                 catch (JsonException jsonEx)
                 {
-                    Console.WriteLine($"JSON deserialization error: {jsonEx.Message}");
+                    Console.WriteLine($"JSON error: {jsonEx.Message}");
                     entries = new Dictionary<string, List<LeaderboardEntry>>();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+                    Console.WriteLine($"error: {ex.Message}");
                     entries = new Dictionary<string, List<LeaderboardEntry>>();
                 }
             }
             else
             {
-                Console.WriteLine("No existing leaderboard file found, initializing a new leaderboard.");
+                Console.WriteLine("geen datastorage gevonden");
             }
             LeaderboardDataGrid.ItemsSource = entries["level_1"];
         
