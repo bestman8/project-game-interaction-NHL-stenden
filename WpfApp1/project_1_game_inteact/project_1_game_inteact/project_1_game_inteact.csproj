@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="afbeelding.jpg" />
+    <None Remove="datastorage.json" />
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
     <None Remove="BackMusic.mp3" />
@@ -24,8 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="afbeelding.jpg" />
-    <Resource Include="BackMusic.mp3" />
     <Resource Include="mute.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -44,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="resources\BackMusic.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\datastorage.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\images\car-full.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

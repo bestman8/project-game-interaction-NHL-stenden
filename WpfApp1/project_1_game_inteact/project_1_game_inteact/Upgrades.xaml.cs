@@ -34,6 +34,7 @@ namespace project_1_game_inteact
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(200);
             timer.Tick += Roodgeld;
+            BackgroundMusicPlayer.Instance.Play();
 
         }
         private void LevelsClick(object sender, RoutedEventArgs e)
@@ -59,15 +60,24 @@ namespace project_1_game_inteact
             if (speler == 0)
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
+                {
                     P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr1[0]);
+                    SharedData.Instance.max_Speed = SharedData.Instance.Upgr1[0] * 1.1;
+                }
                 else
                     P1M.Content = "Max Motor";
                 if (SharedData.Instance.Upgr1[1] < 5)
+                {
                     P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr1[1]);
+                }
+
                 else
                     P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr1[2] < 5)
+                {
                     P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr1[2]);
+                    SharedData.Instance.gravity = SharedData.Instance.Upgr1[2] * 0.01;
+                }
                 else
                     P1S.Content = "Max Suspensie ";
             }
@@ -77,11 +87,11 @@ namespace project_1_game_inteact
                     P1M.Content = "Motor" + Convert.ToString(SharedData.Instance.Upgr2[0]);
                 else
                     P1M.Content = "Max Motor ";
-                    
+
                 if (SharedData.Instance.Upgr2[1] < 5)
-                        P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[1]);
+                    P1W.Content = "Wiel" + Convert.ToString(SharedData.Instance.Upgr2[1]);
                 else
-                        P1W.Content = "Max Wiel ";
+                    P1W.Content = "Max Wiel ";
                 if (SharedData.Instance.Upgr2[2] < 5)
                     P1S.Content = "Suspensie" + Convert.ToString(SharedData.Instance.Upgr2[2]);
                 else
@@ -95,19 +105,19 @@ namespace project_1_game_inteact
         {
             if (Rood >= MaxRood)
             {
-                GeldSpeler1.Background = Brushes.LightGray;
-                GeldSpeler2.Background = Brushes.LightGray;
+                GeldSpeler1.Background = Brushes.LawnGreen;
+                GeldSpeler2.Background = Brushes.LawnGreen;
                 timer.Stop();
             }
             else
             {
                 if (speler == 0)
                 {
-                    GeldSpeler1.Background = (GeldSpeler1.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                    GeldSpeler1.Background = (GeldSpeler1.Background == Brushes.LawnGreen) ? Brushes.Red : Brushes.LawnGreen;
                 }
                 else
                 {
-                    GeldSpeler2.Background = (GeldSpeler2.Background == Brushes.LightGray) ? Brushes.Red : Brushes.LightGray;
+                    GeldSpeler2.Background = (GeldSpeler2.Background == Brushes.LawnGreen) ? Brushes.Red : Brushes.LawnGreen;
                 }
                 Rood++;
             }
@@ -120,7 +130,7 @@ namespace project_1_game_inteact
             if (speler == 0)
             {
                 timer.Stop();
-                GeldSpeler1.Background = Brushes.LightGray;
+                GeldSpeler1.Background = Brushes.LawnGreen;
                 Speler_1_Knop.IsEnabled = false;
                 Speler_2_Knop.IsEnabled = true;
                 speler = 1;
@@ -129,7 +139,7 @@ namespace project_1_game_inteact
             else
             {
                 timer.Stop();
-                GeldSpeler2.Background = Brushes.LightGray;
+                GeldSpeler2.Background = Brushes.LawnGreen;
                 Speler_1_Knop.IsEnabled = true;
                 Speler_2_Knop.IsEnabled = false;
                 speler = 0;

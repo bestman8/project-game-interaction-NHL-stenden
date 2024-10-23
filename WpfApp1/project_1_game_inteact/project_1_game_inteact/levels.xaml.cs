@@ -23,8 +23,8 @@ namespace UItest
         public levels()
         {
             InitializeComponent();
+            BackgroundMusicPlayer.Instance.Play();
 
-           
 
 
         }
@@ -32,8 +32,8 @@ namespace UItest
         private void Startscherm_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            project_1_game_inteact.start start2 = new project_1_game_inteact.start();
-            start2.Show();
+            start start = new start();
+            start.Show();
             this.Close();
         }
         private void upgrades_click(object sender, RoutedEventArgs e)

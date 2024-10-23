@@ -1,0 +1,20 @@
+﻿<Window x:Class="project_1_game_inteact.Leaderboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Leaderboard" Height="500" Width="525"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,28,15">
+        <Image Source="\resources\images\background_main\main_background.jpeg" Name="back" Width="Auto" Height="Auto" Stretch="Fill" Margin="0,0,-31,0"></Image>
+        <DataGrid x:Name="LeaderboardDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="97,26,72,26" Height="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Namen}" Width="*"/>
+                <DataGridTextColumn Header="Points" Binding="{Binding Punten}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Label Name="speler1"></Label>
+        <Label Name="speler2"></Label>
+        <Label Name="geld1"></Label>
+        <Label Name="geld2"></Label>
+    </Grid>
+</Window>
