@@ -286,9 +286,10 @@ public class Game
         private static double terrain_2(double X)
         {
             X *= 0.02;
-            double large_terrain = (Math.Sin(X * 0.8) + Math.Sin(X * 0.90 + 10) + Math.Sin(X * 1 + 500) + Math.Sin(X * 1.7 + 199) + Math.Sin(X * 1.4 + 8111)) / 5;
-            double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 3 + 30));
-            double result = 1.8 * large_terrain * bumbs_terrain;
+            double large_terrain = (Math.Sin(X * 0.8) + Math.Sin(X * 0.68 + 10) + Math.Sin(X * 1 + 1000) + Math.Sin(X * 1.5 + 273) + Math.Sin(X * 1.7 + 8646)) / 5;
+            double bumbs_terrain = 1 + 0.2 * (Math.Sin(X * 4 + 16000) * Math.Sin(X * 2 + 60));
+            double result = 1.6 * large_terrain * bumbs_terrain;
+
 
 
             return 50 * result + 400;
@@ -296,9 +297,9 @@ public class Game
         private static double terrain_3(double X)
         {
             X *= 0.02;
-            double large_terrain = (Math.Sin(X * 0.7) + Math.Sin(X * 0.58 + 10) + Math.Sin(X * 1 + 1000) + Math.Sin(X * 1.5 + 273) + Math.Sin(X * 1.7 + 8646)) / 5;
-            double bumbs_terrain = 1 + 0.2 * (Math.Sin(X * 3 + 18656) * Math.Sin(X * 6 + 46));
-            double result = 1.6 * large_terrain * bumbs_terrain;
+            double large_terrain = (Math.Sin(X * 0.8) + Math.Sin(X * 0.90 + 10) + Math.Sin(X * 1 + 500) + Math.Sin(X * 1.7 + 199) + Math.Sin(X * 1.4 + 8111)) / 5;
+            double bumbs_terrain = 1 + 0.1 * (Math.Sin(X * 3 + 14416) * Math.Sin(X * 3 + 30));
+            double result = 1.8 * large_terrain * bumbs_terrain;
 
 
             return 50 * result + 400;
@@ -306,8 +307,8 @@ public class Game
         private static double terrain_4(double X)
         {
             X *= 0.02;
-            double large_terrain = (Math.Sin(X * 0.6) + Math.Sin(X * 0.96 + 15) + Math.Sin(X * 1 + 786) + Math.Sin(X * 1.6 + 423) + Math.Sin(X * 1.9 + 9000)) / 5;
-            double bumbs_terrain = 1 + 0.3 * (Math.Sin(X * 3 + 17856) * Math.Sin(X * 4 + 60));
+            double large_terrain = (Math.Sin(X * 0.6) + Math.Sin(X * 0.99 + 19) + Math.Sin(X * 1 + 886) + Math.Sin(X * 1.4 + 523) + Math.Sin(X * 1.7 + 9000)) / 5;
+            double bumbs_terrain = 1 + 0.2 * (Math.Sin(X * 3 + 14856) * Math.Sin(X * 3 + 60));
             double result = 1.6 * large_terrain * bumbs_terrain;
 
 
