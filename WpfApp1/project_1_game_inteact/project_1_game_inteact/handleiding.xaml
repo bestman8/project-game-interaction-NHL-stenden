@@ -11,13 +11,13 @@
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Height="450" Grid.ColumnSpan="7" Margin="0,-7,0,-9" Grid.RowSpan="9" Stretch="Fill" />
         <Label Name="handleiding2" Content="Handleiding" Foreground="White" Background="#D3D3D3" Grid.Column="2" Width="150" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="96,18,96,28" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="0.5" />
         <Canvas Margin="0,48,0,48" Grid.RowSpan="3" Grid.Row="1" Grid.ColumnSpan="7">
-            <Button Name="bewegen" Content="het spel" Width="150" Height="50" Foreground="White" Background="#D3D3D3" HorizontalAlignment="Left" Canvas.Left="78" VerticalAlignment="Center" Click="bewegen_Click"></Button>
-            <Button Name="instellingen" Content="instellingen" Width="150" Height="50" Foreground="White" Background="#D3D3D3" Canvas.Left="577" HorizontalAlignment="Center" VerticalAlignment="Top" Click="instellingen_Click" Canvas.Top="-1"/>
-            <Button Name="upgrades" Content="upgrades" Width="150" Height="50" Foreground="White" Background="#D3D3D3" HorizontalAlignment="Left" Canvas.Left="325" VerticalAlignment="Top" RenderTransformOrigin="-0.685,0.512" Canvas.Top="-1" Click="upgrades_Click"></Button>
-            <Canvas Name="tekst" Width="649" Height="208" HorizontalAlignment="Center" Canvas.Top="60" VerticalAlignment="Top" Canvas.Left="78">
+            <Button Cursor="Hand" Name="bewegen" Content="het spel" Width="150" Height="50" Foreground="White" Background="#D3D3D3" HorizontalAlignment="Left" Canvas.Left="78" VerticalAlignment="Center" Click="bewegen_Click"></Button>
+            <Button Cursor="Hand" Name="instellingen" Content="instellingen" Width="150" Height="50" Foreground="White" Background="#D3D3D3" Canvas.Left="577" HorizontalAlignment="Center" VerticalAlignment="Top" Click="instellingen_Click" Canvas.Top="-1"/>
+            <Button Cursor="Hand" Name="upgrades" Content="upgrades" Width="150" Height="50" Foreground="White" Background="#D3D3D3" HorizontalAlignment="Left" Canvas.Left="325" VerticalAlignment="Top" RenderTransformOrigin="-0.685,0.512" Canvas.Top="-1" Click="upgrades_Click"></Button>
+            <Canvas Cursor="Hand" Name="tekst" Width="649" Height="208" HorizontalAlignment="Center" Canvas.Top="60" VerticalAlignment="Top" Canvas.Left="78">
                 <Label Name="hnd_txt" Content="" Height="191" Width="649" HorizontalAlignment="Center" VerticalAlignment="Top" />
             </Canvas>
-            <Button x:Name="return" Content="Ga terug" Width="150" Height="50" Foreground="White" Background="#D3D3D3" Canvas.Left="78" Click="return_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="-77"/>
+            <Button Cursor="Hand" x:Name="return" Content="Ga terug" Width="150" Height="50" Foreground="White" Background="#D3D3D3" Canvas.Left="78" Click="return_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="-77"/>
         </Canvas>
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
