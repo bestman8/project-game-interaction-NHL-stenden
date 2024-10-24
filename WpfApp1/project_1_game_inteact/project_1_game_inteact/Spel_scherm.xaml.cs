@@ -25,6 +25,11 @@ using project_1_game_inteact;
 
 namespace project_1_game_inteact
 {
+    static class game_timer_data
+    {
+        public static int tijd = 0;
+    }
+
     /// <summary>
     /// Interaction logic for Spel_scherm.xaml
     /// </summary>
@@ -69,6 +74,7 @@ namespace project_1_game_inteact
                 LabelCountdown.Visibility = Visibility.Hidden;
                 Label2Countdown.Visibility = Visibility.Hidden;
                 tijd++;
+                game_timer_data.tijd++;
                 int minuten = tijd / 60;
                 int seconden = tijd % 60;
                 string Minuten = Convert.ToString(minuten);
@@ -90,6 +96,7 @@ namespace project_1_game_inteact
         {
             StartCountdown.Visibility = Visibility.Hidden;
             Go = true;
+            game_timer_data.tijd= 0;
             //create instances of game
             Game left = new Game();
             Game right = new Game();
@@ -672,6 +679,10 @@ public class Game
     {
         game_init_state(main_canvas);
         game_timer.Start();
+        Update_canvas();
+        while (game_timer_data.tijd == 0) { 
+            await Task.Delay(10);
+        }
         while (true)
         {
             
