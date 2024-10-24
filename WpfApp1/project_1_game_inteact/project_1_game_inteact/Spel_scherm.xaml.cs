@@ -161,7 +161,7 @@ public class Game
         private Vector wheel_back_position = new Vector(0, 0);
 
         public bool is_touching_ground = false;
-
+        public bool back_wheel_is_touching_ground = false;
 
         public double acceleration = 0.1;
         public double deceleration = 0.07;
@@ -368,7 +368,7 @@ public class Game
         {
             Vector rel_movement = helper.abs_movement_rel_movement(game_State.car_velocity_abs, game_State.actual_rotation);
 
-            if (rel_movement.X < game_State.max_speed)
+            if (rel_movement.X < game_State.max_speed &&game_State.back_wheel_is_touching_ground)
             {
                 rel_movement.X += Math.Cos(helper.degree_to_rad(game_State.actual_rotation - 25)) * 1.2 * game_State.acceleration;
 
@@ -379,7 +379,7 @@ public class Game
         {
             Vector rel_movement = helper.abs_movement_rel_movement(game_State.car_velocity_abs, game_State.actual_rotation);
 
-            if (rel_movement.X > -game_State.max_speed)
+            if (rel_movement.X > -game_State.max_speed && game_State.back_wheel_is_touching_ground)
             {
                 rel_movement.X -= Math.Cos(helper.degree_to_rad(game_State.actual_rotation+25))*1.2 * game_State.acceleration;
             }
@@ -596,12 +596,22 @@ public class Game
 
             double collision_depth_front = collision_depth(game_objects, game_objects.wheel_front, game_State);
             double collision_depth_back = collision_depth(game_objects, game_objects.wheel_back, game_State);
-            if (collision_depth_front > 0 || collision_depth_back >0)
+            if (collision_depth_front > -8 || collision_depth_back > -8)
             {
-                game_State.is_touching_ground = true ;
+                    game_State.back_wheel_is_touching_ground = true;
+
+            }
+            else game_State.back_wheel_is_touching_ground = false;
+
+                if (collision_depth_front > 0 || collision_depth_back >0)
+            {
                 bool front_or_back;
+                game_State.is_touching_ground = true;
                 double collision_depth_other =0;
                 double largest_collision_depth;
+                if (collision_depth_back > 0)
+                {
+                }
                 if (collision_depth_front >= collision_depth_back)
                 {
                     largest_collision_depth=collision_depth_front;
@@ -619,7 +629,8 @@ public class Game
                 solve_collision(game_State, game_objects, largest_collision_depth, front_or_back, collision_depth_other);
             }else
             {
-                game_State.is_touching_ground=false ;
+                game_State.is_touching_ground=false;
+                //game_State.back_wheel_is_touching_ground = false;
             }
 
 
