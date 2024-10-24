@@ -81,5 +81,13 @@ namespace project_1_game_inteact
             public Dictionary<string, List<LeaderboardEntry>> entries { get; set; }
             public List<string> exclude { get; set; }
         }
+
+        private void level_click(object sender, RoutedEventArgs e)
+        {
+            project_1_game_inteact.start start2 = new project_1_game_inteact.start();
+            start2.Show();
+            this.Close();
+        }
     }
+
 }

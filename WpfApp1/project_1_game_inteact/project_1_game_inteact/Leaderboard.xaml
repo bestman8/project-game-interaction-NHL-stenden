@@ -4,17 +4,18 @@
         Title="Leaderboard" Height="500" Width="525"
         ResizeMode="NoResize">
     <Grid Margin="0,0,28,15">
-        <Image Source="\resources\images\background_main\main_background.jpeg" Name="back" Width="Auto" Height="Auto" Stretch="Fill" Margin="0,0,-31,0"></Image>
-        <DataGrid x:Name="LeaderboardDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="97,26,72,26" Height="Auto">
+        <Image Source="\resources\images\background_main\main_background.jpeg" Name="back" Width="Auto" Height="Auto" Stretch="Fill" Margin="0,0,-27,-24"></Image>
+        <Button Name="levelscherm" Margin="10,26,0,397" Width="490" Content="Levels" Click="level_click" ></Button>
+        <DataGrid x:Name="LeaderboardDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,98,0,26" Height="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Namen}" Width="*"/>
                 <DataGridTextColumn Header="Points" Binding="{Binding Punten}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Label Name="speler1"></Label>
         <Label Name="speler2"></Label>
         <Label Name="geld1"></Label>
-        <Label Name="geld2"></Label>
+        <Label Name="geld2" Margin="0,0,-27,10"></Label>
     </Grid>
 </Window>
