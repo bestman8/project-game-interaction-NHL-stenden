@@ -421,40 +421,40 @@ public class Game
             if (WASDorARROW)
             {
 
-                if (Keyboard.IsKeyDown(Key.Up))
+                if (Keyboard.IsKeyDown(Key.W))
                 {
                     up_ward_movement(game_State);
 
                 }
-                if (Keyboard.IsKeyDown(Key.Down))
+                if (Keyboard.IsKeyDown(Key.S))
                 {
                     down_ward_movement(game_State);
 
                 }
-                if (Keyboard.IsKeyDown(Key.Right))
+                if (Keyboard.IsKeyDown(Key.D))
                     forward_movement(game_State);
                 {
                 }
-                if (Keyboard.IsKeyDown(Key.Left))
+                if (Keyboard.IsKeyDown(Key.A))
                 {
                     backward_movement(game_State);
                 }
             }
             else
             {
-                if (Keyboard.IsKeyDown(Key.W))
+                if (Keyboard.IsKeyDown(Key.Up))
                 {
                     up_ward_movement(game_State);
                 }
-                if (Keyboard.IsKeyDown(Key.S))
+                if (Keyboard.IsKeyDown(Key.Down))
                 {
                     down_ward_movement(game_State);
                 }
-                if (Keyboard.IsKeyDown(Key.A))
+                if (Keyboard.IsKeyDown(Key.Left))
                 {
                     backward_movement(game_State);
                 }
-                if (Keyboard.IsKeyDown(Key.D))
+                if (Keyboard.IsKeyDown(Key.Right))
                 {
                     forward_movement(game_State);
                 }
