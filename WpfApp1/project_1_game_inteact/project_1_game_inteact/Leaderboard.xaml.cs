@@ -4,6 +4,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Windows;
 using static project_1_game_inteact.start;
+using System.Resources;
 namespace project_1_game_inteact
 {
     public class LeaderboardEntry
@@ -70,7 +71,7 @@ namespace project_1_game_inteact
         public void Save(string filename)
         {
             filename = "datastorage.json";
-            var rootObject = new structure { entries = entries }; 
+            var rootObject = new structure { entries = entries };
             string json = JsonConvert.SerializeObject(rootObject, Formatting.Indented);
             File.WriteAllText(filename, json);
         }

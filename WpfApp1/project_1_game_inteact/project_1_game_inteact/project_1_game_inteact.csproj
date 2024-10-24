@@ -14,6 +14,7 @@
     <None Remove="mute.png" />
     <None Remove="resources\car-full.png" />
     <None Remove="BackMusic.mp3" />
+    <None Remove="resources\datastorage.json" />
     <None Remove="resources\images\background_main\asfasfasdf.png" />
     <None Remove="resources\images\background_main\main_background.jpeg" />
     <None Remove="resources\images\Upgrades\autoMunt.png" />
@@ -22,6 +23,12 @@
     <None Remove="resources\images\Upgrades\Suspensie.png" />
     <None Remove="resources\images\Upgrades\Wiel.png" />
     <None Remove="volume.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="datastorage.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -49,9 +56,6 @@
 
   <ItemGroup>
     <None Update="resources\BackMusic.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="resources\datastorage.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="resources\images\car-full.png">
