@@ -431,11 +431,11 @@ public class Game
                     down_ward_movement(game_State);
 
                 }
-                if (Keyboard.IsKeyDown(Key.Left))
+                if (Keyboard.IsKeyDown(Key.Right))
                     forward_movement(game_State);
                 {
                 }
-                if (Keyboard.IsKeyDown(Key.Right))
+                if (Keyboard.IsKeyDown(Key.Left))
                 {
                     backward_movement(game_State);
                 }
