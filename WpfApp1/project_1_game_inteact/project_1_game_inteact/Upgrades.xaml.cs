@@ -34,8 +34,7 @@ namespace project_1_game_inteact
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(200);
             timer.Tick += Roodgeld;
-            BackgroundMusicPlayer.Instance.Play();
-
+            BackgroundMusicPlayer.Instance.Play();;
         }
         private void LevelsClick(object sender, RoutedEventArgs e)
         {
@@ -55,56 +54,56 @@ namespace project_1_game_inteact
         {
             Speler_1_Knop.Content = SharedData.Instance.Naam1;
             Speler_2_Knop.Content = SharedData.Instance.Naam2;
-            GeldSpeler1.Content = "Geld " + SharedData.Instance.Naam1 + ": " + Convert.ToString(SharedData.Instance.Geld1);
-            GeldSpeler2.Content = "Geld " + SharedData.Instance.Naam2 + ": " + Convert.ToString(SharedData.Instance.Geld2);
+            GeldSpeler1.Content = "Punten " + SharedData.Instance.Naam1 + ": " + Convert.ToString(SharedData.Instance.Geld1);
+            GeldSpeler2.Content = "Punten " + SharedData.Instance.Naam2 + ": " + Convert.ToString(SharedData.Instance.Geld2);
             if (speler == 0)
             {
                 if (SharedData.Instance.Upgr1[0] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr1[0] * 0.5);
-                    P1M.Content = "Motor " + Convert.ToString(SharedData.Instance.Upgr1[0]) + " :" + prijs;
+                    P1M.Text = "Motor " + Convert.ToString(SharedData.Instance.Upgr1[0]) + " Punten: " + prijs;
                 }
                 else
-                    P1M.Content = "Max Motor";
+                    P1M.Text = "Max Motor";
                 if (SharedData.Instance.Upgr1[1] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr1[1] * 0.5);
-                    P1W.Content = "Wiel " + Convert.ToString(SharedData.Instance.Upgr1[1]) + " :" + prijs;
+                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr1[1]) + " Punten:" + prijs;
                 }
                 else
-                    P1W.Content = "Max Wiel ";
+                    P1W.Text = "Max Wiel ";
                 if (SharedData.Instance.Upgr1[2] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr1[2] * 0.5);
-                    P1S.Content = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr1[2]) + " :" + prijs;
+                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr1[2]) + " Punten:" + prijs;
                 }
                 else
-                    P1S.Content = "Max Suspensie ";
+                    P1S.Text = "Max Suspensie ";
             }
             else
             {
                 if (SharedData.Instance.Upgr2[0] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[0] * 0.5);
-                    P1M.Content = "Motor " + Convert.ToString(SharedData.Instance.Upgr2[0]) + " :" + prijs;
+                    P1M.Text = "Motor " + Convert.ToString(SharedData.Instance.Upgr2[0]) + " Punten:" + prijs;
                 }
                 else
-                    P1M.Content = "Max Motor ";
+                    P1M.Text = "Max Motor ";
 
                 if (SharedData.Instance.Upgr2[1] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[1] * 0.5);
-                    P1W.Content = "Wiel " + Convert.ToString(SharedData.Instance.Upgr2[1]) + " :" + prijs;
+                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr2[1]) + " Punten:" + prijs;
                 }
                 else
-                    P1W.Content = "Max Wiel ";
+                    P1W.Text = "Max Wiel ";
                 if (SharedData.Instance.Upgr2[2] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[2] * 0.5);
-                    P1S.Content = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr2[2]) + " :" + prijs;
+                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr2[2]) + " Punten:" + prijs;
                 }
                 else
-                    P1S.Content = "Max Suspensie ";
+                    P1S.Text = "Max Suspensie ";
 
             }
 
@@ -140,8 +139,8 @@ namespace project_1_game_inteact
             {
                 timer.Stop();
                 GeldSpeler1.Background = Brushes.LawnGreen;
-                Speler_1_Knop.IsEnabled = false;
-                Speler_2_Knop.IsEnabled = true;
+                Speler_1_Knop.IsEnabled = true;
+                Speler_2_Knop.IsEnabled = false;
                 speler = 1;
                 Upgrades_Check();
             }
@@ -149,8 +148,8 @@ namespace project_1_game_inteact
             {
                 timer.Stop();
                 GeldSpeler2.Background = Brushes.LawnGreen;
-                Speler_1_Knop.IsEnabled = true;
-                Speler_2_Knop.IsEnabled = false;
+                Speler_1_Knop.IsEnabled = false;
+                Speler_2_Knop.IsEnabled = true;
                 speler = 0;
                 Upgrades_Check();
             }
