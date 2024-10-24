@@ -68,14 +68,14 @@ namespace project_1_game_inteact
                 if (SharedData.Instance.Upgr1[1] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr1[1] * 0.5);
-                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr1[1]) + " Punten:" + prijs;
+                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr1[1]) + " Punten: " + prijs;
                 }
                 else
                     P1W.Text = "Max Wiel ";
                 if (SharedData.Instance.Upgr1[2] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr1[2] * 0.5);
-                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr1[2]) + " Punten:" + prijs;
+                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr1[2]) + " Punten: " + prijs;
                 }
                 else
                     P1S.Text = "Max Suspensie ";
@@ -85,7 +85,7 @@ namespace project_1_game_inteact
                 if (SharedData.Instance.Upgr2[0] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[0] * 0.5);
-                    P1M.Text = "Motor " + Convert.ToString(SharedData.Instance.Upgr2[0]) + " Punten:" + prijs;
+                    P1M.Text = "Motor " + Convert.ToString(SharedData.Instance.Upgr2[0]) + " Punten: " + prijs;
                 }
                 else
                     P1M.Text = "Max Motor ";
@@ -93,14 +93,14 @@ namespace project_1_game_inteact
                 if (SharedData.Instance.Upgr2[1] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[1] * 0.5);
-                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr2[1]) + " Punten:" + prijs;
+                    P1W.Text = "Wiel " + Convert.ToString(SharedData.Instance.Upgr2[1]) + " Punten: " + prijs;
                 }
                 else
                     P1W.Text = "Max Wiel ";
                 if (SharedData.Instance.Upgr2[2] < 5)
                 {
                     double prijs = 50 * (SharedData.Instance.Upgr2[2] * 0.5);
-                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr2[2]) + " Punten:" + prijs;
+                    P1S.Text = "Suspensie " + Convert.ToString(SharedData.Instance.Upgr2[2]) + " Punten: " + prijs;
                 }
                 else
                     P1S.Text = "Max Suspensie ";
