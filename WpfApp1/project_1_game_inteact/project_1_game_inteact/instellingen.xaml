@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
-        Title="instellingen" Height="450" Width="800">
+        Title="instellingen" Height="450" Width="800"
+        ResizeMode="NoResize">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Height="450" Grid.ColumnSpan="6" Margin="-8,0,-8,-16" Grid.RowSpan="7" Stretch="Fill" />
         <Button Cursor="Hand" x:Name="startscreen" Background="LawnGreen" Content="Start scherm" Height="50" VerticalContentAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" FontSize="28" Margin="0,0,0,0" Grid.Row="4" Click="Startscherm_Click"/>

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:UItest"
         mc:Ignorable="d"
         Title="levels" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Grid.ColumnSpan="8" Margin="0,0,0,-9" Grid.RowSpan="6" Stretch="Fill" />
         <Button Cursor="Hand" Name="startscherm" Grid.Column="1" Margin="50,72,50,72" Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="28" Content="Startscherm" Background="LawnGreen" Click="Startscherm_Click"></Button>
