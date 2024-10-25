@@ -30,21 +30,7 @@ namespace project_1_game_inteact
             BackgroundMusicPlayer.Instance.Play();
         }
 
-        private void solo_Click(object sender, RoutedEventArgs e)
-        {
-            nspeler2.Visibility = Visibility.Hidden;
-            lspeler2.Visibility = Visibility.Hidden;
-            solo.Background = Brushes.LightGreen;
-            duo.Background = Brushes.LightGray;
-        }
-
-        private void duo_Click(object sender, RoutedEventArgs e)
-        {
-            nspeler2.Visibility = Visibility.Visible;
-            lspeler2.Visibility = Visibility.Visible;
-            duo.Background = Brushes.LightGreen;
-            solo.Background = Brushes.LightGray;
-        }
+     
 
         private void levels_Click(object sender, RoutedEventArgs e)
         {

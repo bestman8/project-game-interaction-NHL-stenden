@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
-        Title="endscreen" Height="402" Width="600">
+        Title="endscreen" Height="402" Width="600"
+        ResizeMode="NoResize">
     <Grid>
         <Canvas Name="cvs">
             <Label Visibility="Visible" x:Name="time_s1" Content="Tijd: " Width="250" Height="40" Canvas.Top="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LawnGreen" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="25"/>

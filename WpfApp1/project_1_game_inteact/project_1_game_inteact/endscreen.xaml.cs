@@ -38,7 +38,7 @@ namespace project_1_game_inteact
 
             InitializeComponent();
             time_s1.Content = "Tijd " + SharedData.Instance.Naam1 + ": " + SharedData.Instance.time1[0].ToString("0:00");
-            time_s2.Content = "Tijd" + SharedData.Instance.Naam2 + ": " + SharedData.Instance.time2[0].ToString("0:00");
+            time_s2.Content = "Tijd " + SharedData.Instance.Naam2 + ": " + SharedData.Instance.time2[0].ToString("0:00");
 
             if (SharedData.Instance.time1[0] < 20)
             {

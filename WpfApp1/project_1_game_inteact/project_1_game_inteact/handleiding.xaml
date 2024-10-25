@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:project_1_game_inteact"
         mc:Ignorable="d"
         Title="handleiding" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Image x:Name="bck_main" Source="\resources\images\background_main\main_background.jpeg" Height="450" Grid.ColumnSpan="7" Margin="0,-7,0,-9" Grid.RowSpan="9" Stretch="Fill" />
         <Label Name="Handleiding" Grid.Column="2" Grid.ColumnSpan="3" Margin="57,4,0,0" Content="Handleiding" FontWeight="Bold" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2"></Label>

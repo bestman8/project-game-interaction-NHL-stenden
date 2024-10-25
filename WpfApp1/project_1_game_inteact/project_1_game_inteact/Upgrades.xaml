@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:project_1_game_inteact"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Upgrades" Height="450" Width="800">
+        Title="Upgrades" Height="450" Width="800"
+        ResizeMode="NoResize">
     <Grid Margin="0,-18,-11,0" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="46.84" x:Name="Grid1"></RowDefinition>
