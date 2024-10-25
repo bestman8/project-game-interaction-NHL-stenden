@@ -117,8 +117,8 @@ namespace project_1_game_inteact
             Console.WriteLine("game timer left " + left.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
             Console.WriteLine("game timer right " + right.game_timer.Elapsed.ToString("mm\\:ss\\.ff"));
 
-            double timesp1 = left.game_timer.Elapsed.TotalSeconds;
-            double timesp2 = right.game_timer.Elapsed.TotalSeconds;
+            TimeSpan timesp1 = left.game_timer.Elapsed;
+            TimeSpan timesp2 = right.game_timer.Elapsed;
             //Console.WriteLine("this should run after the game loop");
             SharedData.Instance.time1[0] = timesp1;
             SharedData.Instance.time2[0] = timesp2;
@@ -678,11 +678,11 @@ public class Game
     public async Task Game_loop(Canvas main_canvas, bool WASDorARROW)
     {
         game_init_state(main_canvas);
-        game_timer.Start();
         Update_canvas();
         while (game_timer_data.tijd == 0) { 
             await Task.Delay(10);
         }
+        game_timer.Start();
         while (true)
         {
             

@@ -37,22 +37,22 @@ namespace project_1_game_inteact
             time2 = new int[1];
 
             InitializeComponent();
-            time_s1.Content = "Tijd " + SharedData.Instance.Naam1 + ": " + SharedData.Instance.time1[0].ToString("0:00");
-            time_s2.Content = "Tijd" + SharedData.Instance.Naam2 + ": " + SharedData.Instance.time2[0].ToString("0:00");
+            time_s1.Content = "Tijd " + SharedData.Instance.Naam1 + ": " + SharedData.Instance.time1[0].ToString("mm\\:ss\\.ff");
+            time_s2.Content = "Tijd" + SharedData.Instance.Naam2 + ": " + SharedData.Instance.time2[0].ToString("mm\\:ss\\.ff");
 
-            if (SharedData.Instance.time1[0] < 20)
+            if (SharedData.Instance.time1[0].TotalSeconds < 20)
             {
                 int multiplier = 100;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
-            else if (SharedData.Instance.time1[0] < 25)
+            else if (SharedData.Instance.time1[0].TotalSeconds < 25)
             {
                 int multiplier = 75;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
-            else if (SharedData.Instance.time1[0] < 30)
+            else if (SharedData.Instance.time1[0].TotalSeconds < 30)
             {
                 int multiplier = 40;
                 points_s1.Content = "Punten: " + multiplier.ToString("0");
@@ -65,19 +65,19 @@ namespace project_1_game_inteact
                 SharedData.Instance.Geld1 = Convert.ToInt16(SharedData.Instance.Geld1 + multiplier);
             }
 
-            if (SharedData.Instance.time2[0] < 20)
+            if (SharedData.Instance.time2[0].TotalSeconds < 20)
             {
                 int multiplier = 100;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
-            else if (SharedData.Instance.time2[0] < 25)
+            else if (SharedData.Instance.time2[0].TotalSeconds < 25)
             {
                 int multiplier = 75;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
                 SharedData.Instance.Geld2 = Convert.ToInt16(SharedData.Instance.Geld2 + multiplier);
             }
-            else if (SharedData.Instance.time2[0] < 30)
+            else if (SharedData.Instance.time2[0].TotalSeconds < 30)
             {
                 int multiplier = 40;
                 points_s2.Content = "Punten: " + multiplier.ToString("0");
